@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>关于Grid Layout的一切 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                关于Grid Layout的一切
+            
+        </h1>
+        <div>
+            <time>2025-03-09</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/Grid-Layout/">Grid Layout</a>
+                    </span>
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/CSS/">CSS</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="关于Gird布局的一切"><a href="#关于Gird布局的一切" class="headerlink" title="关于Gird布局的一切"></a>关于Gird布局的一切</h1><h2 id="在此之前"><a href="#在此之前" class="headerlink" title="在此之前"></a>在此之前</h2><ul>
+<li>建议大家在<font color='magenta'><strong>掌握flex布局</strong></font>以后再来学习grid布局，这对你理解grid布局有很大的帮助</li>
+<li>你可以在<font color='magenta'><strong>github</strong></font>上找到本文中的演示代码：<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe/gridLayout.git">https://github.com/ZhengxuanYe/gridLayout.git</a></li>
+</ul>
+<h2 id="什么是GridLayout？"><a href="#什么是GridLayout？" class="headerlink" title="什么是GridLayout？"></a>什么是GridLayout？</h2><p>CSS Grid 是一种用于网页设计的<font color='magenta'><strong>二维布局系统</strong></font>，允许设计师根据行列来排列元素，提供对齐、分布间距等高级功能，使得创建复杂但响应迅速的布局变得更加容易。</p>
+<p><strong>下面是来自w3school的介绍：</strong></p>
+<ul>
+<li><p>网格布局模块提供了基于网格的布局系统，其中包含行和列</p>
+</li>
+<li><p>网格布局模块允许开发人员轻松创建复杂的网页布局</p>
+</li>
+<li><p>网格布局模块使设计响应式布局结构变得更加容易，无需使用浮动或定位</p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-08_23-47-07.png" class=""></li>
+</ul>
+<h2 id="我对于二维布局的一些理解"><a href="#我对于二维布局的一些理解" class="headerlink" title="我对于二维布局的一些理解"></a>我对于二维布局的一些理解</h2><p>在flexbox中：</p>
+<ul>
+<li>主轴（Main Axis）：你可以通过设置 justify-content 来控制沿主轴如何对齐所有子元素。</li>
+<li>侧轴（Cross Axis）：垂直于主轴的方向。使用 align-items 或 align-self 控制子元素沿侧轴的对齐方式。</li>
+</ul>
+<p>在Grid布局中：</p>
+<ul>
+<li><p><strong>划分网格（画格子）</strong>：</p>
+<ul>
+<li>定义网格容器中的行与列的尺寸。</li>
+</ul>
+</li>
+<li><p><strong>调整每个单元格的样式</strong>：</p>
+<ul>
+<li><p>指定某个网格项跨越多少列或行。</p>
+</li>
+<li><p>命名网格区域或一次性设置一个网格项的起始和结束行列位置。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>调整单元格内部样式</strong>：</p>
+<ul>
+<li><p>对于位于网格单元内的内容，可以分别控制内容沿行轴和列轴的对齐方式。</p>
+</li>
+<li><p>单独的网格项也可以使用 <code>justify-self</code> 和 <code>align-self</code> 来覆盖容器级别的对齐设置。</p>
+</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-08_22-40-17.png" class="">
+
+<p>上面的表述可能比较抽象，需要大家自己写些demo来加深理解</p>
+<h2 id="你需要熟悉的一些单词"><a href="#你需要熟悉的一些单词" class="headerlink" title="你需要熟悉的一些单词"></a>你需要熟悉的一些单词</h2><ul>
+<li><strong>Grid Area</strong> - 网格区域：由一个或多个网格单元组成的矩形区域，可以放置单个网格项。</li>
+<li><strong>Fr Unit (Fraction)</strong> - 分数单位：一种特殊的单位，用于根据可用空间分配网格轨道的大小。</li>
+<li><strong>Gap</strong> - 间距：网格行与行之间或者列与列之间的距离；以前称为 <code>grid-gap</code>。</li>
+<li><strong>Auto-Fill</strong> - 自动填充：允许网格自动填充尽可能多的重复模式直到填满网格容器的宽度。</li>
+<li><strong>Auto-Fit</strong> - 自动适应：类似于 auto-fill，但会在可能的情况下缩小轨道以避免空白空间。</li>
+<li><strong>Minmax()</strong> - 函数：指定轨道尺寸的最小值和最大值，使得它能够动态调整。</li>
+<li><strong>Repeat()</strong> - 函数：简化重复的行或列定义。</li>
+<li><strong>Justify-Content</strong> - 主轴对齐（水平方向）：当网格项总尺寸小于网格容器时，如何沿主轴（通常是水平方向）分布剩余空间。</li>
+<li><strong>Align-Content</strong> - 侧轴对齐（垂直方向）：当网格项总尺寸小于网格容器时，如何沿侧轴（通常是垂直方向）分布剩余空间。</li>
+<li><strong>Justify-Items</strong> - 单元内水平对齐：定义所有网格项在其各自网格单元内的水平对齐方式。</li>
+<li><strong>Align-Items</strong> - 单元内垂直对齐：定义所有网格项在其各自网格单元内的垂直对齐方式。</li>
+<li><strong>Justify-Self</strong> - 单独网格项水平对齐：覆盖默认设置，单独为某个网格项设置其在单元格内的水平对齐方式。</li>
+<li><strong>Align-Self</strong> - 单独网格项垂直对齐：覆盖默认设置，单独为某个网格项设置其在单元格内的垂直对齐方式。</li>
+</ul>
+<p><font color='magenta'>注意，在使用时单词都是小写</font></p>
+<h2 id="下面是划分表格部分"><a href="#下面是划分表格部分" class="headerlink" title="下面是划分表格部分"></a>下面是划分表格部分</h2><h3 id="display"><a href="#display" class="headerlink" title="display"></a><code>display</code></h3><p>在元素上声明 <code>display：grid</code> 或 <code>display：inline-grid</code> 来创建一个网格容器</p>
+<ul>
+<li><p><code>display：grid</code> ：该容器是一个<font color='magenta'><strong>块级元素</strong></font></p>
+</li>
+<li><p><code>display: inline-grid</code> ：该容器为**<font color='magenta'>行内元素</font>**</p>
+</li>
+</ul>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-08_22-53-00.png" class="">
+
+<p>在这个例子中：</p>
+<ul>
+<li><code>.block-grid</code> 将作为一个块级元素展示，无论内容多少都会独占一行，并可能根据需要扩展以填满父容器的宽度。</li>
+<li><code>.inline-grid</code> 则会尝试只占用必要的空间，并且如果旁边有足够的空间，它将会与其它内联元素或文本位于同一行。</li>
+</ul>
+<h3 id="grid-template-columns-和-grid-template-rows"><a href="#grid-template-columns-和-grid-template-rows" class="headerlink" title="grid-template-columns 和 grid-template-rows"></a><code>grid-template-columns</code> 和 <code>grid-template-rows</code></h3><p><code>grid-template-columns</code> 和 <code>grid-template-rows</code> 是 CSS Grid 布局中用于定义网格容器内列和行的尺寸的关键属性。通过这两个属性，你可以精确控制网格布局的结构。</p>
+<p><code>grid-template-columns</code>：定义网格容器中的列宽</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">grid-template-columns</span>: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; &lt;line-name&gt; ...;</span><br></pre></td></tr></table></figure>
+
+<p><code>grid-template-rows</code>：定义网格容器中的行高</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">grid-template-rows</span>: &lt;track-size&gt; ... | &lt;line-name&gt; &lt;track-size&gt; &lt;line-name&gt; ...;</span><br></pre></td></tr></table></figure>
+
+<p><font color='magenta'>其中 <code>&lt;track-size&gt;</code> 可以是长度（如 <code>px</code>, <code>rem</code> 等）、百分比、<code>auto</code> 或者 <code>fr</code> 单位等，<code>&lt;line-name&gt;</code> 是可选的网格线名称</font></p>
+<p>觉得有些疑惑？看下面具体的例子就好理解了</p>
+<h4 id="设置固定值"><a href="#设置固定值" class="headerlink" title="设置固定值"></a>设置固定值</h4><p>下面设定的列宽分别为300px 200px 300px，行高分别为300px 200px</p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-08_23-02-54.png" class="">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:grid;</span><br><span class="line">    <span class="comment">/* 声明三列，宽度分别为300px,200px,300px */</span></span><br><span class="line">    <span class="attribute">grid-template-columns</span>:<span class="number">300px</span> <span class="number">200px</span> <span class="number">300px</span>;</span><br><span class="line">    <span class="comment">/* 声明三行，高度分别为300px,200px */</span></span><br><span class="line">    <span class="attribute">grid-template-rows</span>:<span class="number">300px</span> <span class="number">200px</span> ;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="repeat-函数"><a href="#repeat-函数" class="headerlink" title="repeat()函数"></a><code>repeat()函数</code></h4><p><code>repeat()</code> 函数在 CSS Grid 布局中是一个非常有用的工具，它允许你简化重复的行或列定义。通过 <code>repeat()</code> 函数，你可以轻松地<font color='magenta'><strong>创建具有相同尺寸的多个轨道（行或列）</strong></font>，而无需重复输入相同的值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repeat(数量, 轨道大小)</span><br></pre></td></tr></table></figure>
+
+<p>下面代码会创建两行三列六个300px*300px的盒子</p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-08_23-08-02.png" class="">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:grid;</span><br><span class="line">    <span class="attribute">min-height</span>:<span class="number">100vh</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="comment">/* 声明三列，宽度分别为300px,300px,300px */</span></span><br><span class="line">    <span class="attribute">grid-template-columns</span>:<span class="built_in">repeat</span>(<span class="number">3</span>,<span class="number">300px</span>);</span><br><span class="line">    <span class="comment">/* 声明三行，高度分别为300px,300px */</span></span><br><span class="line">    <span class="attribute">grid-template-rows</span>:<span class="built_in">repeat</span>(<span class="number">2</span>,<span class="number">300px</span>) ;</span><br><span class="line">    <span class="attribute">grid-gap</span>:<span class="number">10px</span> <span class="number">10px</span> ;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="auto-关键字"><a href="#auto-关键字" class="headerlink" title="auto 关键字"></a><code>auto</code> 关键字</h4><p><code>auto</code> 可以用于定义网格轨道（行或列）的大小。它允许<font color='magenta'><strong>轨道根据其内容自动调整大小</strong></font>。</p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-08_23-43-20.png" class="">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:grid;</span><br><span class="line">    <span class="attribute">min-height</span>:<span class="number">100vh</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">300px</span> auto <span class="number">300px</span>; <span class="comment">/* 第二列列宽根据内容自动调整 */</span></span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="number">200px</span> auto; <span class="comment">/* 第二行高根据内容自动调整 */</span></span><br><span class="line">    <span class="attribute">grid-gap</span>:<span class="number">10px</span> <span class="number">10px</span> ;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="fr-单位"><a href="#fr-单位" class="headerlink" title="fr 单位"></a><code>fr</code> 单位</h4><p><code>fr</code> 是“fraction”的缩写，表示网格容器中可用空间的一小部分。<font color='magenta'><strong>它允许你为网格轨道分配相对比例的空间。</strong></font></p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-08_23-54-29.png" class="">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:grid;</span><br><span class="line">    <span class="attribute">min-height</span>:<span class="number">100vh</span>;  </span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">2</span>fr <span class="number">1</span>fr;<span class="comment">/* 第二列是其他两列的两倍宽 */</span>  </span><br><span class="line">    <span class="attribute">grid-template-rows</span>: <span class="number">1</span>fr <span class="number">2</span>fr <span class="number">1</span>fr; <span class="comment">/* 第二行是第一行的两倍宽 */</span> </span><br><span class="line"></span><br><span class="line">    <span class="attribute">grid-gap</span>:<span class="number">10px</span> <span class="number">10px</span> ;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><font color='magenta'>注意，上述例子是按容器空间进行分配，可以看到网格容器的宽度被占满了</font></strong></p>
+<h4 id="minmax-函数"><a href="#minmax-函数" class="headerlink" title="minmax() 函数"></a><code>minmax()</code> 函数</h4><p><code>minmax()</code> 函数允许你<font color='magenta'><strong>指定一个轨道的最小和最大尺寸</strong></font>。这使得轨道可以动态地调整大小，但不会小于指定的最小值或大于最大值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minmax(minimum, maximum)</span><br></pre></td></tr></table></figure>
+
+<h4 id="auto-fill-和-auto-fit"><a href="#auto-fill-和-auto-fit" class="headerlink" title="auto-fill 和 auto-fit"></a><code>auto-fill</code> 和 <code>auto-fit</code></h4><p>这两个关键字通常与 <code>repeat()</code> 函数一起使用，用于控制网格如何根据可用空间自动填充轨道数量。</p>
+<p><strong>区别</strong>：</p>
+<ul>
+<li><code>auto-fill</code>：即使没有足够的内容来填充所有轨道，也会创建尽可能多的轨道。</li>
+<li><code>auto-fit</code>：类似 <code>auto-fill</code>，但它会调整网格项的大小以完全填充容器，避免空白区域。</li>
+</ul>
+<img src="/2025/03/09/关于Grid-Layout的一切/undefined"  style="zoom: 25%;" />
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span>&#123;</span><br><span class="line">   <span class="attribute">display</span>:grid;</span><br><span class="line">   <span class="attribute">min-height</span>:<span class="number">100vh</span>;  </span><br><span class="line">   <span class="attribute">background-color</span>: pink;</span><br><span class="line"></span><br><span class="line">   <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fill, <span class="built_in">minmax</span>(<span class="number">200px</span>, <span class="number">1</span>fr)); <span class="comment">/* 根据容器宽度自动填充列 */</span></span><br><span class="line">    </span><br><span class="line">   <span class="attribute">grid-gap</span>:<span class="number">10px</span> <span class="number">10px</span> ;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>auto-fill</code> 或 <code>auto-fit</code> 结合 <code>minmax()</code> 可以创建响应式的网格布局，适应不同的屏幕尺寸。</p>
+<h3 id="gap、row-gap-和-column-gap"><a href="#gap、row-gap-和-column-gap" class="headerlink" title="gap、row-gap 和 column-gap"></a><code>gap</code>、<code>row-gap</code> 和 <code>column-gap</code></h3><p>在 CSS Grid 布局中，<code>gap</code>、<code>row-gap</code> 和 <code>column-gap</code> 是用于<font color='magenta'><strong>控制网格项之间间距</strong></font>的关键属性。这些属性取代了早期的 <code>grid-gap</code>、<code>grid-row-gap</code> 和 <code>grid-column-gap</code>，提供了更简洁和一致的语法。</p>
+<ul>
+<li><strong><code>gap</code></strong>：这是一个简写属性，可以同时设置行间距和列间距。如果你只提供一个值，它将应用于行和列的间距。如果提供两个值，则第一个值应用于行间距（相当于 <code>row-gap</code>），第二个值应用于列间距（相当于 <code>column-gap</code>）。</li>
+<li><strong><code>row-gap</code></strong>：专门用于定义网格行之间的间距。</li>
+<li><strong><code>column-gap</code></strong>：专门用于定义网格列之间的间距。</li>
+</ul>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-08-27.png" class="">
+
+<h4 id="使用-gap"><a href="#使用-gap" class="headerlink" title="使用 gap"></a>使用 <code>gap</code></h4><p>如果你想为行和列设置相同的间距,只需设定一个值即可，如果你想分别为行和列设置不同的间距：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>:<span class="built_in">repeat</span>(<span class="number">3</span>,<span class="number">300px</span>);</span><br><span class="line">  <span class="attribute">grid-template-rows</span>:<span class="built_in">repeat</span>(<span class="number">2</span>,<span class="number">300px</span>) ;</span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">10px</span> <span class="number">20px</span>; <span class="comment">/* 行间距为10px，列间距为20px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-row-gap-和-column-gap"><a href="#使用-row-gap-和-column-gap" class="headerlink" title="使用 row-gap 和 column-gap"></a>使用 <code>row-gap</code> 和 <code>column-gap</code></h4><p>如果你想单独设置行或列的间距：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>:<span class="built_in">repeat</span>(<span class="number">3</span>,<span class="number">300px</span>);</span><br><span class="line">  <span class="attribute">grid-template-rows</span>:<span class="built_in">repeat</span>(<span class="number">2</span>,<span class="number">300px</span>) ;</span><br><span class="line">  <span class="attribute">row-gap</span>: <span class="number">10px</span>; <span class="comment">/* 仅设置行间距为10px */</span></span><br><span class="line">  <span class="attribute">column-gap</span>: <span class="number">20px</span>; <span class="comment">/* 仅设置列间距为20px */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="grid-template-areas"><a href="#grid-template-areas" class="headerlink" title="grid-template-areas"></a><code>grid-template-areas</code></h3><p><code>grid-template-areas</code> 是 CSS Grid 布局中一个非常强大的特性，<font color='magenta'><strong>它允许你通过命名网格区域来定义布局结构</strong></font>。使用 <code>grid-template-areas</code> 可以让你的 CSS 代码更加直观和易于理解，尤其是在处理复杂的布局时。看下面这个例子</p>
+<ul>
+<li><strong>盒子结构</strong></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;header&quot;</span>&gt;</span>Header<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>Main Content<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;sidebar&quot;</span>&gt;</span>Sidebar<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>Footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>容器基础样式</strong></p>
+<p>可以看到，<font color='magenta'><strong>是三行、三列的结构</strong></font></p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">min-height</span>:<span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">1</span>fr);</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: auto <span class="number">500px</span> auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是如何使用<code>grid-template-areas</code> </p>
+<ul>
+<li><strong>定义网格区域</strong>：首先，你需要给每个网格项指定一个名字（通过 <code>grid-area</code> 属性）。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">min-height</span>:<span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">1</span>fr);</span><br><span class="line">  <span class="attribute">grid-template-rows</span>: auto <span class="number">500px</span> auto;</span><br><span class="line">  </span><br><span class="line"><span class="comment">/* 给每个网格项指定一个名字（通过 `grid-area` 属性） */</span></span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">&quot;header header header&quot;</span></span><br><span class="line">    <span class="string">&quot;main main sidebar&quot;</span></span><br><span class="line">    <span class="string">&quot;footer footer footer&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>在容器中定义布局</strong>：然后，在网格容器上使用 <code>grid-template-areas</code> 属性来描述如何布局这些命名的网格区域。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: header;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fdd</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: main;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#dfd</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: sidebar;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ddf</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: footer;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffd</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-16-45.png" class="">
+
+<h3 id="grid-auto-flow"><a href="#grid-auto-flow" class="headerlink" title="grid-auto-flow"></a><code>grid-auto-flow</code></h3><p><code>grid-auto-flow</code> 是 CSS Grid 布局中的一个属性，<font color='magenta'><strong>它控制着自动放置网格项的方式</strong></font>。当你没有明确指定每个网格项的位置（即没有使用 <code>grid-row</code> 和 <code>grid-column</code> 或者 <code>grid-area</code> 来定位它们）时，<code>grid-auto-flow</code> 决定了这些未明确位置的网格项如何被分配到网格中。</p>
+<ul>
+<li><strong><code>row</code></strong>（默认值）：网格项将按行优先顺序填充网格，从左至右，然后从上到下。</li>
+<li><strong><code>column</code></strong>：网格项将按列优先顺序填充网格，从上至下，然后从左到右。</li>
+<li><strong><code>dense</code></strong>：此关键字允许网格尝试填充任何提前出现的空白区域。这意味着如果后面有尺寸较小的网格项能够适配前面未被占满的空间，则它们会被重新排序以填满那些空间。注意，这可能会导致网格项不按照源代码中的顺序显示。</li>
+</ul>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-28-24.png" class="">
+
+<p><strong><font color='magenta'>注意到，此时按默认顺序填充，实际上第一行上的空位Small item 5是可以填充到此位置的，你需要添加dense属性来达到需求</font></strong></p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-28-56.png" class="">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">5</span>, <span class="number">1</span>fr); <span class="comment">/* 5列 */</span></span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(<span class="number">5</span>, <span class="number">100px</span>); <span class="comment">/* 5行 */</span></span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">10px</span>; <span class="comment">/* 网格间距 */</span></span><br><span class="line">  <span class="attribute">grid-auto-flow</span>: row dense; <span class="comment">/* 启用dense算法以尝试填满所有空位 */</span></span><br><span class="line">  <span class="attribute">font-size</span>:<span class="number">30px</span>;</span><br><span class="line">  <span class="attribute">color</span>:white;</span><br><span class="line">  <span class="attribute">text-align</span>:center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="span"><a href="#span" class="headerlink" title="span"></a><code>span</code></h3><p>在 CSS Grid 布局中，<font color='magenta'><code>**span</code> 是一个非常有用的关键词，它允许网格项跨越多个行或列。**</font>通过使用 <code>span</code>，你可以指定某个网格项应该跨越多少个网格轨道（即行或列），从而创建更复杂和灵活的布局。</p>
+<ul>
+<li><strong><code>grid-column</code> 和 <code>grid-row</code></strong>：这两个属性可以与 <code>span</code> 关键词一起使用来定义网格项跨越的范围。<ul>
+<li><code>grid-column: &lt;start-line&gt; / span &lt;number-of-columns&gt;</code> 或 <code>grid-column: span &lt;number-of-columns&gt; / &lt;end-line&gt;</code>：指定网格项跨越的列数。</li>
+<li><code>grid-row: &lt;start-line&gt; / span &lt;number-of-rows&gt;</code> 或 <code>grid-row: span &lt;number-of-rows&gt; / &lt;end-line&gt;</code>：指定网格项跨越的行数。</li>
+</ul>
+</li>
+</ul>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-54-15.png" class="">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">1</span>fr); <span class="comment">/* 定义三列等宽 */</span></span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">100px</span>); <span class="comment">/* 定义三行，每行高度为100px */</span></span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">10px</span>; <span class="comment">/* 设置网格间距 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item1</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: lightblue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item2</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: lightgreen;</span><br><span class="line">  <span class="comment">/* 让 item2 跨越两列 */</span></span><br><span class="line">  <span class="attribute">grid-column</span>: span <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.item3</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: lightcoral;</span><br><span class="line">  <span class="comment">/* 让 item3 跨越两行 */</span></span><br><span class="line">  <span class="attribute">grid-row</span>: span <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="一个有点神奇的概念"><a href="#一个有点神奇的概念" class="headerlink" title="一个有点神奇的概念"></a>一个有点神奇的概念</h2><p>刚开始学的时候我执着于主轴和侧轴的概念，不过现在看来这取决于我们建立网格的视角</p>
+<p>在 CSS Grid 布局中，主轴和侧轴的概念不像在 Flexbox 中那样固定为水平或垂直方向。实际上，在 Grid 布局里，主轴（main axis）和侧轴（cross axis）的方向取决于你如何定义网格的行和列。</p>
+<ul>
+<li><strong>主轴</strong>：在 Grid 布局中，如果你主要通过 <code>grid-template-columns</code> 定义布局，则主轴是水平的（即行方向）。如果你主要通过 <code>grid-template-rows</code> 定义布局，则主轴是垂直的（即列方向）。</li>
+<li><strong>侧轴</strong>：侧轴总是垂直于主轴。如果主轴是水平的（行方向），那么侧轴就是垂直的（列方向），反之亦然。</li>
+</ul>
+<h2 id="调整每个单元格的样式"><a href="#调整每个单元格的样式" class="headerlink" title="调整每个单元格的样式"></a>调整每个单元格的样式</h2><p><font color='magenta'><strong>网格不一定占满整个浏览器界面，相对于整个浏览器界面还是有不同位置的，所以需要content调整</strong></font></p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-38-07.png" class="">
+
+<h2 id="调整单元格内部样式"><a href="#调整单元格内部样式" class="headerlink" title="调整单元格内部样式"></a>调整单元格内部样式</h2><p><strong><font color='magenta'>每个单元格内部也是可以调整的，这就要用到items了，需要注意的是，这会作用到每个单元格</font></strong></p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-42-47.png" class="">
+
+<p><strong><font color='magenta'>需要注意的是，上面的调整都是在顶级容器container中的样式调整，而当你想精准控制单元格的样式时，需要用self来调整单元格样式</font></strong></p>
+<img src="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/Snipaste_2025-03-09_00-47-47.png" class="">
+
+<h2 id="三者的区分"><a href="#三者的区分" class="headerlink" title="三者的区分"></a>三者的区分</h2><p><strong>下面以justify来进行说明</strong></p>
+<h3 id="1-justify-content"><a href="#1-justify-content" class="headerlink" title="1. justify-content"></a>1. <code>justify-content</code></h3><ul>
+<li><strong>作用对象</strong>：整个网格容器内的所有网格项作为一个整体。</li>
+<li><strong>功能</strong>：当网格项没有完全填满网格容器时，<code>justify-content</code> 控制这些网格项沿主轴（通常是水平方向）在整个网格容器内的分布方式。</li>
+<li><strong>适用场景</strong>：用于调整网格项相对于网格容器的对齐方式，特别是在存在未被使用的空间时，如何分配这些额外的空间。</li>
+<li><strong>常见值</strong>：<ul>
+<li><code>start</code>: 网格项从起始边开始排列。</li>
+<li><code>end</code>: 网格项从结束边开始排列。</li>
+<li><code>center</code>: 网格项居中显示。</li>
+<li><code>space-between</code>: 网格项之间的间距相等，但首尾两端不留空隙。</li>
+<li><code>space-around</code>: 每个网格项周围平均分配空间。</li>
+<li><code>space-evenly</code>: 网格项之间的间距以及到容器边缘的距离都相等。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">justify-content</span>: center; <span class="comment">/* 所有网格项在其容器内水平居中 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-justify-items"><a href="#2-justify-items" class="headerlink" title="2. justify-items"></a>2. <code>justify-items</code></h3><ul>
+<li><strong>作用对象</strong>：网格容器内的所有网格项。</li>
+<li><strong>功能</strong>：<code>justify-items</code> 设置的是网格容器内所有网格项在其各自单元格内的默认对齐方式。</li>
+<li><strong>适用场景</strong>：当你希望所有网格项按照相同的方式在其各自的单元格内对齐时非常有用。</li>
+<li><strong>常见值</strong>：<ul>
+<li><code>start</code>: 将每个网格项靠单元格的起始边对齐。</li>
+<li><code>end</code>: 将每个网格项靠单元格的结束边对齐。</li>
+<li><code>center</code>: 将每个网格项居中对齐于单元格。</li>
+<li><code>stretch</code>（默认值）: 网格项拉伸以填满整个单元格。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">justify-items</span>: center; <span class="comment">/* 所有网格项在其单元格内水平居中 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-justify-self"><a href="#3-justify-self" class="headerlink" title="3. justify-self"></a>3. <code>justify-self</code></h3><ul>
+<li><strong>作用对象</strong>：单个网格项。</li>
+<li><strong>功能</strong>：<code>justify-self</code> 允许你为特定的网格项设置其在单元格内的对齐方式，从而覆盖由 <code>justify-items</code> 在网格容器级别上设定的默认值。</li>
+<li><strong>适用场景</strong>：当你需要为某个或某些特定的网格项设置不同于其他网格项的对齐方式时使用。</li>
+<li><strong>常见值</strong>：<ul>
+<li><code>start</code>: 将该网格项靠单元格的起始边对齐。</li>
+<li><code>end</code>: 将该网格项靠单元格的结束边对齐。</li>
+<li><code>center</code>: 将该网格项居中对齐于单元格。</li>
+<li><code>stretch</code>: 网格项拉伸以填满整个单元格。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.special-item</span> &#123;</span><br><span class="line">  <span class="attribute">justify-self</span>: end; <span class="comment">/* 仅此网格项靠单元格的结束边对齐 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="区别总结"><a href="#区别总结" class="headerlink" title="区别总结"></a>区别总结</h3><ul>
+<li><strong><code>justify-content</code></strong>：控制整个网格内容相对于网格容器的对齐方式。它决定了当网格项没有完全填满网格容器时，如何在主轴方向上分布这些网格项。</li>
+<li><strong><code>justify-items</code></strong>：为所有网格项设置一个统一的对齐规则，定义了它们在其各自单元格内的默认对齐方式。</li>
+<li><strong><code>justify-self</code></strong>：允许单独指定某个网格项在其单元格内的对齐方式，覆盖 <code>justify-items</code> 的默认设置。</li>
+</ul>
+<h3 id="然后呢？"><a href="#然后呢？" class="headerlink" title="然后呢？"></a>然后呢？</h3><p>弄清楚上面的区别以后，你就可以把flex布局里面的知识迁移过来了</p>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/10/html-css%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
+                    html+css最佳实践
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/02/27/npm%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" >
+                    npm包管理工具
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

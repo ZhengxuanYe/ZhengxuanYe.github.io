@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>Tomcat全解析 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                Tomcat全解析
+            
+        </h1>
+        <div>
+            <time>2025-03-11</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/">项目部署</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/Tomcat/">Tomcat</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h1><p>Web服务器是一种通过互联网或内部网络为用户提供网页内容的系统。它处理来自客户端（通常是用户的浏览器）的请求，并返回相应的资源，如HTML页面、图片、视频或其他类型的数据。Web服务器可以指硬件设备，也可以指运行在这些设备上的软件。</p>
+<ol>
+<li><p><strong>Apache HTTP Server</strong></p>
+<ul>
+<li>Apache是目前最流行的Web服务器之一，支持多种操作系统，包括Unix、Linux、Windows等。</li>
+<li>它以其灵活性、强大功能和广泛的社区支持而闻名。</li>
+</ul>
+</li>
+<li><p><strong>Nginx</strong></p>
+<ul>
+<li>Nginx是一个高性能的HTTP和反向代理服务器，也作为IMAP&#x2F;POP3代理服务器使用。</li>
+<li>以高效处理静态文件、反向代理请求和负载均衡著称，适合高并发访问场景。</li>
+</ul>
+</li>
+<li><p><strong>Microsoft Internet Information Services (IIS)</strong></p>
+<ul>
+<li>IIS是微软提供的Web服务器软件，主要用于Windows环境。</li>
+<li>提供了对ASP.NET、PHP等多种技术的支持，并且与Windows生态系统紧密集成。</li>
+</ul>
+</li>
+<li><p><strong>Tomcat</strong></p>
+<ul>
+<li>尽管严格意义上Tomcat是一个Servlet容器，但它也能作为Web服务器来提供Java应用的内容。</li>
+<li>主要用于执行Java Servlet和JSP页面，适用于Java Web应用程序。</li>
+</ul>
+</li>
+</ol>
+<h3 id="Web服务器的工作原理"><a href="#Web服务器的工作原理" class="headerlink" title="Web服务器的工作原理"></a>Web服务器的工作原理</h3><p>当用户尝试访问一个网站时，用户的浏览器会发送一个HTTP请求到该网站所在的Web服务器。Web服务器接收到这个请求后，根据请求的内容从服务器硬盘中找到对应的文件，然后将这个文件包装成HTTP响应格式返回给用户的浏览器。浏览器解析并显示这个响应内容，从而用户可以看到所请求的网页。</p>
+<h1 id="什么是tomcat？"><a href="#什么是tomcat？" class="headerlink" title="什么是tomcat？"></a>什么是tomcat？</h1><p>Apache Tomcat [<a target="_blank" rel="noopener" href="https://tomcat.apache.org/]%E6%98%AF%E4%B8%80%E6%AC%BE%E5%BC%80%E6%BA%90%E7%9A%84%E8%BD%AF%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E7%94%A8%E4%BA%8E%E9%83%A8%E7%BD%B2%E5%92%8C%E8%BF%90%E8%A1%8C">https://tomcat.apache.org/]是一款开源的软件服务器，用于部署和运行</a> Java Servlet 和 JSP（JavaServer Pages）技术编写的Web应用程序。</p>
+<h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><ul>
+<li><strong>Servlet 和 JSP 支持</strong>：Tomcat 提供了对 Java Servlet 和 JSP 技术的支持，是开发Java Web 应用的基础。</li>
+<li><strong>轻量级应用服务器</strong>：相比于其他 Java EE 应用服务器（如 WildFly、GlassFish），Tomcat 更加轻量级，专注于Servlet容器功能。</li>
+<li><strong>易于使用</strong>：配置和部署相对简单，适合快速开发和测试环境。</li>
+<li><strong>扩展性</strong>：通过各种插件和附加组件（如连接池、安全增强等），可以满足不同的需求。</li>
+</ul>
+<h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><ol>
+<li><p><strong>找到系统属性设置</strong>：</p>
+<ul>
+<li>右键点击“此电脑”或“我的电脑”，选择“属性”。</li>
+<li>点击左侧的“高级系统设置”。</li>
+<li>在弹出的“系统属性”窗口中，点击“环境变量”。</li>
+</ul>
+</li>
+<li><p><strong>添加CATALINA_HOME变量</strong>：</p>
+<ul>
+<li>在“系统变量”部分，点击“新建”按钮。</li>
+<li>变量名输入 <code>CATALINA_HOME</code>，变量值填写你的Tomcat安装目录的完整路径，例如：<code>C:\apache-tomcat-9.0.65</code>。</li>
+</ul>
+</li>
+<li><p><strong>更新PATH变量</strong>：</p>
+<ul>
+<li>在“系统变量”中找到并选择 <code>Path</code> 变量，然后点击“编辑”。</li>
+<li>点击“新建”，然后输入 <code>%CATALINA_HOME%\bin</code>。</li>
+<li>确认所有窗口的更改。</li>
+</ul>
+</li>
+</ol>
+<h1 id="Apache-Tomcat目录结构"><a href="#Apache-Tomcat目录结构" class="headerlink" title="Apache Tomcat目录结构"></a>Apache Tomcat目录结构</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">apache-tomcat/</span><br><span class="line">├── bin/                    # 包含启动、关闭脚本及工具</span><br><span class="line">│   ├── startup.sh          # Unix/Linux下的启动脚本</span><br><span class="line">│   ├── shutdown.sh         # Unix/Linux下的关闭脚本</span><br><span class="line">│   ├── catalina.sh         # 控制Tomcat的主要脚本</span><br><span class="line">│   └── ...                 # 其他脚本和可执行文件</span><br><span class="line">├── conf/                   # 存储配置文件</span><br><span class="line">│   ├── server.xml          # 主要的Tomcat配置文件</span><br><span class="line">│   ├── web.xml             # 默认的部署描述符文件</span><br><span class="line">│   ├── context.xml         # 用于定义默认上下文参数</span><br><span class="line">│   ├── tomcat-users.xml    # 用户名和角色定义</span><br><span class="line">│   └── ...                 # 其他配置文件</span><br><span class="line">├── lib/                    # 存放Tomcat使用的JAR包</span><br><span class="line">│   ├── catalina.jar        # Tomcat的核心实现库之一</span><br><span class="line">│   └── ...                 # 其他库文件</span><br><span class="line">├── logs/                   # 存储日志文件</span><br><span class="line">│   ├── catalina.out        # 输出日志文件</span><br><span class="line">│   └── ...                 # 其他日志文件</span><br><span class="line">├── temp/                   # 临时文件存放目录</span><br><span class="line">├── webapps/                # Web应用程序部署目录</span><br><span class="line">│   ├── examples            # 示例Web应用</span><br><span class="line">│   ├── docs                # 文档Web应用</span><br><span class="line">│   ├── manager             # 管理Web应用</span><br><span class="line">│   ├── host-manager        # 虚拟主机管理Web应用</span><br><span class="line">│   └── ROOT                # 默认Web应用</span><br><span class="line">├── work/                   # JSP编译后的servlet存放目录</span><br><span class="line">└── NOTICE                  # 许可证信息</span><br></pre></td></tr></table></figure>
+
+<p>每个目录都有其特定的功能：</p>
+<ul>
+<li><code>bin/</code> 目录包含用于启动和停止Tomcat的各种脚本。</li>
+<li><code>conf/</code> 目录包含了所有配置文件，这些文件允许你自定义Tomcat的行为。</li>
+<li><code>lib/</code> 目录包括了运行Tomcat所需的库文件。</li>
+<li><code>logs/</code> 目录保存了各种日志文件，对于调试和监控非常重要。</li>
+<li><code>temp/</code> 目录用于存放一些临时文件。</li>
+<li><strong><font color='“skyblue”'><code>webapps/</code> 目录是放置Web应用程序的地方，默认情况下会有一些示例应用。</font></strong></li>
+<li><code>work/</code> 目录是JSP页面转换成Servlet后存放的位置。</li>
+</ul>
+<h1 id="配置tomcat用户名和密码"><a href="#配置tomcat用户名和密码" class="headerlink" title="配置tomcat用户名和密码"></a>配置tomcat用户名和密码</h1><p>配置Tomcat的用户名和密码主要用于控制对Tomcat管理界面（如Manager App和Host Manager）的访问。这些界面允许用户部署、停止、启动或移除Web应用程序，因此需要设置适当的权限来保护它们。</p>
+<p><strong><font color='“skyblue”'>你需要先关闭tomcat后再进行配置</font></strong></p>
+<h3 id="步骤-1-编辑-tomcat-users-xml-文件"><a href="#步骤-1-编辑-tomcat-users-xml-文件" class="headerlink" title="步骤 1: 编辑 tomcat-users.xml 文件"></a>步骤 1: 编辑 <code>tomcat-users.xml</code> 文件</h3><p>你需要编辑位于 <code>&lt;Tomcat安装目录&gt;/conf/tomcat-users.xml</code> 的文件。这个文件定义了所有可以登录到Tomcat管理界面的用户及其角色（权限）。</p>
+<img src="/2025/03/11/Tomcat全解析/Tomcat全解析"  style="zoom: 25%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;user username=&quot;admin&quot; password=&quot;admin&quot; roles=&quot;manager-gui&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="步骤-2-保存并重启Tomcat"><a href="#步骤-2-保存并重启Tomcat" class="headerlink" title="步骤 2: 保存并重启Tomcat"></a>步骤 2: 保存并重启Tomcat</h3><p>在完成对 <code>tomcat-users.xml</code> 文件的修改后，保存更改，并重启Tomcat服务器以使新设置生效。</p>
+<h3 id="步骤-3-访问管理界面"><a href="#步骤-3-访问管理界面" class="headerlink" title="步骤 3: 访问管理界面"></a>步骤 3: 访问管理界面</h3><p>现在你可以通过浏览器访问 Tomcat 的管理界面，例如：</p>
+<ul>
+<li>Manager App: <code>http://localhost:8080/manager/html</code></li>
+<li>Host Manager: <code>http://localhost:8080/host-manager/html</code></li>
+</ul>
+<p>输入你在 <code>tomcat-users.xml</code> 中配置的用户名和密码进行登录。</p>
+<h1 id="webapps目录结构"><a href="#webapps目录结构" class="headerlink" title="webapps目录结构"></a>webapps目录结构</h1><p><code>webapps</code> 是Tomcat默认的Web应用部署目录。当你启动Tomcat时，它会自动扫描这个目录，并对其中的应用进行部署。以下是<code>webapps</code>目录下的典型布局：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">webapps/</span><br><span class="line">├── ROOT/                  # 默认Web应用，当访问服务器根路径时加载</span><br><span class="line">├── myapp.war              # 一个打包为WAR文件的Web应用</span><br><span class="line">├── myapp/                 # 解压后的myapp.war内容</span><br><span class="line">│   ├── index.html         # Web应用的主页</span><br><span class="line">│   ├── WEB-INF/           # 存放配置文件和其他资源的安全目录</span><br><span class="line">│   │   ├── web.xml        # 部署描述符文件，定义Servlet、监听器等</span><br><span class="line">│   │   ├── classes/       # 包含编译后的Java类文件</span><br><span class="line">│   │   └── lib/           # 包含Web应用所需的JAR库文件</span><br><span class="line">│   └── ...                # 其他静态资源和动态内容</span><br><span class="line">└── ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="Web应用的目录结构"><a href="#Web应用的目录结构" class="headerlink" title="Web应用的目录结构"></a>Web应用的目录结构</h3><p>每一个Web应用（无论是以解压缩目录形式还是WAR文件形式存在）都应该遵循以下标准结构：</p>
+<ul>
+<li><p><strong>WEB-INF&#x2F;</strong>: 这是一个特殊的目录，客户端不能直接访问这里的任何文件。该目录包含：</p>
+<ul>
+<li><strong>classes&#x2F;</strong>: 存储Web应用的所有Java类文件（即Servlet、Listener等）。这些类文件通常按照包名组织成子目录。</li>
+<li><strong>lib&#x2F;</strong>: 存放Web应用所需的所有第三方JAR库文件。</li>
+<li><strong>web.xml</strong>: Servlet规范规定的部署描述符文件，用来配置Web应用的各种组件和服务，如Servlet映射、过滤器、监听器等。</li>
+</ul>
+</li>
+<li><p><strong>META-INF&#x2F;</strong> (可选): 类似于<code>WEB-INF</code>，但主要用于存放与Web应用相关的元数据信息，比如<code>MANIFEST.MF</code>文件。</p>
+</li>
+<li><p><strong>静态资源</strong>: 包括HTML页面、CSS样式表、JavaScript脚本、图片等，可以直接由浏览器请求并显示给用户。</p>
+</li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>假设有一个名为<code>exampleApp</code>的Web应用，其结构可能如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">exampleApp/</span><br><span class="line">├── index.jsp               # 主页</span><br><span class="line">├── images/                 # 图片资源</span><br><span class="line">│   └── logo.png            # 网站Logo</span><br><span class="line">├── scripts/                # JavaScript脚本</span><br><span class="line">│   └── main.js             # 主要脚本文件</span><br><span class="line">├── styles/                 # CSS样式表</span><br><span class="line">│   └── style.css           # 样式定义</span><br><span class="line">└── WEB-INF/</span><br><span class="line">    ├── web.xml             # 部署描述符</span><br><span class="line">    ├── classes/</span><br><span class="line">    │   └── com/</span><br><span class="line">    │       └── example/</span><br><span class="line">    │           └── AppServlet.class  # Servlet类</span><br><span class="line">    └── lib/</span><br><span class="line">        └── commons-lang3-3.9.jar     # 第三方库</span><br></pre></td></tr></table></figure>
+
+<h1 id="Catalina"><a href="#Catalina" class="headerlink" title="Catalina"></a><code>Catalina</code></h1><p>“Catalina” 是 Apache Tomcat 的核心组件，它实际上是一个 Servlet 容器的实现，负责加载和运行 Web 应用程序，并处理 HTTP 请求。尽管在Tomcat安装目录下并没有一个直接名为 <code>catalina</code> 的文件夹，但与 Catalina 相关的功能和配置分散在几个关键位置：</p>
+<ol>
+<li><p><strong>bin 文件夹</strong>：这个文件夹包含了启动和停止 Tomcat 服务器所需的脚本文件。其中，<code>catalina.sh</code>（Unix&#x2F;Linux）或 <code>catalina.bat</code>（Windows）是最重要的脚本之一，用于启动、停止以及执行其他管理任务。这些脚本通过调用 JVM 来运行 Catalina。</p>
+</li>
+<li><p><strong>conf 文件夹</strong>：这里存放了多个 XML 配置文件，它们定义了 Catalina 如何运行和如何处理请求。例如：</p>
+<ul>
+<li><code>server.xml</code>：这是主配置文件，定义了服务器端口、服务、连接器等。</li>
+<li><code>web.xml</code>：提供了默认的部署描述符，为所有部署的应用程序提供默认设置。</li>
+<li><code>context.xml</code>：包含上下文级别的初始化参数和其他资源配置。</li>
+</ul>
+</li>
+<li><p><strong>lib 文件夹</strong>：此目录中包含了 Tomcat 运行所需的各种库文件，包括 <code>catalina.jar</code> 和其他相关的 JAR 包，这些都是 Catalina 正常工作所必需的。</p>
+</li>
+<li><p><strong>logs 文件夹</strong>：Catalina 在运行过程中会生成日志文件，这些文件对于监控服务器状态、诊断问题非常有用。常见的日志文件包括 <code>catalina.out</code>，它记录了控制台输出。</p>
+</li>
+<li><p><strong>work 文件夹</strong>：虽然这不是 Catalina 直接相关的文件夹，但它存储了由 Catalina 编译的 JSP 文件和一些临时数据。当应用程序重新加载时，这些编译后的文件可能会被清除并重建。</p>
+</li>
+</ol>
+<p>总的来说，“Catalina”指的是驱动 Tomcat 的核心Servlet容器部分，而与其相关联的资源则分布在上述提及的不同文件夹内。理解这些组成部分有助于更好地管理和优化你的 Tomcat 服务器。</p>
+<h1 id="常见部署方式"><a href="#常见部署方式" class="headerlink" title="常见部署方式"></a>常见部署方式</h1><p>在Apache Tomcat中部署Web应用程序有几种常见的方式，每种方式都有其适用场景和特点。以下是三种常用的部署方法：</p>
+<h3 id="1-直接放置到-webapps-目录"><a href="#1-直接放置到-webapps-目录" class="headerlink" title="1. 直接放置到 webapps 目录"></a>1. 直接放置到 <code>webapps</code> 目录</h3><p>这是最简单直接的方法。Tomcat的<code>webapps</code>目录是默认的Web应用部署位置。</p>
+<ul>
+<li><strong>步骤</strong>：<ul>
+<li>将你的WAR文件（Web Application Archive）或者解压后的Web应用目录复制到<code>&lt;Tomcat安装目录&gt;/webapps/</code>下。</li>
+<li>如果你放置的是一个WAR文件，Tomcat会自动将其解压并部署。</li>
+<li>如果是已经解压的目录，则Tomcat也会识别并部署它。</li>
+</ul>
+</li>
+</ul>
+<p>这种方法非常适合开发环境中的快速测试和部署。</p>
+<h3 id="2-使用Manager-App部署"><a href="#2-使用Manager-App部署" class="headerlink" title="2. 使用Manager App部署"></a>2. 使用Manager App部署</h3><p>Tomcat提供了一个基于Web的管理界面——Manager App，可以通过它来上传WAR文件进行部署。</p>
+<ul>
+<li><strong>步骤</strong>：<ul>
+<li>确保<code>manager</code>应用已部署且配置正确（位于<code>&lt;Tomcat安装目录&gt;/webapps/manager</code>）。</li>
+<li>访问<code>http://&lt;服务器地址&gt;:&lt;端口号&gt;/manager/html</code>，使用具有适当权限的用户登录。</li>
+<li>在页面上选择“选择WAR文件以上传”部分，浏览找到你的WAR文件，并点击“Deploy”。</li>
+</ul>
+</li>
+</ul>
+<p>此方法适合于远程部署或当不能直接访问服务器文件系统时使用。</p>
+<h3 id="3-修改-server-xml-或创建-context-文件"><a href="#3-修改-server-xml-或创建-context-文件" class="headerlink" title="3. 修改 server.xml 或创建 context 文件"></a>3. 修改 <code>server.xml</code> 或创建 <code>context</code> 文件</h3><p>对于需要更灵活配置的应用程序，可以手动编辑<code>conf/server.xml</code>文件或是在<code>conf/Catalina/localhost/</code>目录下创建一个XML配置文件来定义Context。</p>
+<ul>
+<li><p><strong>修改 <code>server.xml</code></strong>:</p>
+<ul>
+<li>在<code>&lt;Host&gt;</code>标签内添加一个新的<code>&lt;Context&gt;</code>元素，指定<code>path</code>和<code>docBase</code>属性。</li>
+</ul>
+</li>
+<li><p><strong>创建 <code>context</code> 文件</strong>:</p>
+<ul>
+<li><p>在<code>&lt;Tomcat安装目录&gt;/conf/Catalina/localhost/</code>下创建一个与应用名称相同的XML文件（例如<code>myapp.xml</code>），内容为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">&quot;/myapp&quot;</span> <span class="attr">docBase</span>=<span class="string">&quot;/path/to/myapp&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这种方法允许你在不重启Tomcat的情况下重新加载应用程序，只需更新相应的配置文件即可。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Idea关联本地Tomcat"><a href="#Idea关联本地Tomcat" class="headerlink" title="Idea关联本地Tomcat"></a>Idea关联本地Tomcat</h1><ul>
+<li>下载<code>small tomcat</code> 插件</li>
+<li><strong>注意：<font color='“skyblue”'>要先close project，然后再在setting-&gt;plugins里面下载插件</font></strong></li>
+</ul>
+<img src="/2025/03/11/Tomcat全解析/Tomcat全解析"  style="zoom: 50%;" />
+
+<ul>
+<li>将本地tomcat配置到插件中</li>
+</ul>
+<img src="/2025/03/11/Tomcat全解析/Tomcat全解析"  style="zoom: 50%;" />
+
+<ul>
+<li>打开具体项目，进行配置</li>
+</ul>
+<img src="/2025/03/11/Tomcat全解析/Tomcat全解析"  style="zoom: 50%;" />
+
+<img src="/2025/03/11/Tomcat全解析/Tomcat全解析"  style="zoom: 50%;" />
+
+<img src="/2025/03/11/Tomcat全解析/Tomcat全解析"  style="zoom: 50%;" />
+
+<h1 id="最后注意"><a href="#最后注意" class="headerlink" title="最后注意"></a>最后注意</h1><p><strong><font color='“skyblue”'>如果你之前打开了tomcat，要切记关闭了以后再启动项目，不然端口会被占用，控制台报错</font></strong></p>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/11/Mysql%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/">
+                    Mysql操作指南
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/10/html-css%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" >
+                    html+css最佳实践
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

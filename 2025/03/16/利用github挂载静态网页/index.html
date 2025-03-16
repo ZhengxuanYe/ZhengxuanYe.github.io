@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>利用github挂载静态网页 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                利用github挂载静态网页
+            
+        </h1>
+        <div>
+            <time>2025-03-16</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/">项目部署</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/github/">github</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h3 id="挂载GitHub-Pages的方法"><a href="#挂载GitHub-Pages的方法" class="headerlink" title="挂载GitHub Pages的方法"></a>挂载GitHub Pages的方法</h3><h4 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h4><ol>
+<li><p><strong>创建仓库</strong>：</p>
+<ul>
+<li>在GitHub上创建一个新的仓库。<font color='“skyblue”'>如果使用自定义域名，则仓库名应为<code>&lt;username&gt;.github.io</code>；否则可以是任意名称。</font></li>
+</ul>
+</li>
+<li><p><strong>启用GitHub Pages</strong>：</p>
+<ul>
+<li>进入仓库的设置页面，在“Pages”部分选择要发布的分支（通常是<code>main</code>或<code>master</code>），然后保存更改。</li>
+</ul>
+</li>
+<li><p><strong>上传网站内容</strong>：</p>
+<ul>
+<li>将你的HTML、CSS、JavaScript等文件上传到仓库中指定的分支。</li>
+</ul>
+</li>
+</ol>
+<h3 id="什么是SSH"><a href="#什么是SSH" class="headerlink" title="什么是SSH"></a>什么是SSH</h3><p>SSH是一种网络协议，用于安全地访问远程计算机系统。它提供了加密的数据传输、用户身份验证以及对远程命令执行的安全通道。通过SSH密钥认证，用户无需每次输入用户名和密码即可安全地连接到服务器或服务（如GitHub）。</p>
+<h3 id="利用SSH挂载网页到GitHub"><a href="#利用SSH挂载网页到GitHub" class="headerlink" title="利用SSH挂载网页到GitHub"></a>利用SSH挂载网页到GitHub</h3><h4 id="详细步骤"><a href="#详细步骤" class="headerlink" title="详细步骤"></a>详细步骤</h4><ol>
+<li><p><strong>生成SSH密钥对</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">&quot;your_email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这将在<code>~/.ssh/</code>目录下生成<code>id_rsa</code>（私钥）和<code>id_rsa.pub</code>（公钥）文件。</p>
+<img src="/2025/03/16/%E5%88%A9%E7%94%A8github%E6%8C%82%E8%BD%BD%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/image-20250316110950413.png" class="" title="SSH密钥生成">
+</li>
+<li><p><strong>添加公钥到GitHub账户</strong>：</p>
+<ul>
+<li>登录GitHub，导航至“Settings”&gt; “SSH and GPG keys”。</li>
+<li>点击“New SSH key”，粘贴你的公钥内容，并给它起个名字（例如“My Laptop SSH Key”）。</li>
+</ul>
+<img src="/2025/03/16/%E5%88%A9%E7%94%A8github%E6%8C%82%E8%BD%BD%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/Snipaste_2025-03-16_11-11-25.png" class="" title="GitHub设置页面">
+
+<img src="/2025/03/16/%E5%88%A9%E7%94%A8github%E6%8C%82%E8%BD%BD%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/Snipaste_2025-03-16_11-12-28.png" class="" title="添加SSH密钥">
+</li>
+<li><p><strong>测试SSH连接</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置本地仓库并推送代码</strong>：</p>
+<ul>
+<li><p>如果尚未初始化Git仓库，请先初始化：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加远程仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:yourusername/yourrepository.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提交更改并推送：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit&quot;</span></span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h3 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h3><ul>
+<li><strong>路径问题导致无法创建<code>.ssh</code>目录</strong>：由于非ASCII字符的存在，导致Git Bash无法正确处理用户主目录路径。</li>
+<li><strong>权限问题阻止了文件夹的创建</strong>：尽管手动创建了<code>.ssh</code>文件夹，但Git Bash依旧尝试使用错误路径</li>
+</ul>
+<h3 id="最终解决步骤"><a href="#最终解决步骤" class="headerlink" title="最终解决步骤"></a>最终解决步骤</h3><ol>
+<li><p><strong>手动创建<code>.ssh</code>目录</strong>于<code>C:\Users\YourUsername\.ssh</code>。</p>
+</li>
+<li><p><strong>重命名<code>config.txt</code>为<code>config</code></strong>，并在其中指定IdentityFile为绝对路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  HostName github.com</span><br><span class="line">  User git</span><br><span class="line">  IdentityFile /c/Users/YourUsername/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>手动创建<code>known_hosts</code>文件</strong>，并加入GitHub的公钥指纹：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>测试SSH连接</strong>，明确指定<code>known_hosts</code>文件的位置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o UserKnownHostsFile=/c/Users/YourUsername/.ssh/known_hosts -i /c/Users/YourUsername/.ssh/id_rsa -T git@github.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>完成GitHub Pages部署</strong>，通过上述方法成功连接后，继续进行代码提交和页面部署。</p>
+</li>
+</ol>
+<p>请将所有的<code>YourUsername</code>替换成您实际的用户名，<code>your_email@example.com</code>替换为您的真实邮箱地址，<code>yourusername</code>替换为您在GitHub上的用户名，<code>yourrepository</code>替换为您实际的仓库名。</p>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/16/Nginx%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/">
+                    Nginx快速上手
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/13/ES6%E6%96%B0%E7%89%B9%E6%80%A7/" >
+                    ES6新特性
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

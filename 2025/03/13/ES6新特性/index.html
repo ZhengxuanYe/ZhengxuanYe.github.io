@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>ES6新特性 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                ES6新特性
+            
+        </h1>
+        <div>
+            <time>2025-03-13</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/ES6/">ES6</a>
+                    </span>
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/JavaScript/">JavaScript</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="块级作用域（Block-Scope）"><a href="#块级作用域（Block-Scope）" class="headerlink" title="块级作用域（Block Scope）"></a>块级作用域（Block Scope）</h1><p>随着ES6的引入，JavaScript增加了对块级作用域的支持，这主要是通过<code>let</code>和<code>const</code>关键字实现的。块级作用域限制了变量的作用范围到最近的一对大括号<code>&#123;&#125;</code>内，比如在一个<code>if</code>语句、<code>for</code>循环或简单的代码块中。</p>
+<ul>
+<li><strong>特点</strong>：<ul>
+<li><code>let</code>和<code>const</code>声明的变量只在它们所在的块内有效。</li>
+<li>不允许重复声明相同的变量名。</li>
+<li>解决了<code>var</code>带来的变量提升问题。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> blockScopedVar = <span class="string">&quot;I&#x27;m scoped to this block&quot;</span>;</span><br><span class="line">    <span class="keyword">const</span> anotherBlockScopedVar = <span class="string">&quot;Also scoped to this block&quot;</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(blockScopedVar); <span class="comment">// 正常工作</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(anotherBlockScopedVar); <span class="comment">// 正常工作</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(blockScopedVar); <span class="comment">// 报错：blockScopedVar is not defined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(anotherBlockScopedVar); <span class="comment">// 报错：anotherBlockScopedVar is not defined</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="暂时性死区（Temporal-Dead-Zone"><a href="#暂时性死区（Temporal-Dead-Zone" class="headerlink" title="暂时性死区（Temporal Dead Zone)"></a>暂时性死区（Temporal Dead Zone)</h1><p>暂时性死区（Temporal Dead Zone，简称TDZ）是ECMAScript 6（ES6或ES2015）引入的一个概念，主要与使用<code>let</code>和<code>const</code>关键字声明的变量相关。<font color="‘skyblue’">它定义了一个区域，在这个区域内尝试访问尚未声明的变量会导致运行时错误。</font></p>
+<h3 id="本质"><a href="#本质" class="headerlink" title="本质"></a>本质</h3><p>当控制流进入一个新的作用域（如一个代码块），在这个作用域内用<code>let</code>或<code>const</code>声明的变量会被创建，但在此之前，这些变量不能被访问或使用。如果试图在声明之前访问它们，JavaScript引擎将抛出<code>ReferenceError</code>。换句话说，即使变量已经存在于作用域中，但在其声明之前访问它们是非法的，并且会导致错误。</p>
+<p><strong>示例</strong></p>
+<p>考虑以下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// ReferenceError: Cannot access &#x27;a&#x27; before initialization</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里，在<code>let a = 2;</code>语句执行前，任何对<code>a</code>的访问都会导致错误。这是因为从进入作用域开始直到<code>let</code>声明语句的位置，构成了<code>a</code>的暂时性死区。</p>
+<p>再来看一个稍微复杂一点的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">// TDZ starts at the beginning of this block</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(tmp); <span class="comment">// ReferenceError</span></span><br><span class="line">    <span class="keyword">let</span> tmp = <span class="number">3</span>; <span class="comment">// TDZ ends here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，从<code>if</code>语句的开始到<code>let tmp = 3;</code>这一行之间，构成了<code>tmp</code>的暂时性死区。在这一区域内尝试访问<code>tmp</code>会导致<code>ReferenceError</code>。</p>
+<h3 id="暂时性死区的影响"><a href="#暂时性死区的影响" class="headerlink" title="暂时性死区的影响"></a>暂时性死区的影响</h3><ul>
+<li><p><strong>typeof操作符</strong>：通常情况下，<code>typeof</code>操作符对于未定义的变量不会抛出错误，而是返回<code>&quot;undefined&quot;</code>。然而，对于处于暂时性死区中的变量，使用<code>typeof</code>同样会抛出<code>ReferenceError</code> 。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> b; <span class="comment">// ReferenceError: Cannot access &#x27;b&#x27; before initialization</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>函数参数</strong>：如果函数参数依赖于其他参数的值作为默认值，而后者还未声明，则也可能遇到暂时性死区的问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params">x = y, y = <span class="number">2</span></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> [x, y];</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">foo</span>(); <span class="comment">// ReferenceError: Cannot access &#x27;y&#x27; before initialization</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="为什么需要暂时性死区？"><a href="#为什么需要暂时性死区？" class="headerlink" title="为什么需要暂时性死区？"></a>为什么需要暂时性死区？</h3><p>暂时性死区的设计是为了减少编程错误。通过强制要求变量必须先声明后使用，可以避免一些由于变量提升带来的意外行为，尤其是在使用<code>var</code>关键字时可能出现的情况。</p>
+<p>在JavaScript中，<code>arguments</code>对象和剩余参数（Rest Parameters）都是用于处理函数调用时传入的参数，但它们之间存在一些关键的区别。下面我将详细解释两者，并结合实际应用示例来说明它们的使用方法。</p>
+<h1 id="函数剩余参数（Rest-Parameters）"><a href="#函数剩余参数（Rest-Parameters）" class="headerlink" title="函数剩余参数（Rest Parameters）"></a>函数剩余参数（Rest Parameters）</h1><p>函数剩余参数（Rest Parameters）是ES6（ECMAScript 2015）引入的一种语法特性，它提供了一种更简洁的方式来处理传递给函数的不定数量的参数。通过使用三个点 <code>...</code> 前缀，剩余参数允许我们将一个不定数量的实参表示为一个数组。</p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li><font color="‘skyblue’"><strong>剩余参数</strong>是一个真正的数组实例，与传统的<code>arguments</code>对象不同，后者不是一个真正的数组。</font></li>
+<li>它只能出现在函数参数列表的最后，并且会收集从该位置开始的所有参数到一个数组中。</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">...theArgs</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> theArgs.<span class="title function_">reduce</span>(<span class="function">(<span class="params">previous, current</span>) =&gt;</span> previous + current);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)); <span class="comment">// 输出: 6</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>)); <span class="comment">// 输出: 30</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>sum</code> 函数使用了剩余参数 <code>theArgs</code> 来接收任意数量的参数，并利用数组的 <code>reduce</code> 方法来计算这些参数的总和。</p>
+<h4 id="特性与优点"><a href="#特性与优点" class="headerlink" title="特性与优点"></a>特性与优点</h4><ul>
+<li><strong>灵活性</strong>：剩余参数使得函数能够接受任意数量的参数，增加了函数的灵活性和可重用性。</li>
+<li><strong>简洁性</strong>：相比手动创建数组来存储参数，剩余参数减少了代码量并提高了可读性。</li>
+<li><strong>兼容性</strong>：可以与其他ES6特性如箭头函数、解构赋值等结合使用，以更加高效地编写代码。</li>
+</ul>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>剩余参数必须是函数参数列表中的最后一个参数，因为它将捕获所有剩余的参数。</li>
+<li>剩余参数不能用于箭头函数中，因为箭头函数没有自己的 <code>this</code>, <code>arguments</code>, <code>super</code> 或 <code>new.target</code>。</li>
+<li>可以在剩余参数上使用任何数组方法，而<code>arguments</code>对象则不可以直接使用数组的方法。</li>
+</ul>
+<h4 id="实际应用示例"><a href="#实际应用示例" class="headerlink" title="实际应用示例"></a>实际应用示例</h4><p>下面的例子展示了如何使用剩余参数实现一个简单的加法器函数，它可以对任意数量的数字进行求和：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">first, ...rest</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> result = first;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> number <span class="keyword">of</span> rest) &#123;</span><br><span class="line">        result += number;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)); <span class="comment">// 输出: 6</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>)); <span class="comment">// 输出: 30</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>()); <span class="comment">// 输出: NaN，因为没有提供第一个参数</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="展开运算符（Spread-Operator）"><a href="#展开运算符（Spread-Operator）" class="headerlink" title="展开运算符（Spread Operator）"></a>展开运算符（Spread Operator）</h1><p>展开运算符（Spread Operator）是ES6（ECMAScript 2015）引入的一种语法特性，它允许数组、字符串或对象的元素被“展开”为独立的元素。展开运算符使用三个连续的点号 <code>...</code> 来表示，并且可以应用于多种场合，包括函数调用、数组字面量构造、对象字面量构造等。</p>
+<h4 id="在函数调用时展开数组元素"><a href="#在函数调用时展开数组元素" class="headerlink" title="在函数调用时展开数组元素"></a>在函数调用时展开数组元素</h4><p>当你需要将一个数组作为参数传递给一个函数时，可以使用展开运算符来代替 <code>apply()</code> 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">x, y, z</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y + z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sum</span>(...numbers)); <span class="comment">// 输出: 6 </span></span><br></pre></td></tr></table></figure>
+
+<h4 id="在数组字面量中合并多个数组"><a href="#在数组字面量中合并多个数组" class="headerlink" title="在数组字面量中合并多个数组"></a>在数组字面量中合并多个数组</h4><p>展开运算符可以用来轻松地合并两个或更多的数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fruits = [<span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> moreFruits = [<span class="string">&#x27;orange&#x27;</span>, <span class="string">&#x27;grape&#x27;</span>];</span><br><span class="line"><span class="keyword">const</span> allFruits = [...fruits, ...moreFruits];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(allFruits); <span class="comment">// 输出: [&#x27;apple&#x27;, &#x27;banana&#x27;, &#x27;orange&#x27;, &#x27;grape&#x27;] </span></span><br></pre></td></tr></table></figure>
+
+<h4 id="复制数组"><a href="#复制数组" class="headerlink" title="复制数组"></a>复制数组</h4><p>使用展开运算符可以创建一个现有数组的浅拷贝：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> arrCopy = [...arr]; <span class="comment">// 创建arr的一个浅拷贝 </span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，这种复制方式只适用于数组的第一层，对于嵌套的对象或数组，展开运算符只会复制引用而不是深层的内容。</p>
+<h4 id="在对象字面量中合并对象"><a href="#在对象字面量中合并对象" class="headerlink" title="在对象字面量中合并对象"></a>在对象字面量中合并对象</h4><p>在ES7及以后版本中，可以使用展开运算符来合并对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj1 = &#123; <span class="attr">foo</span>: <span class="string">&#x27;bar&#x27;</span>, <span class="attr">x</span>: <span class="number">42</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> obj2 = &#123; <span class="attr">foo</span>: <span class="string">&#x27;baz&#x27;</span>, <span class="attr">y</span>: <span class="number">13</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> mergedObj = &#123; ...obj1, ...obj2 &#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mergedObj); <span class="comment">// 输出: &#123; foo: &#x27;baz&#x27;, x: 42, y: 13 &#125; </span></span><br></pre></td></tr></table></figure>
+
+<p>如果存在相同的键名，后出现的对象属性会覆盖前面的对象属性。</p>
+<h4 id="使用展开运算符代替-apply-方法"><a href="#使用展开运算符代替-apply-方法" class="headerlink" title="使用展开运算符代替 apply 方法"></a>使用展开运算符代替 <code>apply</code> 方法</h4><p>展开运算符还可以用于简化某些原本需要用 <code>apply</code> 方法实现的操作，比如求一组数中的最大值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = [<span class="number">9</span>, <span class="number">3</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> maxNumNew = <span class="title class_">Math</span>.<span class="title function_">max</span>(...numbers); <span class="comment">// 使用展开运算符的写法 </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>展开运算符只能用于可迭代对象（如数组、字符串、Map 和 Set），不能直接用于普通对象。</li>
+<li>对于对象的展开，只有对象自身的可枚举属性会被展开，不包括从原型链继承来的属性。</li>
+<li>展开运算符进行的是浅拷贝，这意味着如果数组或对象中包含其他对象，那么这些内部对象的引用也会被复制，而不是深拷贝整个结构。</li>
+</ul>
+<h1 id="箭头函数（Arrow-Functions"><a href="#箭头函数（Arrow-Functions" class="headerlink" title="箭头函数（Arrow Functions)"></a>箭头函数（Arrow Functions)</h1><p>箭头函数（Arrow Functions）是ECMAScript 2015（ES6）引入的一种新的函数定义方式，它提供了一种更加简洁的语法来编写匿名函数。</p>
+<h3 id="箭头函数的基本语法"><a href="#箭头函数的基本语法" class="headerlink" title="箭头函数的基本语法"></a>箭头函数的基本语法</h3><p>箭头函数的基本结构如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(param1, param2, ..., paramN) =&gt; &#123; statements &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果只有一个参数，可以省略括号：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">param =&gt; &#123; statements &#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于单个表达式返回值的情况，可以进一步简化为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(param1, param2, ..., paramN) =&gt; expression</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 普通函数写法</span></span><br><span class="line"><span class="keyword">var</span> add = <span class="keyword">function</span>(<span class="params">x, y</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用箭头函数简化</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">add</span> = (<span class="params">x, y</span>) =&gt; x + y;</span><br></pre></td></tr></table></figure>
+
+<h3 id="this-关键字的行为"><a href="#this-关键字的行为" class="headerlink" title="this 关键字的行为"></a><code>this</code> 关键字的行为</h3><p>箭头函数与普通函数的一个重要区别在于<code>this</code>关键字的行为。在普通函数中，<code>this</code>的值取决于函数是如何被调用的；而在箭头函数中，<code>this</code>是在函数创建时就确定了，并且总是指向其外层作用域中的<code>this</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// 这里的 &#x27;this&#x27; 指向 obj 对象</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>); <span class="comment">// 同样指向 obj 对象</span></span><br><span class="line">        &#125;, <span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.<span class="title function_">method</span>(); <span class="comment">// 输出 obj 对象两次</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="arguments-和剩余参数"><a href="#arguments-和剩余参数" class="headerlink" title="arguments 和剩余参数"></a><code>arguments</code> 和剩余参数</h3><p>箭头函数没有自己的<code>arguments</code>对象，取而代之的是可以通过剩余参数（Rest Parameters）来获取传入的所有参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">regularFunction</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">arrowFunction</span> = (<span class="params">...args</span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(args);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">regularFunction</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); <span class="comment">// 输出 Arguments 对象</span></span><br><span class="line"><span class="title function_">arrowFunction</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);   <span class="comment">// 输出 [1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="不能作为构造器"><a href="#不能作为构造器" class="headerlink" title="不能作为构造器"></a>不能作为构造器</h3><p>由于箭头函数没有自己的<code>this</code>和<code>prototype</code>属性，所以它们不能通过<code>new</code>关键字来实例化对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">ArrowFunc</span> = (<span class="params"></span>) =&gt; &#123;&#125;;</span><br><span class="line"><span class="comment">// new ArrowFunc(); // 抛出错误</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="其他特性"><a href="#其他特性" class="headerlink" title="其他特性"></a>其他特性</h3><ul>
+<li><strong>无<code>super</code>、<code>new.target</code></strong>：箭头函数不支持这些关键字。</li>
+<li><strong>隐式的返回值</strong>：当箭头函数只包含一个表达式时，可以省略<code>return</code>关键字和大括号。</li>
+<li><strong>不能用作Generator函数</strong>：因为箭头函数不支持<code>yield</code>关键字。</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>箭头函数非常适合用于那些不需要独立上下文的小型回调函数，比如数组方法中的回调（如<code>map</code>、<code>filter</code>等）、事件处理器等。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].<span class="title function_">map</span>(<span class="function"><span class="params">n</span> =&gt;</span> n * <span class="number">2</span>); <span class="comment">// 返回 [2, 4, 6]</span></span><br></pre></td></tr></table></figure>
+
+<p>总之，箭头函数以其简洁的语法和固定的<code>this</code>绑定机制，为JavaScript开发者提供了更加强大和灵活的工具。不过，在需要动态<code>this</code>或者需要使用<code>arguments</code>对象的情况下，还是应该选择普通函数。</p>
+<h1 id="数组解构-Array-Destructuring"><a href="#数组解构-Array-Destructuring" class="headerlink" title="数组解构(Array Destructuring)"></a>数组解构(Array Destructuring)</h1><p>数组解构是ES6（ECMAScript 2015）引入的一种语法特性，它提供了一种简洁的方式来从数组中提取数据，并将其赋值给变量。这种特性不仅使代码更加直观和易读，而且也提高了开发效率。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>最基本的数组解构形式是从一个已知结构的数组中提取元素并赋值给对应的变量。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, b] = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 输出: 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// 输出: 2</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>[1, 2]</code>是一个数组，而<code>[a, b]</code>是解构模式，用于将数组中的第一个元素赋值给变量<code>a</code>，第二个元素赋值给变量<code>b</code>。</p>
+<h3 id="跳过元素"><a href="#跳过元素" class="headerlink" title="跳过元素"></a>跳过元素</h3><p>在解构过程中，如果不需要某些元素，可以通过跳过它们来实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,,b] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 输出: 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// 输出: 3</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，通过使用两个逗号，我们跳过了数组中的第二个元素。</p>
+<h3 id="使用默认值"><a href="#使用默认值" class="headerlink" title="使用默认值"></a>使用默认值</h3><p>当数组中的元素不存在或为<code>undefined</code>时，可以指定默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a = <span class="number">1</span>, b = <span class="number">2</span>] = [<span class="literal">undefined</span>, <span class="number">3</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 输出: 1 (因为第一个元素是undefined，所以使用了默认值)</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// 输出: 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="解构剩余部分"><a href="#解构剩余部分" class="headerlink" title="解构剩余部分"></a>解构剩余部分</h3><p>使用<code>...</code>操作符，我们可以将数组剩下的部分收集到一个新的数组中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a, ...rest] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 输出: 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(rest); <span class="comment">// 输出: [2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数返回值解构"><a href="#函数返回值解构" class="headerlink" title="函数返回值解构"></a>函数返回值解构</h3><p>函数也可以返回数组，然后你可以直接对返回值进行解构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">returnArray</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> [a, b, c] = <span class="title function_">returnArray</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a, b, c); <span class="comment">// 输出: 1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="交换变量值"><a href="#交换变量值" class="headerlink" title="交换变量值"></a>交换变量值</h3><p>解构赋值使得交换两个变量的值变得非常简单：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">[a, b] = [b, a];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 输出: 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// 输出: 1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂场景"><a href="#复杂场景" class="headerlink" title="复杂场景"></a>复杂场景</h3><p>对于更复杂的数据结构，比如嵌套数组，也可以使用解构赋值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nested = [<span class="number">1</span>, [<span class="number">2</span>, <span class="number">3</span>]];</span><br><span class="line"><span class="keyword">let</span> [a, [b, c]] = nested;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// 输出: 1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// 输出: 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c); <span class="comment">// 输出: 3</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="对象解构-Object-Destructuring"><a href="#对象解构-Object-Destructuring" class="headerlink" title="对象解构(Object Destructuring)"></a>对象解构(Object Destructuring)</h1><p>对象解构是ES6（ECMAScript 2015）引入的一种特性，它允许我们从对象中提取属性并将其赋值给变量。这种语法不仅让代码更加简洁和易读，而且提高了开发效率。</p>
+<h3 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h3><p>对象解构的基本形式是从一个对象中提取属性，并将这些属性的值赋给同名的变量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123; <span class="attr">name</span>: <span class="string">&quot;Sarah&quot;</span>, <span class="attr">country</span>: <span class="string">&quot;Nigeria&quot;</span>, <span class="attr">job</span>: <span class="string">&quot;Developer&quot;</span> &#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; name, country, job &#125; = person;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// 输出: Sarah</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(country); <span class="comment">// 输出: Nigeria</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(job); <span class="comment">// 输出: Developer</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>&#123; name, country, job &#125;</code>是解构模式，用于从<code>person</code>对象中提取相应的属性并赋值给同名的变量。</p>
+<h3 id="设置别名"><a href="#设置别名" class="headerlink" title="设置别名"></a>设置别名</h3><p>有时我们可能想要为提取的属性设置不同的变量名。这可以通过在解构模式中指定属性名后跟冒号和新的变量名来实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; <span class="attr">name</span>: personName, <span class="attr">country</span>: personCountry &#125; = person;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(personName); <span class="comment">// 输出: Sarah</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(personCountry); <span class="comment">// 输出: Nigeria</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>name</code>和<code>country</code>属性被分别赋值给了<code>personName</code>和<code>personCountry</code>变量。</p>
+<h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><p>当对象中没有某个属性或属性值为<code>undefined</code>时，可以提供默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; name = <span class="string">&quot;Unknown&quot;</span>, age = <span class="number">30</span> &#125; = &#123;&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// 输出: Unknown</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(age); <span class="comment">// 输出: 30</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="解构嵌套对象"><a href="#解构嵌套对象" class="headerlink" title="解构嵌套对象"></a>解构嵌套对象</h3><p>对于包含嵌套结构的对象，也可以使用解构赋值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> employee = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">    <span class="attr">address</span>: &#123;</span><br><span class="line">        <span class="attr">city</span>: <span class="string">&quot;New York&quot;</span>,</span><br><span class="line">        <span class="attr">zipCode</span>: <span class="string">&quot;10001&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123; name, <span class="attr">address</span>: &#123; city, zipCode &#125; &#125; = employee;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(name); <span class="comment">// 输出: John</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(city); <span class="comment">// 输出: New York</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(zipCode); <span class="comment">// 输出: 10001</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="函数参数解构"><a href="#函数参数解构" class="headerlink" title="函数参数解构"></a>函数参数解构</h3><p>解构赋值同样可以应用于函数参数，从而简化函数签名和内部逻辑：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">printDetails</span>(<span class="params">&#123; name, job &#125;</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;name&#125;</span> works as a <span class="subst">$&#123;job&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">printDetails</span>(person); <span class="comment">// 输出: Sarah works as a Developer</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><p>对象解构在许多情况下都非常有用，比如：</p>
+<ul>
+<li>简化从复杂对象中提取数据的过程。</li>
+<li>在函数参数中直接解构传入的对象，减少临时变量的创建。</li>
+<li>结合扩展运算符（spread operator），灵活地处理对象中的剩余部分。</li>
+</ul>
+<h1 id="class关键字"><a href="#class关键字" class="headerlink" title="class关键字"></a><code>class</code>关键字</h1><p>ES6（ECMAScript 2015）引入了<code>class</code>关键字，为JavaScript带来了更接近传统面向对象编程语言的语法。尽管这种新的语法看起来像是引入了一种全新的机制来定义类和创建对象，但实际上它只是基于原型继承的一种“语法糖”，并没有改变JavaScript原有的原型继承的本质。</p>
+<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><p>在ES6中，你可以使用<code>class</code>关键字来声明一个类，并通过构造函数<code>constructor</code>来初始化实例对象。下面是一个简单的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">x, y</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">x</span> = x;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">y</span> = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;(&#x27;</span> + <span class="variable language_">this</span>.<span class="property">x</span> + <span class="string">&#x27;, &#x27;</span> + <span class="variable language_">this</span>.<span class="property">y</span> + <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>Point</code>类有一个构造方法<code>constructor</code>用于接收参数并初始化对象属性，还有一个名为<code>toString</code>的方法用于返回点的位置信息。</p>
+<h4 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h4><p>ES6还引入了<code>extends</code>关键字来实现类的继承，使得子类可以继承父类的所有属性和方法。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ColorPoint</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Point</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">x, y, color</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(x, y); <span class="comment">// 调用父类的构造函数</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">toString</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">toString</span>() + <span class="string">&#x27; in &#x27;</span> + <span class="variable language_">this</span>.<span class="property">color</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>ColorPoint</code>类继承自<code>Point</code>类，并添加了一个额外的属性<code>color</code>。它重写了<code>toString</code>方法，并通过<code>super</code>关键字调用了父类的同名方法。</p>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><p>你还可以在类中定义静态方法，这些方法不会被实例化，而是直接通过类本身来调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">myStaticMethod</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello World&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">MyClass</span>.<span class="title function_">myStaticMethod</span>()); <span class="comment">// 输出 &quot;Hello World&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Getter-和-Setter"><a href="#Getter-和-Setter" class="headerlink" title="Getter 和 Setter"></a>Getter 和 Setter</h4><p>ES6中的类支持getter和setter方法，它们允许你控制对对象属性的访问和修改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Temperature</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">celsius</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">celsius</span> = celsius;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title function_">fahrenheit</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">celsius</span> * <span class="number">9</span> / <span class="number">5</span> + <span class="number">32</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">set</span> <span class="title function_">fahrenheit</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">celsius</span> = (value - <span class="number">32</span>) * <span class="number">5</span> / <span class="number">9</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码展示了如何定义获取和设置华氏温度的getter和setter方法。</p>
+<h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>类的定义不会被提升到作用域顶部，这意味着必须在使用之前定义类。</li>
+<li>在类的构造函数中，如果需要引用父类的构造函数，必须先调用<code>super()</code>。</li>
+<li>类内部的方法不需要使用<code>function</code>关键字，并且方法之间不应该加分号。</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h3 id="模块（Modules）"><a href="#模块（Modules）" class="headerlink" title="模块（Modules）"></a>模块（Modules）</h3><ul>
+<li><p><strong><code>import</code> 和 <code>export</code></strong>：ES6引入了原生的模块系统，允许开发者定义模块并通过<code>import</code>语句导入其他模块的功能，或通过<code>export</code>导出自己的功能供其他模块使用。这极大地简化了代码组织和复用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// math.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">square</span>(<span class="params">x</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> x * x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; square &#125; <span class="keyword">from</span> <span class="string">&#x27;./math.js&#x27;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">square</span>(<span class="number">2</span>)); <span class="comment">// 输出: 4</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h3><ul>
+<li><p><strong>异步编程改进</strong>：Promises提供了一种更清晰的方式来处理异步操作，替代了传统的回调地狱模式。Promises表示一个异步操作的最终完成（或失败）及其结果值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="title function_">resolve</span>(<span class="string">&quot;done&quot;</span>), <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.<span class="title function_">then</span>(</span><br><span class="line">  <span class="function"><span class="params">result</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(result), <span class="comment">// &quot;done&quot;</span></span><br><span class="line">  <span class="function"><span class="params">error</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Sets-和-Maps"><a href="#Sets-和-Maps" class="headerlink" title="Sets 和 Maps"></a>Sets 和 Maps</h3><ul>
+<li><strong>新的集合类型</strong>：ES6引入了<code>Set</code>和<code>Map</code>两种新的数据结构，分别用于存储不重复的值集和键值对。它们提供了比传统对象和数组更强大的功能来管理集合数据。</li>
+</ul>
+<h3 id="Proxy-和-Reflect"><a href="#Proxy-和-Reflect" class="headerlink" title="Proxy 和 Reflect"></a>Proxy 和 Reflect</h3><ul>
+<li><p><strong>元编程支持</strong>：Proxy可以用来创建对象的代理，从而拦截并自定义基本操作（如属性查找、赋值等）。Reflect则提供了一组方法，对应于Proxy所拦截的操作，为反射式操作对象提供了API。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> handler = &#123;</span><br><span class="line">  <span class="attr">get</span>: <span class="keyword">function</span>(<span class="params">target, name</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> name <span class="keyword">in</span> target ? target[name] : <span class="number">42</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="title class_">Proxy</span>(&#123;&#125;, handler);</span><br><span class="line">p.<span class="property">a</span> = <span class="number">1</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(p.<span class="property">a</span>, p.<span class="property">b</span>); <span class="comment">// 输出: 1 42</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/16/%E5%88%A9%E7%94%A8github%E6%8C%82%E8%BD%BD%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/">
+                    利用github挂载静态网页
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/12/Javascript%E8%BF%9B%E9%98%B6/" >
+                    Javascript进阶
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

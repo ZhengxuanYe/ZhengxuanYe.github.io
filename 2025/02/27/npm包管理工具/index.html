@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>npm包管理工具 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                npm包管理工具
+            
+        </h1>
+        <div>
+            <time>2025-02-27</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/npm/">npm</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="包管理工具"><a href="#包管理工具" class="headerlink" title="包管理工具"></a>包管理工具</h1><p>包管理工具是用于自动化软件包（库、框架等）的安装、更新、配置和删除的程序。它们极大地简化了依赖项管理和项目构建的过程。以下是几种流行的JavaScript&#x2F;Node.js包管理工具的介绍：</p>
+<h3 id="npm-Node-Package-Manager"><a href="#npm-Node-Package-Manager" class="headerlink" title="npm (Node Package Manager)"></a>npm (Node Package Manager)</h3><ul>
+<li><strong>概述</strong>：npm 是 Node.js 的默认包管理器，随 Node.js 一起安装。它拥有世界上最大的软件注册表之一，包含数以百万计的开源包。</li>
+<li><strong>功能</strong>：<ul>
+<li>安装、更新和卸载包。</li>
+<li>管理项目的依赖关系。</li>
+<li>发布自己的包到 npm 注册表。</li>
+<li>运行脚本命令，如 <code>npm start</code> 或 <code>npm test</code>。</li>
+</ul>
+</li>
+<li><strong>使用方法</strong>：通过命令行工具与之交互，例如 <code>npm install &lt;package-name&gt;</code>。</li>
+</ul>
+<h3 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h3><ul>
+<li><strong>概述</strong>：Yarn 是由 Facebook 开发并维护的一个快速、可靠且安全的依赖管理工具。它的设计目标是解决 npm 的一些性能问题，并提供更一致的依赖解析行为。</li>
+<li><strong>特点</strong>：<ul>
+<li>更快的安装速度，因为支持并行下载。</li>
+<li>使用锁文件 (<code>yarn.lock</code>) 来确保所有开发者在不同环境中获得相同的依赖版本。</li>
+<li>支持工作区，便于管理多包项目。</li>
+</ul>
+</li>
+<li><strong>使用方法</strong>：类似于 npm 的命令，如 <code>yarn add &lt;package-name&gt;</code>。</li>
+</ul>
+<h3 id="cnpm"><a href="#cnpm" class="headerlink" title="cnpm"></a>cnpm</h3><ul>
+<li><strong>概述</strong>：cnpm 是淘宝提供的 npm 镜像服务，解决了国内用户访问官方 npm 注册表速度慢的问题。</li>
+<li><strong>特性</strong>：<ul>
+<li>提供更快的下载速度给中国大陆的开发者。</li>
+<li>同步官方 npm 注册表的数据，同时托管一些中国特有的包。</li>
+</ul>
+</li>
+<li><strong>使用方法</strong>：可以像使用 npm 一样使用 cnpm，只需替换命令前缀，如 <code>cnpm install &lt;package-name&gt;</code>。</li>
+</ul>
+<p><code>npm init</code> 是 Node.js 包管理工具 npm 提供的一个命令，用于初始化一个新的 Node.js 项目。它会引导用户通过一系列提示来创建一个 <code>package.json</code> 文件，该文件是项目的配置文件，定义了项目的元数据、依赖关系和其他设置。</p>
+<h1 id="使用-npm-init"><a href="#使用-npm-init" class="headerlink" title="使用 npm init"></a>使用 <code>npm init</code></h1><p>要使用 <code>npm init</code> 初始化一个新的 Node.js 项目，请按照以下步骤操作：</p>
+<ol>
+<li><p><strong>打开命令行界面</strong>：可以是 CMD（Windows）、Terminal（macOS&#x2F;Linux）或任何你喜欢的终端模拟器。</p>
+</li>
+<li><p><strong>导航到你的项目目录</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> path/to/your/project</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>运行 <code>npm init</code> 命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>回答提示的问题</strong>：当你执行 <code>npm init</code> 后，npm 将开始询问关于你项目的几个问题，比如名称、版本、描述、入口点（通常是 <code>index.js</code>）、测试命令、Git 仓库、关键字、作者和许可证信息。你可以根据需要填写这些信息，或者按回车键接受默认值。</p>
+</li>
+<li><p><strong>完成初始化</strong>：回答完所有问题后，npm 将为你生成一个 <code>package.json</code> 文件，包含了你提供的信息。</p>
+</li>
+</ol>
+<h3 id="快速初始化"><a href="#快速初始化" class="headerlink" title="快速初始化"></a>快速初始化</h3><p>如果你想要快速初始化一个 <code>package.json</code> 文件，并且不想逐一回答每个问题，你可以使用 <code>-y</code> 或 <code>--yes</code> 标志：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
+
+<p>这将使用当前目录名作为包名，其他字段采用默认值，并立即创建 <code>package.json</code> 文件而无需交互。</p>
+<h3 id="编辑-package-json"><a href="#编辑-package-json" class="headerlink" title="编辑 package.json"></a>编辑 <code>package.json</code></h3><p>一旦 <code>package.json</code> 文件被创建，你可以随时编辑它以添加更多的脚本、修改依赖项或更新项目信息。例如，你可以添加启动命令：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node index.js&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后可以通过 <code>npm start</code> 来运行这个命令。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>确保你已经在目标目录中安装了 Node.js 和 npm。</li>
+<li>如果你在已经存在的项目中运行 <code>npm init</code>，并且该项目已经有了 <code>package.json</code> 文件，那么 npm 不会覆盖现有的文件；相反，它会提示你是否要更新文件。</li>
+<li><code>package.json</code> 文件对于管理项目的依赖关系至关重要，因此请确保它的内容准确无误。</li>
+</ul>
+<p>使用 <code>npm</code> 搜索包是一个非常直接的过程，可以帮助你找到需要的库或工具。以下是关于如何使用 <code>npm search</code> 命令以及一些最佳实践和技巧来高效地搜索 npm 注册表中的包。</p>
+<h1 id="使用-npm-search-命令"><a href="#使用-npm-search-命令" class="headerlink" title="使用 npm search 命令"></a>使用 <code>npm search</code> 命令</h1><ol>
+<li><p><strong>基本搜索</strong>：<br>你可以直接在命令行中输入 <code>npm search &lt;query&gt;</code> 来查找与查询相关的包。例如，如果你想查找与“express”有关的包，你可以运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm search express</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>细化搜索结果</strong>：<br>默认情况下，<code>npm search</code> 可能会返回大量的结果。为了获得更精确的结果，可以尝试添加更多描述性的关键词，或者使用通配符（如星号 <code>*</code>）来匹配部分字符串。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm search express middleware</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>分页浏览</strong>：<br>如果搜索结果较多，<code>npm search</code> 通常会以分页的形式展示结果。你可以按空格键或向下箭头键滚动浏览页面，按 <code>q</code> 键退出分页模式。</p>
+</li>
+<li><p><strong>在线搜索</strong>：<br>有时候通过命令行搜索可能不够直观，尤其是在寻找特定功能时。这时你可以访问 npm 官方网站(<a target="_blank" rel="noopener" href="https://www.npmjs.com/">https://www.npmjs.com/</a>) 的搜索界面进行更加详细的搜索。网页版提供了更好的过滤选项和排序功能。</p>
+</li>
+</ol>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p><strong>不要仅依赖搜索结果</strong>：虽然搜索是发现新工具的好方法，但有时最合适的解决方案可能是不那么显眼的小众包。因此，除了搜索之外，还应该探索 GitHub 等代码托管平台上的相关项目。</p>
+</li>
+<li><p><strong>安全性和许可协议</strong>：在决定使用一个包之前，请务必检查它的许可证是否符合你的项目要求，并确保它来自可信的来源。</p>
+</li>
+<li><p><strong>测试兼容性</strong>：安装任何新的第三方包之前，最好先在一个隔离的环境中测试一下，确保它与现有代码和其他依赖项兼容。</p>
+</li>
+</ul>
+<h1 id="使用-npm-安装包"><a href="#使用-npm-安装包" class="headerlink" title="使用 npm 安装包"></a>使用 <code>npm</code> 安装包</h1><h3 id="1-本地安装（默认）"><a href="#1-本地安装（默认）" class="headerlink" title="1. 本地安装（默认）"></a>1. <strong>本地安装（默认）</strong></h3><p>这是最常用的安装方式，它会将包安装到当前项目的 <code>node_modules</code> 文件夹中，并且通常会自动更新 <code>package.json</code> 中的依赖列表。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者简写为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：安装 Express 框架</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-全局安装"><a href="#2-全局安装" class="headerlink" title="2. 全局安装"></a>2. <strong>全局安装</strong></h3><p>如果你希望安装一个可以在任何地方使用的命令行工具（如 Yeoman 或 Gulp），你可以选择全局安装。这会将包安装到一个全局位置，通常是 <code>/usr/local/lib/node_modules</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：全局安装 Babel CLI</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @babel/cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装特定版本"><a href="#3-安装特定版本" class="headerlink" title="3. 安装特定版本"></a>3. <strong>安装特定版本</strong></h3><p>你可以通过指定版本号来安装某个特定版本的包。这对于确保兼容性或回滚到旧版本非常有用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package-name&gt;@&lt;version&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：安装版本 4.0.0 的 Lodash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install lodash@4.0.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-安装最新版本"><a href="#4-安装最新版本" class="headerlink" title="4. 安装最新版本"></a>4. <strong>安装最新版本</strong></h3><p>如果你想确保安装的是最新的稳定版，可以使用 <code>latest</code> 标签。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package-name&gt;@latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-安装开发依赖"><a href="#5-安装开发依赖" class="headerlink" title="5. 安装开发依赖"></a>5. <strong>安装开发依赖</strong></h3><p>对于那些只在开发环境中使用的工具（例如测试框架、构建工具等），你应该将它们标记为开发依赖。这样可以区分生产环境和开发环境的依赖项。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>或者使用 <code>-D</code> 简写形式：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：安装 Mocha 测试框架作为开发依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev mocha</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-安装可选依赖"><a href="#6-安装可选依赖" class="headerlink" title="6. 安装可选依赖"></a>6. <strong>安装可选依赖</strong></h3><p>有些包可能包含可选依赖，这些依赖不是必须的，但提供了额外的功能。你可以通过以下命令来安装这些可选依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --optional &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-安装私有包"><a href="#7-安装私有包" class="headerlink" title="7. 安装私有包"></a>7. <strong>安装私有包</strong></h3><p>如果需要安装私有包，你需要先登录 npm 注册表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm login</span><br></pre></td></tr></table></figure>
+
+<p>然后按照正常的安装流程进行安装。</p>
+<h3 id="8-从-GitHub-或其他源安装"><a href="#8-从-GitHub-或其他源安装" class="headerlink" title="8. 从 GitHub 或其他源安装"></a>8. <strong>从 GitHub 或其他源安装</strong></h3><p>你也可以直接从 Git 仓库安装包，比如 GitHub 上的项目。只需要提供完整的 Git URL 即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install git+https://github.com/user/repo.git</span><br></pre></td></tr></table></figure>
+
+<p>或者使用 SSH 形式的 URL：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install git+ssh://git@github.com:user/repo.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-安装时忽略某些依赖"><a href="#9-安装时忽略某些依赖" class="headerlink" title="9. 安装时忽略某些依赖"></a>9. <strong>安装时忽略某些依赖</strong></h3><p>有时候你可能想要跳过一些特定类型的依赖（如可选依赖或同行依赖）。可以使用 <code>--no-optional</code> 或 <code>--ignore-scripts</code> 参数来实现这一点。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --no-optional</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-安装后清理缓存"><a href="#10-安装后清理缓存" class="headerlink" title="10. 安装后清理缓存"></a>10. <strong>安装后清理缓存</strong></h3><p>如果你遇到问题，或者想节省磁盘空间，可以定期清理 npm 缓存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean --force</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p><strong>确保你有足够的权限</strong>：在某些系统上，你可能需要管理员权限来执行全局安装。可以尝试加上 <code>sudo</code> 命令前缀（Linux&#x2F;macOS），但在 Windows 上一般不需要。</p>
+</li>
+<li><p><strong>检查包的文档</strong>：每个包都有自己的安装和配置说明，请务必阅读相关文档以确保正确使用。</p>
+</li>
+<li><p><strong>保持 npm 和 Node.js 更新</strong>：经常更新你的 npm 和 Node.js 版本，以获得最新的特性和安全修复。</p>
+</li>
+</ul>
+<h1 id="使用-require-导入-npm-模块"><a href="#使用-require-导入-npm-模块" class="headerlink" title="使用 require 导入 npm 模块"></a>使用 <code>require</code> 导入 <code>npm</code> 模块</h1><p>在 Node.js 中，<code>require</code> 不仅可以用来导入安装的 npm 模块，还可以用来加载本地文件和模块。对于本地文件或模块，你需要提供相对于当前模块文件的路径。以下是添加路径的方法以及如何使用这些路径来 <code>require</code> 本地文件或模块。</p>
+<h3 id="使用相对路径"><a href="#使用相对路径" class="headerlink" title="使用相对路径"></a>使用相对路径</h3><p>当你要导入同一个项目中的其他 JavaScript 文件时，你可以使用相对路径。相对路径是以点 (<code>.</code>) 开头，表示从当前文件所在目录开始计算：</p>
+<ul>
+<li><code>./</code> 表示当前目录。</li>
+<li><code>../</code> 表示上一级目录。</li>
+</ul>
+<h4 id="示例：导入同一目录下的模块"><a href="#示例：导入同一目录下的模块" class="headerlink" title="示例：导入同一目录下的模块"></a>示例：导入同一目录下的模块</h4><p>假设你有一个名为 <code>utils.js</code> 的文件位于项目的根目录下，并且你想在另一个同级文件中导入它：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// utils.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">greet</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello, world!&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">const</span> utils = <span class="built_in">require</span>(<span class="string">&#x27;./utils&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(utils.<span class="title function_">greet</span>()); <span class="comment">// 输出: Hello, world!</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="示例：导入子目录中的模块"><a href="#示例：导入子目录中的模块" class="headerlink" title="示例：导入子目录中的模块"></a>示例：导入子目录中的模块</h4><p>如果你要导入一个位于子目录中的模块，比如 <code>lib/helpers.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lib/helpers.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">add</span>: <span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">const</span> helpers = <span class="built_in">require</span>(<span class="string">&#x27;./lib/helpers&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(helpers.<span class="title function_">add</span>(<span class="number">2</span>, <span class="number">3</span>)); <span class="comment">// 输出: 5</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用绝对路径（不推荐）"><a href="#使用绝对路径（不推荐）" class="headerlink" title="使用绝对路径（不推荐）"></a>使用绝对路径（不推荐）</h3><p>虽然可以通过绝对路径来引用模块，但这通常不是最佳实践，因为它会使代码难以移植到不同的环境中。然而，在某些特殊情况下，你可能仍然需要这样做。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> moduleFromFileSystem = <span class="built_in">require</span>(<span class="string">&#x27;/absolute/path/to/module&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：绝对路径依赖于操作系统的文件结构，因此它可能会降低代码的可移植性。此外，如果路径中有空格或其他特殊字符，可能需要进行适当的转义。</p>
+<h3 id="使用-Node-js-模块解析算法"><a href="#使用-Node-js-模块解析算法" class="headerlink" title="使用 Node.js 模块解析算法"></a>使用 Node.js 模块解析算法</h3><p>Node.js 会根据一定的规则来查找模块的位置。当你使用 <code>require</code> 时，它首先会在内置模块中查找，然后检查是否是核心模块。如果不是，它将继续按以下顺序搜索：</p>
+<ol>
+<li><strong>本地模块</strong>：按照提供的相对或绝对路径查找文件。</li>
+<li><strong>node_modules 文件夹</strong>：如果路径指向的是 <code>node_modules</code> 文件夹内的包，则 Node.js 将尝试找到该包并加载其主模块。</li>
+<li><strong>父目录的 node_modules</strong>：如果在当前目录找不到，则继续向上一层目录查找，直到根目录为止。</li>
+</ol>
+<h3 id="创建自定义模块并导出"><a href="#创建自定义模块并导出" class="headerlink" title="创建自定义模块并导出"></a>创建自定义模块并导出</h3><p>如果你想创建自己的模块并在项目中复用，你可以通过 <code>module.exports</code> 或 <code>exports</code> 来暴露函数、对象等。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myModule.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sayHello</span>(<span class="params">name</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">`Hello, <span class="subst">$&#123;name&#125;</span>!`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = sayHello;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="comment">// exports.sayHello = sayHello;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后在其他地方导入并使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sayHello = <span class="built_in">require</span>(<span class="string">&#x27;./myModule&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">sayHello</span>(<span class="string">&#x27;Alice&#x27;</span>)); <span class="comment">// 输出: Hello, Alice!</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>相对路径</strong> 是最常用的路径类型，确保了代码的可移植性和维护性。</li>
+<li><strong>绝对路径</strong> 应尽量避免，除非有特定需求。</li>
+</ul>
+<h1 id="环境依赖和生产依赖"><a href="#环境依赖和生产依赖" class="headerlink" title="环境依赖和生产依赖"></a>环境依赖和生产依赖</h1><p>在 Node.js 项目中，依赖项可以分为两类：<strong>开发依赖（Development Dependencies）</strong> 和 <strong>生产依赖（Production Dependencies）</strong>。</p>
+<h3 id="开发依赖（Development-Dependencies）"><a href="#开发依赖（Development-Dependencies）" class="headerlink" title="开发依赖（Development Dependencies）"></a>开发依赖（Development Dependencies）</h3><p>开发依赖是指那些仅在开发环境中使用的工具或库。这些包通常用于构建、测试、文档生成等任务，在生产环境中并不需要它们。将这些依赖标记为开发依赖可以帮助减小生产环境中的安装体积，并确保只有必要的代码被部署到生产服务器上。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><ul>
+<li><strong>Webpack</strong> 或 <strong>Babel</strong>：用于编译和打包 JavaScript 文件。</li>
+<li><strong>Mocha</strong> 或 <strong>Jest</strong>：用于运行单元测试。</li>
+<li><strong>ESLint</strong>：用于代码风格检查和静态分析。</li>
+<li><strong>Nodemon</strong>：在开发过程中自动重启 Node.js 应用程序。</li>
+</ul>
+<h4 id="安装开发依赖"><a href="#安装开发依赖" class="headerlink" title="安装开发依赖"></a>安装开发依赖</h4><p>你可以使用 <code>--save-dev</code> 或 <code>-D</code> 标志来安装开发依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev &lt;package-name&gt;</span><br><span class="line"><span class="comment"># 或者简写为</span></span><br><span class="line">npm install -D &lt;package-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 Yarn</span></span><br><span class="line">yarn add &lt;package-name&gt; --dev</span><br></pre></td></tr></table></figure>
+
+<p>这会将依赖添加到 <code>package.json</code> 文件的 <code>devDependencies</code> 字段中。</p>
+<h3 id="生产依赖（Production-Dependencies）"><a href="#生产依赖（Production-Dependencies）" class="headerlink" title="生产依赖（Production Dependencies）"></a>生产依赖（Production Dependencies）</h3><p>生产依赖是指应用程序在运行时真正需要的所有模块。这些依赖是必不可少的，因为它们直接参与了应用的功能实现。确保所有生产依赖都已正确安装对于保证应用程序能够正常工作至关重要。</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><ul>
+<li><strong>Express</strong>：Web 框架，提供路由、中间件等功能。</li>
+<li><strong>Mongoose</strong>：与 MongoDB 数据库交互的对象建模工具。</li>
+<li><strong>Body-parser</strong>：解析 HTTP 请求体的中间件。</li>
+</ul>
+<h4 id="安装生产依赖"><a href="#安装生产依赖" class="headerlink" title="安装生产依赖"></a>安装生产依赖</h4><p>默认情况下，当你使用 <code>npm install</code> 或 <code>yarn add</code> 时不加任何标志，所安装的包会被视为生产依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package-name&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 Yarn</span></span><br><span class="line">yarn add &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这会将依赖添加到 <code>package.json</code> 文件的 <code>dependencies</code> 字段中。</p>
+<h3 id="区分两种依赖的重要性"><a href="#区分两种依赖的重要性" class="headerlink" title="区分两种依赖的重要性"></a>区分两种依赖的重要性</h3><ol>
+<li><strong>减少部署大小</strong>：通过明确区分开发和生产依赖，可以在部署时只安装必要的生产依赖，从而减小部署包的大小，节省磁盘空间和带宽。</li>
+<li><strong>提高安全性</strong>：某些开发工具可能包含潜在的安全风险，如果它们不在生产环境中存在，则可以降低攻击面。</li>
+<li><strong>优化性能</strong>：不必要的开发工具可能会增加启动时间和内存占用，特别是在容器化环境中。</li>
+<li><strong>简化 CI&#x2F;CD 流程</strong>：持续集成&#x2F;持续部署（CI&#x2F;CD）流程可以针对不同的环境分别处理开发和生产依赖，确保每次构建都是干净且一致的。</li>
+</ol>
+<h3 id="管理依赖的最佳实践"><a href="#管理依赖的最佳实践" class="headerlink" title="管理依赖的最佳实践"></a>管理依赖的最佳实践</h3><ul>
+<li><strong>保持 <code>package.json</code> 清晰</strong>：确保 <code>dependencies</code> 和 <code>devDependencies</code> 部分清晰地区分开了各自的用途。</li>
+<li><strong>定期更新依赖</strong>：经常检查并更新你的依赖，以获得最新的功能和安全修复。</li>
+<li><strong>锁定依赖版本</strong>：使用 <code>package-lock.json</code>（npm）或 <code>yarn.lock</code>（Yarn）文件来固定依赖版本，确保所有开发者和生产环境使用相同的依赖组合。</li>
+<li><strong>利用脚本命令</strong>：定义 npm 脚本来管理不同类型的依赖，例如 <code>npm run build</code> 可能只涉及开发依赖，而 <code>npm start</code> 则专注于生产依赖。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>命令</th>
+<th>补充</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生产依赖</td>
+<td>npm i-S uniq <br>npm i-save uniq</td>
+<td>-S等效于-save，-S是默认选项 <br>包信息保存在package.json中<strong>dependencies</strong>属性</td>
+</tr>
+<tr>
+<td>开发依赖</td>
+<td>npm i-D less <br>npm i-save-dev less</td>
+<td>-D等效于-save-dev<br>包信息保存在package.json中<strong>devDependencies</strong>属性</td>
+</tr>
+</tbody></table>
+<h1 id="全局安装npm包"><a href="#全局安装npm包" class="headerlink" title="全局安装npm包"></a>全局安装<code>npm</code>包</h1><p>全局安装 npm 包允许你在任何地方访问该包提供的命令行工具或功能，而不需要在每个项目中单独安装。这对于诸如构建工具、CLI 工具（如 <code>npm</code> 自身、<code>yarn</code>、<code>create-react-app</code>）等非常有用。以下是关于如何进行全局安装以及一些相关注意事项的详细介绍。</p>
+<h3 id="全局安装命令"><a href="#全局安装命令" class="headerlink" title="全局安装命令"></a>全局安装命令</h3><p>要全局安装一个 npm 包，你需要使用 <code>-g</code> 选项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>例如，如果你想全局安装 Babel CLI：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @babel/cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="检查全局安装路径"><a href="#检查全局安装路径" class="headerlink" title="检查全局安装路径"></a>检查全局安装路径</h3><p>有时你可能想知道全局包被安装到了哪里。你可以通过以下命令查看全局模块的安装路径：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm root -g</span><br></pre></td></tr></table></figure>
+
+<p>或者，如果你想查看所有已全局安装的包及其版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm list -g --depth=0</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局安装时的权限问题"><a href="#全局安装时的权限问题" class="headerlink" title="全局安装时的权限问题"></a>全局安装时的权限问题</h3><p>在某些操作系统上（特别是 macOS 和 Linux），全局安装可能会遇到权限问题，因为默认情况下全局安装位置通常需要管理员权限。为了解决这个问题，有几种方法：</p>
+<ol>
+<li><p><strong>使用 <code>sudo</code></strong>：这是最简单的方法，但不推荐长期使用，因为它会给 npm 提供超级用户权限，存在安全风险。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> npm install -g &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>更改 npm 的默认目录</strong>：你可以配置 npm 使用一个不需要特殊权限的目录来存储全局包。这可以通过创建一个新的文件夹并将其设置为全局前缀来实现。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ~/.npm-global</span><br><span class="line">npm config <span class="built_in">set</span> prefix <span class="string">&#x27;~/.npm-global&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后将这个新路径添加到你的环境变量中（例如，在 <code>.bashrc</code> 或 <code>.zshrc</code> 文件中）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=~/.npm-global/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用 nvm (Node Version Manager)</strong>：nvm 可以帮助管理多个 Node.js 版本，并且它会自动处理全局包的安装路径，避免了权限问题。</p>
+</li>
+<li><p><strong>使用 <code>npx</code></strong>：对于只需要偶尔运行一次的命令行工具，可以考虑使用 <code>npx</code> 来临时执行它们，而无需全局安装。<code>npx</code> 会自动从 npm 注册表下载并运行指定的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx &lt;package-name&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="更新全局包"><a href="#更新全局包" class="headerlink" title="更新全局包"></a>更新全局包</h3><p>要更新所有全局安装的包到最新版本，可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update -g</span><br></pre></td></tr></table></figure>
+
+<p>如果你想更新特定的全局包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g &lt;package-name&gt;@latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="卸载全局包"><a href="#卸载全局包" class="headerlink" title="卸载全局包"></a>卸载全局包</h3><p>如果不再需要某个全局包，可以使用以下命令卸载它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall -g &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项-3"><a href="#注意事项-3" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>保持全局包更新</strong>：定期检查并更新全局安装的包，以确保你拥有最新的功能和安全修复。</li>
+<li><strong>避免过多全局安装</strong>：尽量只全局安装那些确实需要作为 CLI 工具使用的包，以减少潜在的冲突和维护负担。</li>
+<li><strong>环境一致性</strong>：如果你在团队中工作，请确保所有成员都使用相同的全局包版本，或者尽量减少对全局包的依赖，以便更容易地复现开发环境。</li>
+</ul>
+<h1 id="修改windows执行策略"><a href="#修改windows执行策略" class="headerlink" title="修改windows执行策略"></a>修改windows执行策略</h1><p>在Windows操作系统中，执行策略（Execution Policy）是PowerShell的一项安全特性，它控制着可以运行的脚本类型。修改执行策略通常需要管理员权限。</p>
+<p>要更改PowerShell的执行策略，请按照以下步骤操作：</p>
+<ol>
+<li><p>以管理员身份打开PowerShell：</p>
+<ul>
+<li>按 <code>Win + X</code> 键，然后选择“Windows PowerShell (管理员)”或者“终端（管理员）”，这取决于你的Windows版本。</li>
+<li>或者你可以在开始菜单中搜索“PowerShell”，然后右键点击它并选择“以管理员身份运行”。</li>
+</ul>
+</li>
+<li><p>查看当前的执行策略：<br>输入命令 <code>Get-ExecutionPolicy</code> 并按下回车键。这将显示当前设置的执行策略。</p>
+</li>
+<li><p>修改执行策略：<br>输入命令 <code>Set-ExecutionPolicy</code> 然后加上你想要设置的策略名称。例如，如果你想要设置为RemoteSigned策略（允许本地脚本无限制运行，但远程脚本必须有数字签名），你可以输入：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> RemoteSigned</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>确认更改：<br>系统可能会提示你确认是否真的要进行更改。根据提示输入 <code>Y</code> 或 <code>A</code> 来确认。</p>
+</li>
+</ol>
+<p>以下是几个常见的执行策略选项：</p>
+<ul>
+<li>Restricted: 默认设置，不允许任何脚本运行。</li>
+<li>AllSigned: 要求所有脚本和配置文件都必须由受信任的发布者签署。</li>
+<li>RemoteSigned: 只允许运行本地创建的脚本；从互联网下载的脚本必须有数字签名。</li>
+<li>Unrestricted: 允许所有脚本运行，但会警告用户有关从互联网下载的脚本。</li>
+<li>Bypass: 不会强制执行执行策略，适合用于开发环境。</li>
+<li>Undefined: 清除当前作用域的执行策略。</li>
+</ul>
+<p>请注意，在企业环境中修改执行策略可能受到组策略（Group Policy）的限制，所以如果是在工作或学校计算机上尝试更改此设置，可能需要联系系统管理员来帮助更改这些设置。此外，放宽执行策略可能会带来安全风险，因此请谨慎选择适当的策略级别。</p>
+<h3 id="PATH-环境变量"><a href="#PATH-环境变量" class="headerlink" title="PATH 环境变量"></a><code>PATH</code> 环境变量</h3><h4 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h4><ul>
+<li><strong>定义</strong>：<code>PATH</code> 是一个操作系统环境变量，它是一个由分号（在 Windows 中）或冒号（在 Unix&#x2F;Linux&#x2F;macOS 中）分隔的目录路径列表。</li>
+<li><strong>目的</strong>：当用户在命令行界面中输入一个可执行文件的名字时，操作系统会按照 <code>PATH</code> 列表中的顺序查找该文件，并尝试执行找到的第一个匹配项。</li>
+</ul>
+<h4 id="2-查找机制"><a href="#2-查找机制" class="headerlink" title="2. 查找机制"></a>2. 查找机制</h4><ul>
+<li><strong>过程</strong>：一旦用户输入命令并按下回车键，操作系统首先会在当前工作目录中搜索。如果找不到对应的可执行文件，它将依次检查 <code>PATH</code> 变量中列出的每个目录。</li>
+<li><strong>效率</strong>：为了提高效率，系统可能会缓存某些信息，减少重复查找的时间开销。</li>
+</ul>
+<h4 id="3-用户与系统级别的区别"><a href="#3-用户与系统级别的区别" class="headerlink" title="3. 用户与系统级别的区别"></a>3. 用户与系统级别的区别</h4><ul>
+<li><strong>用户级</strong>：每个用户的 <code>PATH</code> 变量可以独立于其他用户而设置，允许个性化配置。</li>
+<li><strong>系统级</strong>：影响所有用户的全局 <code>PATH</code> 设置。修改此级别需要管理员权限，并且会影响整个系统的命令解析。</li>
+</ul>
+<h4 id="4-安全性考量"><a href="#4-安全性考量" class="headerlink" title="4. 安全性考量"></a>4. 安全性考量</h4><ul>
+<li><strong>风险</strong>：错误地配置 <code>PATH</code> 或者将其设置为不安全的位置可能导致安全漏洞，如命令注入攻击。攻击者可能利用这一点来执行恶意代码。</li>
+<li><strong>最佳实践</strong>：只添加可信来源的路径到 <code>PATH</code> 中，并定期审查其内容以确保没有不必要的或潜在危险的条目。</li>
+</ul>
+<h4 id="5-修改的影响范围"><a href="#5-修改的影响范围" class="headerlink" title="5. 修改的影响范围"></a>5. 修改的影响范围</h4><ul>
+<li><strong>临时修改</strong>：仅对当前命令行会话有效，关闭窗口后失效。适用于测试或短期需求。</li>
+<li><strong>永久修改</strong>：对所有新启动的进程生效。对于已经运行的应用程序，则需要重启才能应用新的 <code>PATH</code> 设置。</li>
+</ul>
+<h4 id="6-修改方法"><a href="#6-修改方法" class="headerlink" title="6. 修改方法"></a>6. 修改方法</h4><h5 id="通过图形界面"><a href="#通过图形界面" class="headerlink" title="通过图形界面"></a>通过图形界面</h5><ol>
+<li><strong>Windows 系统属性对话框</strong><ul>
+<li>右键点击“此电脑”或“我的电脑”，选择“属性”。</li>
+<li>点击左侧的“高级系统设置”链接。</li>
+<li>在“系统属性”对话框中，点击“高级”选项卡下的“环境变量”按钮。</li>
+<li>在“环境变量”对话框中找到“系统变量”部分中的 <code>Path</code> 或者在“用户变量”中找到对应的 <code>Path</code>。</li>
+<li>选择 <code>Path</code> 并点击“编辑”。然后点击“新建”并输入新的路径。</li>
+<li>确认所有对话框以保存更改。</li>
+</ul>
+</li>
+</ol>
+<h5 id="使用命令行工具"><a href="#使用命令行工具" class="headerlink" title="使用命令行工具"></a>使用命令行工具</h5><ol>
+<li><p><strong>CMD (仅限当前命令行会话)</strong></p>
+<ul>
+<li><p>打开命令提示符窗口。</p>
+</li>
+<li><p>使用 <code>set</code> 命令可以在当前命令提示符窗口中临时添加路径到 <code>PATH</code>。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">PATH</span>=<span class="variable">%PATH%</span>;C:\New\<span class="built_in">Path</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>PowerShell (仅限当前会话)</strong></p>
+<ul>
+<li><p>打开 PowerShell 窗口。</p>
+</li>
+<li><p>使用 <code>$env:PATH</code> 变量可以为当前 PowerShell 会话添加路径。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$env:PATH</span> += <span class="string">&quot;;C:\New\Path&quot;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>CMD (永久修改)</strong></p>
+<ul>
+<li><p>打开命令提示符（以管理员身份运行）。</p>
+</li>
+<li><p>使用 <code>setx</code> 命令来更新 <code>PATH</code>。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setx <span class="built_in">PATH</span> &quot;<span class="variable">%PATH%</span>;C:\New\<span class="built_in">Path</span>&quot;</span><br></pre></td></tr></table></figure>
+
+<p>注意：使用 <code>setx</code> 修改环境变量会影响所有新启动的进程，但不会影响正在运行的进程。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>PowerShell (永久修改)</strong></p>
+<ul>
+<li><p>打开 PowerShell（以管理员身份运行）。</p>
+</li>
+<li><p>使用 <code>Set-ItemProperty</code> 来修改用户级别的 <code>PATH</code>，或者使用 <code>[System.Environment]::SetEnvironmentVariable</code> 来修改系统级别的 <code>PATH</code>。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">System.Environment</span>]::SetEnvironmentVariable(<span class="string">&quot;PATH&quot;</span>, <span class="string">&quot;<span class="variable">$</span>([System.Environment]::GetEnvironmentVariable(&#x27;PATH&#x27;, &#x27;Machine&#x27;));C:\New\Path&quot;</span>, <span class="string">&quot;Machine&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会将新的路径追加到现有的机器（系统级别）<code>PATH</code> 中。对于用户级别的 <code>PATH</code>，将 <code>&quot;Machine&quot;</code> 替换为 <code>&quot;User&quot;</code>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="7-实际应用案例"><a href="#7-实际应用案例" class="headerlink" title="7. 实际应用案例"></a>7. 实际应用案例</h4><ul>
+<li><strong>开发环境配置</strong>：开发者经常需要添加特定版本的编译器、解释器或其他工具链所在的目录到 <code>PATH</code> 中，以便可以直接从任何地方调用它们。</li>
+<li><strong>软件安装</strong>：许多应用程序安装时会自动将自己的二进制文件所在目录添加到 <code>PATH</code> 中，方便用户直接使用。</li>
+</ul>
+<h4 id="8-注意事项"><a href="#8-注意事项" class="headerlink" title="8. 注意事项"></a>8. 注意事项</h4><ul>
+<li><strong>冗余路径</strong>：避免在同一 <code>PATH</code> 中多次添加相同的路径，这不仅浪费资源还可能引起混淆。</li>
+<li><strong>顺序问题</strong>：路径的排列顺序很重要，因为第一个匹配的可执行文件会被优先执行。如果存在同名但不同版本的程序，应根据实际需求调整顺序。</li>
+<li><strong>备份原始设置</strong>：在进行任何重大更改之前，建议记录下原来的 <code>PATH</code> 设置，以便出现问题时可以迅速恢复。</li>
+</ul>
+<h1 id="npm安装包及其依赖"><a href="#npm安装包及其依赖" class="headerlink" title="npm安装包及其依赖"></a>npm安装包及其依赖</h1><p>当使用 npm（Node Package Manager）安装一个包时，npm 会根据该包的 <code>package.json</code> 文件中的依赖声明来解析并安装所有直接和间接依赖。以下是关于 npm 安装包及其依赖的一些关键点：</p>
+<h3 id="1-dependencies-和-devDependencies"><a href="#1-dependencies-和-devDependencies" class="headerlink" title="1. dependencies 和 devDependencies"></a>1. <code>dependencies</code> 和 <code>devDependencies</code></h3><ul>
+<li><strong><code>dependencies</code></strong>：这些是在生产环境中运行项目所必需的包。</li>
+<li><strong><code>devDependencies</code></strong>：这些是开发过程中需要的包，比如测试工具、构建工具等，它们通常不在生产环境中使用。</li>
+</ul>
+<h3 id="2-依赖树"><a href="#2-依赖树" class="headerlink" title="2. 依赖树"></a>2. 依赖树</h3><p>当你安装一个包时，npm 会递归地检查该包的所有依赖，并为每个依赖重复这个过程，直到构建出完整的依赖树。这棵树可以非常复杂，因为它不仅包含直接依赖，还包括那些依赖的依赖（即间接依赖或子依赖）。</p>
+<h3 id="3-package-lock-json"><a href="#3-package-lock-json" class="headerlink" title="3. package-lock.json"></a>3. <code>package-lock.json</code></h3><ul>
+<li>npm v5 及以上版本会在你安装包时自动生成或更新 <code>package-lock.json</code> 文件。这个文件锁定了项目的依赖关系图，确保所有开发者以及不同环境下的部署都能安装完全相同的依赖版本。</li>
+<li>这个文件有助于避免由于不同时间点安装的依赖版本差异而导致的问题。</li>
+</ul>
+<h3 id="4-node-modules-文件夹"><a href="#4-node-modules-文件夹" class="headerlink" title="4. node_modules 文件夹"></a>4. <code>node_modules</code> 文件夹</h3><ul>
+<li>所有通过 npm 安装的包都会被放置在这个文件夹中。为了优化性能和磁盘空间，npm 会尽量扁平化依赖树，即如果两个包依赖于同一个包的不同版本，npm 会尝试在顶层安装该依赖的兼容版本。</li>
+</ul>
+<h3 id="5-安装所有依赖"><a href="#5-安装所有依赖" class="headerlink" title="5. 安装所有依赖"></a>5. 安装所有依赖</h3><p>要安装项目的所有依赖（包括直接和间接依赖），只需在项目根目录下执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>这将读取 <code>package.json</code> 文件，并按照其中列出的依赖项进行安装。</p>
+<h3 id="6-安装特定版本的依赖"><a href="#6-安装特定版本的依赖" class="headerlink" title="6. 安装特定版本的依赖"></a>6. 安装特定版本的依赖</h3><p>你可以指定安装特定版本的依赖，或者使用符号如 <code>^</code> 或 <code>~</code> 来允许小版本更新：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install &lt;package-name&gt;@&lt;version&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-审查依赖的安全性"><a href="#7-审查依赖的安全性" class="headerlink" title="7. 审查依赖的安全性"></a>7. 审查依赖的安全性</h3><p>定期审查你的依赖是否存在已知漏洞是一个好习惯。你可以使用如下命令来检查当前项目的依赖是否有安全问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm audit</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-更新依赖"><a href="#8-更新依赖" class="headerlink" title="8. 更新依赖"></a>8. 更新依赖</h3><p>随着时间和新版本的发布，你可能想要更新你的依赖到最新版本。可以使用如下命令来更新所有依赖到最新版本（注意这可能会引入不兼容的变化）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update</span><br></pre></td></tr></table></figure>
+
+<p>对于个别依赖，你可以指定包名来进行更新。</p>
+<h3 id="9-清理无用的依赖"><a href="#9-清理无用的依赖" class="headerlink" title="9. 清理无用的依赖"></a>9. 清理无用的依赖</h3><p>有时候，你可能会移除一些不再使用的依赖，但它们仍然存在于 <code>package.json</code> 中。你可以使用如下命令来清理这些冗余的依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm prune</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-安装全局依赖"><a href="#10-安装全局依赖" class="headerlink" title="10. 安装全局依赖"></a>10. 安装全局依赖</h3><p>某些工具可能需要全局安装，例如命令行工具：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="npm-start"><a href="#npm-start" class="headerlink" title="npm start"></a><code>npm start</code></h1><p><code>npm start</code> 是 npm（Node Package Manager）提供的一个非常常用且方便的命令，它用于启动应用程序。当你在项目的根目录下运行 <code>npm start</code> 时，npm 会查找 <code>package.json</code> 文件中的 <code>scripts</code> 字段，并执行与 <code>&quot;start&quot;</code> 关联的命令。</p>
+<h3 id="默认行为"><a href="#默认行为" class="headerlink" title="默认行为"></a>默认行为</h3><p>如果 <code>package.json</code> 中没有定义 <code>&quot;start&quot;</code> 脚本，<code>npm start</code> 会默认尝试执行 <code>node server.js</code>。这意味着如果你的项目包含一个名为 <code>server.js</code> 的文件，而且这个文件是你的应用入口点，那么 <code>npm start</code> 将直接运行它。</p>
+<h3 id="自定义-start-脚本"><a href="#自定义-start-脚本" class="headerlink" title="自定义 start 脚本"></a>自定义 <code>start</code> 脚本</h3><p>大多数现代 JavaScript&#x2F;Node.js 项目都会自定义 <code>start</code> 脚本来适应特定的应用需求。你可以在 <code>package.json</code> 文件中明确指定启动命令，例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;my-app&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node ./bin/www&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，当运行 <code>npm start</code> 时，npm 会执行 <code>node ./bin/www</code> 来启动应用程序。这使得开发者可以根据项目的具体结构和需要来配置最适合的启动方式。</p>
+<h3 id="常见的-start-脚本示例"><a href="#常见的-start-脚本示例" class="headerlink" title="常见的 start 脚本示例"></a>常见的 <code>start</code> 脚本示例</h3><ul>
+<li><p><strong>Express 应用</strong>：对于使用 Express 框架构建的 Node.js 应用，常见的 <code>start</code> 脚本可能是这样的：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node ./bin/www&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>React 应用（通过 Create React App 创建）</strong>：对于由 Create React App 初始化的 React 项目，默认的 <code>start</code> 脚本会启动开发服务器：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;react-scripts start&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>带有环境变量的脚本</strong>：有时你可能希望在启动时设置一些环境变量，比如是否为生产环境：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;NODE_ENV=production node server.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用 nodemon 监控文件变化</strong>：在开发过程中，你可以使用 <code>nodemon</code> 来自动重启服务器，以提高效率：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nodemon server.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="使用-npm-start-启动应用的好处"><a href="#使用-npm-start-启动应用的好处" class="headerlink" title="使用 npm start 启动应用的好处"></a>使用 <code>npm start</code> 启动应用的好处</h3><ul>
+<li><strong>一致性</strong>：无论是在本地开发、持续集成环境中还是部署到生产服务器上，<code>npm start</code> 提供了一种一致的方式来启动应用程序。</li>
+<li><strong>简化依赖管理</strong>：所有必要的依赖都可以通过 <code>package.json</code> 文件进行管理，确保每个环境都安装了相同版本的包。</li>
+<li><strong>易于扩展</strong>：可以通过预处理 (<code>prestart</code>) 和后处理 (<code>poststart</code>) 脚本来添加额外的任务或步骤，如编译代码、检查依赖等。</li>
+</ul>
+<p>总之，<code>npm start</code> 是一种强大而灵活的方式，可以用来启动基于 Node.js 的应用程序。通过合理地配置 <code>package.json</code> 文件中的 <code>scripts</code> 部分，你可以极大地提升开发体验和应用维护的便捷性。</p>
+<h1 id="npm-run"><a href="#npm-run" class="headerlink" title="npm run"></a><code>npm run</code></h1><p><code>npm run</code> 是 npm（Node Package Manager）提供的一个命令，用于执行在 <code>package.json</code> 文件的 <code>scripts</code> 字段中定义的自定义脚本。它允许开发者创建和运行各种任务，如启动服务器、构建项目、运行测试等。以下是关于 <code>npm run</code> 的详细说明：</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>要执行一个自定义脚本，你需要知道该脚本的名字，并通过以下命令来调用它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run &lt;script-name&gt;</span><br></pre></td></tr></table></figure>
+
+<p>例如，如果你有一个名为 <code>build</code> 的脚本，你可以这样运行它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看可用脚本"><a href="#查看可用脚本" class="headerlink" title="查看可用脚本"></a>查看可用脚本</h3><p>如果你想查看当前项目中所有可用的脚本，可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run</span><br></pre></td></tr></table></figure>
+
+<p>这将列出所有的自定义脚本以及它们对应的命令。</p>
+<h3 id="预处理和后处理脚本"><a href="#预处理和后处理脚本" class="headerlink" title="预处理和后处理脚本"></a>预处理和后处理脚本</h3><p>npm 支持预处理 (<code>pre&lt;name&gt;</code>) 和后处理 (<code>post&lt;name&gt;</code>) 脚本。这些脚本会在指定的脚本之前或之后自动执行。例如，如果你有如下脚本定义：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;prestart&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo &#x27;Starting the server...&#x27;&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node server.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;poststart&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo &#x27;Server has started.&#x27;&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>当你运行 <code>npm start</code> 时，npm 会依次执行 <code>prestart</code>, <code>start</code>, 和 <code>poststart</code> 脚本。</p>
+<h3 id="传递参数给脚本"><a href="#传递参数给脚本" class="headerlink" title="传递参数给脚本"></a>传递参数给脚本</h3><p>你可以通过 <code>--</code> 来传递额外的参数给底层命令。例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;serve&quot;</span><span class="punctuation">:</span> <span class="string">&quot;http-server ./dist -p&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后你可以这样运行它并指定端口号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve -- 8080</span><br></pre></td></tr></table></figure>
+
+<p>这相当于运行 <code>http-server ./dist -p 8080</code>。</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>你可以在脚本中设置环境变量，这对于配置开发环境、生产环境等非常有用。例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;NODE_ENV=production node server.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;NODE_ENV=development nodemon server.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于跨平台兼容性，建议使用 <code>cross-env</code> 包来设置环境变量：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev cross-env</span><br></pre></td></tr></table></figure>
+
+<p>然后在 <code>scripts</code> 中使用它：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;start&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cross-env NODE_ENV=production node server.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dev&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cross-env NODE_ENV=development nodemon server.js&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="并行与串行执行多个脚本"><a href="#并行与串行执行多个脚本" class="headerlink" title="并行与串行执行多个脚本"></a>并行与串行执行多个脚本</h3><p>有时你可能需要同时运行多个脚本，或者按顺序依次运行它们。可以使用 <code>&amp;</code> 或者 <code>&amp;&amp;</code> 来实现这一点：</p>
+<ul>
+<li><p><strong>并行</strong>：使用 <code>&amp;</code> 可以让两个命令几乎同时开始执行。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;parallel&quot;</span><span class="punctuation">:</span> <span class="string">&quot;command1 &amp; command2&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>串行</strong>：使用 <code>&amp;&amp;</code> 可以确保前一个命令成功完成后才会执行下一个命令。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;serial&quot;</span><span class="punctuation">:</span> <span class="string">&quot;command1 &amp;&amp; command2&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>为了更好地管理多个脚本的并发执行，还可以考虑使用像 <code>concurrently</code> 这样的工具。</p>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/09/%E5%85%B3%E4%BA%8EGrid-Layout%E7%9A%84%E4%B8%80%E5%88%87/">
+                    关于Grid Layout的一切
+                </a>
+            
+        </span>
+        <span class="next">
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

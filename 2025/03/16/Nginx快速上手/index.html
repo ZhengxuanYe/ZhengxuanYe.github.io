@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>Nginx快速上手 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                Nginx快速上手
+            
+        </h1>
+        <div>
+            <time>2025-03-16</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/">项目部署</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/Nginx/">Nginx</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="什么是nginx"><a href="#什么是nginx" class="headerlink" title="什么是nginx"></a>什么是nginx</h1><p>Nginx 是一款开源的高性能 HTTP 和反向代理服务器，同时也提供了 IMAP&#x2F;POP3&#x2F;SMTP 代理功能。它由俄罗斯程序员 Igor Sysoev 于2004年首次发布，最初设计目的是为了解决 C10k 问题，即如何让单台服务器同时处理1万个并发连接的问题。</p>
+<h3 id="功能和作用"><a href="#功能和作用" class="headerlink" title="功能和作用"></a>功能和作用</h3><p>Nginx 主要的功能和作用包括但不限于以下几点：</p>
+<ol>
+<li><strong>Web服务器</strong>：Nginx 可以作为一个轻量级的 Web 服务器来处理静态文件、索引文件和自动索引等。</li>
+<li><strong>反向代理服务器</strong>：作为反向代理，Nginx 可以接收客户端请求并将其转发给后端的一个或多个服务器进行处理，然后将处理结果返回给客户端。这种架构有助于分担后端服务器的负载，提高系统的可用性和性能。</li>
+<li><strong>负载均衡器</strong>：Nginx 提供了多种负载均衡算法（如轮询、最少连接、IP哈希等），可以将客户端请求分配到多个后端服务器上，从而实现高可用性和扩展性。</li>
+<li><strong>缓存服务器</strong>：Nginx 可以缓存静态内容和动态生成的页面，减少对后端服务器的请求数量，提升网站响应速度。</li>
+<li><strong>SSL&#x2F;TLS 支持</strong>：Nginx 支持 SSL&#x2F;TLS 协议，能够提供 HTTPS 服务，保障数据传输的安全。</li>
+<li><strong>动静分离</strong>：Nginx 可以高效地处理静态资源，并将动态请求代理到后端应用服务器，以此加快网站解析速度。</li>
+<li><strong>安全防护</strong>：Nginx 提供了一定的安全防护功能，比如通过配置访问控制列表（ACL）限制特定 IP 地址或 IP 段的访问。</li>
+<li><strong>邮件代理服务器</strong>：Nginx 还支持 IMAP、POP3 和 SMTP 协议，可用于代理和负载均衡邮件服务器的请求。</li>
+</ol>
+<h3 id="历史发展"><a href="#历史发展" class="headerlink" title="历史发展"></a>历史发展</h3><ul>
+<li>Nginx 最初是由 Igor Sysoev 在2002年开始开发，并于2004年发布了第一个公开版本0.1.0。</li>
+<li>由于其出色的性能和稳定性，Nginx 很快获得了广泛的认可，并在全球范围内被大量知名网站采用。</li>
+<li>2011年，Igor Sysoev 成立了 NGINX Inc. 公司，专注于提供商业支持和服务。</li>
+<li>2019年，NGINX 被美国公司 F5 Networks 以6.7亿美元的价格收购。</li>
+<li>在2022年的俄乌冲突背景下，F5 决定暂停在俄罗斯的所有销售活动，并移除俄罗斯对 NGINX 开源项目的贡献权限。</li>
+</ul>
+<p>Nginx 的成功在于其采用了事件驱动的异步非阻塞处理模型，这使得它在处理高并发请求时表现出色。此外，Nginx 的模块化设计允许用户根据需要灵活扩展其功能。它的配置文件结构清晰，易于理解和修改，支持丰富的配置选项，便于定制化部署。正因为这些特性，Nginx 已经成为构建高性能 Web 应用程序、负载均衡集群和反向代理的理想选择。</p>
+<h1 id="下载nginx？"><a href="#下载nginx？" class="headerlink" title="下载nginx？"></a>下载nginx？</h1><ol>
+<li><strong>访问官方网站</strong>：首先，访问 Nginx 的官方网站 <a target="_blank" rel="noopener" href="https://nginx.org/">nginx.org</a>。</li>
+<li><strong>下载 Windows 版本</strong>：从官网的下载页面获取 Windows 版本的 Nginx。通常，你会找到一个如 <code>nginx-x.x.xx.zip</code> 的链接（这里的 <code>x.x.xx</code> 是版本号），点击下载这个压缩包。</li>
+</ol>
+<h3 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h3><ol>
+<li><p><strong>解压文件</strong>：将下载的 <code>.zip</code> 文件解压到你希望安装 Nginx 的目录，例如 <code>C:\nginx\</code>。</p>
+</li>
+<li><p><strong>启动 Nginx</strong>：</p>
+<ul>
+<li><p>打开命令提示符（以管理员身份运行），然后导航到 Nginx 的安装目录下的 <code>sbin</code> 文件夹。例如，如果你把 Nginx 解压到了 <code>C:\nginx\</code>，那么你应该执行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\nginx\nginx-<span class="number">1</span>.<span class="number">26</span>.<span class="number">3</span>\  (根据实际解压后的文件夹名称调整路径)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后，输入以下命令来启动 Nginx：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
+
+<p>或者直接双击 <code>nginx.exe</code> 来启动它。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>验证安装</strong>：</p>
+<ul>
+<li>打开浏览器，访问 <code>http://localhost/</code>。如果看到欢迎页面，说明 Nginx 已经成功安装并正在运行。</li>
+</ul>
+</li>
+</ol>
+<h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><p>如果你想在任何地方都能使用 <code>nginx</code> 命令，可以配置环境变量：</p>
+<ol>
+<li><p><strong>添加到系统环境变量</strong>：</p>
+<ul>
+<li>右键点击“此电脑”或“我的电脑”，选择“属性”。</li>
+<li>点击左侧的“高级系统设置”。</li>
+<li>在弹出的窗口中，点击“环境变量”按钮。</li>
+<li>在“系统变量”部分，找到并选择 <code>Path</code> 变量，然后点击“编辑”。</li>
+<li>在编辑窗口中，点击“新建”，然后输入 Nginx 的 <code>sbin</code> 目录路径，例如 <code>C:\nginx\nginx-1.26.3\</code>（确保指向正确的路径）。</li>
+<li>确认所有对话框都已保存并关闭。</li>
+</ul>
+</li>
+<li><p><strong>验证配置是否成功</strong>：</p>
+<ul>
+<li>打开一个新的命令提示符窗口，输入 <code>nginx -v</code> 来检查是否能够识别 Nginx 命令以及查看其版本信息。</li>
+</ul>
+</li>
+</ol>
+<h1 id="PID？"><a href="#PID？" class="headerlink" title="PID？"></a>PID？</h1><p>PID，全称为Process Identifier（进程标识符），是操作系统为了管理和识别运行中的每个进程而分配的一个唯一数字标识符。在任何给定时间点，操作系统中运行的所有进程都有一个唯一的PID值，这使得操作系统能够对这些进程进行管理、监控和控制。</p>
+<h3 id="PID的作用"><a href="#PID的作用" class="headerlink" title="PID的作用"></a>PID的作用</h3><ul>
+<li><strong>进程管理</strong>：通过PID，操作系统可以对特定的进程执行各种操作，比如启动、停止、重启或调整优先级等。</li>
+<li><strong>资源分配</strong>：操作系统根据PID来跟踪和管理进程使用的系统资源，如内存、CPU时间等。</li>
+<li><strong>安全性和权限控制</strong>：不同的进程可能运行在不同的用户上下文中，拥有不同的权限级别。通过PID，可以确保只有具有适当权限的用户才能对进程执行某些操作。</li>
+<li><strong>日志记录与调试</strong>：开发人员和系统管理员可以通过PID追踪某个进程的行为，这对于调试程序和分析性能问题非常有用。</li>
+</ul>
+<h3 id="如何查看PID"><a href="#如何查看PID" class="headerlink" title="如何查看PID"></a>如何查看PID</h3><p>不同的操作系统提供了不同的工具来查看正在运行的进程及其PID：</p>
+<ul>
+<li><p><strong>Linux&#x2F;macOS</strong>: 使用<code>ps</code>命令可以列出所有进程及其PID。例如，要查找Nginx的主进程ID，可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep nginx</span><br></pre></td></tr></table></figure>
+
+<p>或者直接查看Nginx配置文件中指定的PID文件内容（如果有的话）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /var/run/nginx.pid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Windows</strong>: 在任务管理器中可以直接看到每个进程的PID。也可以使用命令行工具<code>tasklist</code>来显示包括PID在内的进程信息：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist /FI &quot;imagename eq nginx.exe&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="发送信号给进程"><a href="#发送信号给进程" class="headerlink" title="发送信号给进程"></a>发送信号给进程</h3><p>在Unix&#x2F;Linux系统中，经常需要向特定进程发送信号以触发某些行为（如重新加载配置、优雅地关闭服务等）。这通常通过PID来实现。例如，向Nginx发送重新加载配置的信号：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">kill</span> -HUP `<span class="built_in">cat</span> /var/run/nginx.pid`</span><br></pre></td></tr></table></figure>
+
+<h1 id="服务启停"><a href="#服务启停" class="headerlink" title="服务启停"></a>服务启停</h1><ul>
+<li><p>下面是针对在windows系统中的操作</p>
+</li>
+<li><p>即使你已经配置了环境变量，当你直接在命令行输入 nginx 命令而没有指定工作目录和配置文件路径时，Nginx 默认会在其认为的当前工作目录下寻找这些文件，这可能是导致错误的原因</p>
+</li>
+</ul>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><p><strong>启动 Nginx</strong></p>
+<ul>
+<li><p>打开命令提示符（推荐以管理员身份运行），导航到 Nginx 的安装目录下，然后执行：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
+
+<p>或者直接双击 <code>nginx.exe</code> 文件。</p>
+</li>
+</ul>
+<p><strong>停止 Nginx</strong></p>
+<ul>
+<li><p>要停止 Nginx，可以在命令提示符中输入：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>重新加载配置（不停机重载）</strong></p>
+<ul>
+<li><p>当你对配置文件进行了更改并希望应用新设置时，可以使用以下命令：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>检查配置文件语法</strong></p>
+<ul>
+<li><p>在重新加载前，确保配置文件正确无误，可以通过以下命令检查：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>在管理和操作Nginx服务时，查看进程信息、发送信号给Nginx进程是常见的任务。下面介绍如何查看Nginx的进程ID（PID）以及如何使用<code>nginx -s</code>命令发送信号给Nginx。</p>
+<p>在Windows操作系统上管理和操作Nginx服务时，查看进程信息和发送信号给Nginx进程的操作与Linux&#x2F;macOS有所不同。以下是针对Windows环境的具体指南：</p>
+<h3 id="查看Nginx进程"><a href="#查看Nginx进程" class="headerlink" title="查看Nginx进程"></a>查看Nginx进程</h3><p>在Windows上，你可以使用以下几种方法来查看Nginx的进程信息：</p>
+<ul>
+<li><p><strong>任务管理器</strong>:</p>
+<ul>
+<li>打开任务管理器（Ctrl + Shift + Esc）。</li>
+<li>在“进程”标签页下查找<code>nginx.exe</code>。这里可以看到Nginx的主进程和工作进程。</li>
+</ul>
+</li>
+<li><p><strong>命令行工具</strong>:</p>
+<ul>
+<li><p>使用<code>tasklist</code>命令结合<code>findstr</code>来过滤Nginx相关的进程：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tasklist /FI &quot;imagename eq nginx.exe&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这个命令会列出所有名为<code>nginx.exe</code>的进程及其PID信息。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="获取Nginx主进程PID"><a href="#获取Nginx主进程PID" class="headerlink" title="获取Nginx主进程PID"></a>获取Nginx主进程PID</h3><p>在Windows版本的Nginx中，默认情况下也会将主进程的PID写入一个文件中。这个文件的位置取决于你的配置文件设置，但通常可以在Nginx安装目录下的<code>logs</code>文件夹中的<code>nginx.pid</code>找到。例如，如果Nginx安装在<code>C:\nginx\</code>目录下，则可以使用以下命令查看主进程PID：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> C:\nginx\logs\nginx.pid</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用nginx-s发送信号"><a href="#使用nginx-s发送信号" class="headerlink" title="使用nginx -s发送信号"></a>使用<code>nginx -s</code>发送信号</h3><p>在Windows上，你可以通过<code>nginx -s</code>命令向Nginx发送信号以执行不同的操作，如重新加载配置或停止服务。这包括：</p>
+<ul>
+<li><p><strong>reload</strong>: 重新加载配置文件，不中断服务。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>stop</strong>: 快速关闭Nginx。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>quit</strong>: 优雅地关闭Nginx，在处理完当前请求后退出。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s quit</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>这些命令需要在命令提示符窗口中执行，并且应该从Nginx的安装目录运行，或者确保你的系统路径包含Nginx的可执行文件路径。在某些情况下，可能需要以管理员身份运行命令提示符来执行这些命令。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>环境变量</strong>：如果已经将 Nginx 的路径添加到了系统的环境变量中，在任意位置都可以直接使用 <code>nginx</code> 命令。否则，请确保你在 Nginx 的安装目录或其 <code>sbin</code> 子目录下执行命令。</li>
+<li><strong>权限问题</strong>：在 Linux 和 macOS 系统上执行上述命令时，可能需要管理员权限（使用 <code>sudo</code>）。</li>
+<li><strong>工作目录</strong>：确保你的当前工作目录为 Nginx 的安装目录，特别是当未配置环境变量时，这有助于避免路径相关的问题。</li>
+</ul>
+<h1 id="Nginx基础结构"><a href="#Nginx基础结构" class="headerlink" title="Nginx基础结构"></a>Nginx基础结构</h1><ol>
+<li><strong>Master进程</strong><ul>
+<li><strong>作用</strong>：Master进程是Nginx的主进程，负责管理其他进程和配置文件的加载。它不直接处理客户端请求，而是负责监听端口、接收新连接，并将连接分配给Worker进程。</li>
+<li><strong>特点</strong>：Master进程具有特权，通常以root用户身份运行，以便能够绑定到特权端口（如80和443）。</li>
+</ul>
+</li>
+<li><strong>Worker进程</strong><ul>
+<li><strong>作用</strong>：Worker进程是实际处理客户端请求的进程。每个Worker进程都是独立的，可以处理多个客户端请求。</li>
+<li><strong>特点</strong>：Worker进程通常以非特权用户身份运行，以提高安全性。它们通过事件驱动和异步非阻塞的方式处理请求，能够高效地处理大量并发连接。</li>
+</ul>
+</li>
+<li><strong>Cache Manager进程</strong>（可选）<ul>
+<li><strong>作用</strong>：Cache Manager进程负责管理Nginx的缓存。它定期清理和更新缓存，确保缓存的有效性和空间利用率。</li>
+</ul>
+</li>
+<li><strong>Cache Loader进程</strong>（可选）<ul>
+<li><strong>作用</strong>：Cache Loader进程在Nginx启动时预加载缓存内容。这有助于减少启动时间，并提高缓存的命中率。</li>
+</ul>
+</li>
+<li><strong>配置模块</strong><ul>
+<li><strong>作用</strong>：Nginx的配置文件（如<code>nginx.conf</code>）定义了服务器的行为，包括监听的端口、虚拟主机、反向代理设置、负载均衡策略等。</li>
+<li><strong>特点</strong>：Nginx的配置文件非常灵活，支持模块化扩展，可以根据需要进行定制。</li>
+</ul>
+</li>
+<li><strong>事件驱动模型</strong><ul>
+<li><strong>作用</strong>：Nginx采用事件驱动模型，通过epoll（在Linux上）或kqueue（在FreeBSD上）等高效的多路复用机制，实现高并发处理。</li>
+<li><strong>特点</strong>：事件驱动模型使得Nginx能够以少量的资源处理大量的并发连接，减少上下文切换的开销，提高性能。</li>
+</ul>
+</li>
+</ol>
+<h1 id="Nginx配置文件"><a href="#Nginx配置文件" class="headerlink" title="Nginx配置文件"></a>Nginx配置文件</h1><p>Nginx配置文件是控制Nginx服务器行为的核心。一个典型的Nginx配置文件（通常命名为<code>nginx.conf</code>）由多个部分组成，每个部分都有其特定的功能和用途。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -V</span><br></pre></td></tr></table></figure>
+
+<p>你可以通过上面指令来查看文件路径，<code>--conf-path=“相对路径”</code>明确指出了配置文件的所在位置</p>
+<h3 id="1-全局块（Global-Block）"><a href="#1-全局块（Global-Block）" class="headerlink" title="1. 全局块（Global Block）"></a>1. 全局块（Global Block）</h3><p>位于配置文件最外层，定义了影响整个Nginx进程的参数。</p>
+<ul>
+<li><strong>user</strong>：指定Nginx Worker进程运行的用户和用户组，默认为nobody。</li>
+<li><strong>worker_processes</strong>：指定Nginx启动的工作进程数，通常设置为CPU核心数。</li>
+<li><strong>error_log</strong>：定义全局错误日志的位置和级别。</li>
+<li><strong>pid</strong>：指定存储Nginx主进程ID的文件路径。</li>
+</ul>
+<h3 id="2-Events-块"><a href="#2-Events-块" class="headerlink" title="2. Events 块"></a>2. Events 块</h3><p>配置与事件驱动模型相关的设置。</p>
+<ul>
+<li><strong>worker_connections</strong>：设定每个Worker进程的最大并发连接数。</li>
+<li><strong>use</strong>：选择使用的事件驱动模型，如epoll、kqueue等。</li>
+</ul>
+<h3 id="3-HTTP-块"><a href="#3-HTTP-块" class="headerlink" title="3. HTTP 块"></a>3. HTTP 块</h3><p>这是Nginx配置中最复杂的部分，包含了处理HTTP请求的所有相关配置。</p>
+<ul>
+<li><strong>include</strong>：引入其他配置文件或目录下的所有配置文件，便于模块化管理。</li>
+<li><strong>default_type</strong>：设置默认的MIME类型。</li>
+<li><strong>log_format</strong> 和 <strong>access_log</strong>：定义访问日志格式及存放位置。</li>
+<li><strong>sendfile</strong>：启用或禁用高效文件传输模式。</li>
+<li><strong>tcp_nopush</strong> 和 <strong>tcp_nodelay</strong>：优化网络性能的选项。</li>
+<li><strong>keepalive_timeout</strong>：设置保持连接的超时时间。</li>
+<li><strong>gzip</strong>：启用或禁用Gzip压缩以减少传输数据量。</li>
+</ul>
+<h3 id="4-Server-块"><a href="#4-Server-块" class="headerlink" title="4. Server 块"></a>4. Server 块</h3><p>定义虚拟主机配置，允许你基于不同的域名或IP地址提供不同的服务。</p>
+<ul>
+<li><strong>listen</strong>：指定服务器监听的端口，默认为80。</li>
+<li><strong>server_name</strong>：指定服务器名称，可以是域名或IP地址。</li>
+<li><strong>root</strong>：设置请求的根目录。</li>
+<li><strong>index</strong>：设置默认索引文件名。</li>
+</ul>
+<h3 id="5-Location-块"><a href="#5-Location-块" class="headerlink" title="5. Location 块"></a>5. Location 块</h3><p>用于匹配不同的URI请求，并对这些请求执行特定的操作。</p>
+<ul>
+<li>可以根据不同的匹配方式（精确匹配<code>=</code>, 正则匹配<code>~</code>, 忽略大小写的正则匹配<code>~*</code>, 前缀匹配<code>^~</code>等）来处理请求。</li>
+<li>常见操作包括静态文件服务、反向代理等。</li>
+</ul>
+<h3 id="6-Upstream-块（如果需要负载均衡）"><a href="#6-Upstream-块（如果需要负载均衡）" class="headerlink" title="6. Upstream 块（如果需要负载均衡）"></a>6. Upstream 块（如果需要负载均衡）</h3><p>用于定义一组后端服务器，实现负载均衡。</p>
+<ul>
+<li>可以使用轮询（round-robin）、最少连接（least_conn）、IP哈希（ip_hash）等方式进行负载均衡。</li>
+</ul>
+<h3 id="7-其他重要指令"><a href="#7-其他重要指令" class="headerlink" title="7. 其他重要指令"></a>7. 其他重要指令</h3><ul>
+<li><strong>proxy_pass</strong>：配置反向代理，将客户端请求转发到后端服务器。</li>
+<li><strong>try_files</strong>：按顺序检查指定的文件和路径，找到即停止搜索并处理请求。</li>
+<li><strong>rewrite</strong>：根据规则重写URL，可用于实现URL重定向或优化SEO。</li>
+<li><strong>return</strong>：根据条件返回特定的HTTP状态码。</li>
+</ul>
+<p>通过合理配置上述各部分，可以根据具体需求定制Nginx的行为，以满足高性能Web服务的要求。例如，你可以设置静态资源缓存策略、启用SSL&#x2F;TLS安全连接、配置反向代理以支持动态内容处理等。每种配置都需要仔细考虑其对性能、安全性和维护性的影响。</p>
+<h1 id="静态站点的部署"><a href="#静态站点的部署" class="headerlink" title="静态站点的部署"></a>静态站点的部署</h1><h3 id="1-准备静态资源"><a href="#1-准备静态资源" class="headerlink" title="1. 准备静态资源"></a>1. 准备静态资源</h3><p>首先，你需要确保你的静态网站已经构建完成，并且所有的资源文件（HTML, CSS, JavaScript, 图片等）都已准备好。如果你使用的是前端框架或工具（如React, Vue, Hugo等），你可能需要先运行构建命令生成最终的静态资源文件。</p>
+<h3 id="2-配置Nginx"><a href="#2-配置Nginx" class="headerlink" title="2. 配置Nginx"></a>2. 配置Nginx</h3><p>接下来，你需要配置Nginx以正确地服务这些静态文件。这通常涉及到编辑Nginx的配置文件（通常是<code>nginx.conf</code>或者位于<code>sites-available</code>目录下的某个配置文件）。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> example.com;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span> /path/to/your/static/site; <span class="comment"># 设置静态文件的根目录</span></span><br><span class="line">        <span class="attribute">index</span> index.html; <span class="comment"># 默认首页</span></span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html; <span class="comment"># 对于单页应用(SPA)特别有用</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">error_page</span> <span class="number">404</span> /<span class="number">404</span>.html;</span><br><span class="line">    <span class="section">location</span> = /<span class="number">404</span>.html &#123;</span><br><span class="line">        <span class="attribute">root</span> /path/to/your/static/site;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个配置中，你需要替换<code>example.com</code>为你的域名，并设置正确的<code>root</code>路径指向你静态站点所在的目录。</p>
+<h3 id="3-测试并重新加载Nginx配置"><a href="#3-测试并重新加载Nginx配置" class="headerlink" title="3. 测试并重新加载Nginx配置"></a>3. 测试并重新加载Nginx配置</h3><p>在保存了新的配置后，你应该测试Nginx配置是否有语法错误，并重新加载Nginx使更改生效。可以使用以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nginx -t <span class="comment"># 测试配置文件的正确性</span></span><br><span class="line"><span class="built_in">sudo</span> nginx -s reload <span class="comment"># 重新加载Nginx配置</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-上传静态资源"><a href="#4-上传静态资源" class="headerlink" title="4. 上传静态资源"></a>4. 上传静态资源</h3><p>如果静态资源不在服务器上，你需要将它们上传到服务器上的指定目录（即你在Nginx配置中定义的<code>root</code>路径）。你可以使用SCP、FTP或其他文件传输方式来完成这项工作。</p>
+<h3 id="5-访问您的网站"><a href="#5-访问您的网站" class="headerlink" title="5. 访问您的网站"></a>5. 访问您的网站</h3><p>一旦完成上述步骤，理论上你应该可以通过浏览器访问你的静态网站了。只需在地址栏输入你的域名或服务器IP地址即可。</p>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>HTTPS</strong>: 考虑为你的静态站点启用HTTPS，这对于保护用户数据和提高搜索引擎排名都有好处。可以考虑使用Let’s Encrypt免费获取SSL证书。</li>
+<li><strong>缓存策略</strong>: 为了提高性能，你可以设置适当的缓存头来指示浏览器如何缓存你的静态资源。</li>
+<li><strong>CDN</strong>: 使用内容分发网络(CDN)可以帮助加速全球用户的访问速度，同时减少源站的压力。</li>
+</ul>
+<h1 id="配置进程数量"><a href="#配置进程数量" class="headerlink" title="配置进程数量"></a>配置进程数量</h1><p>在Nginx中配置工作进程的数量是非常重要的，因为它直接影响到服务器的性能和资源利用效率。工作进程负责处理客户端请求，因此合理设置<code>worker_processes</code>的数量可以提高服务器响应速度和吞吐量。</p>
+<h3 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h3><p>Nginx的工作进程数量是在主配置文件（通常是<code>nginx.conf</code>）的全局块中通过<code>worker_processes</code>指令来定义的。以下是几种常见的配置方式：</p>
+<ol>
+<li><p><strong>根据CPU核心数自动调整</strong>：<br>这是最常用的方式之一，它允许Nginx根据服务器的CPU核心数自动决定最佳的工作进程数。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">worker_processes</span> auto;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>auto</code>关键字可以让Nginx自动检测并设置为最佳值，这通常等于服务器的CPU核心数。</p>
+</li>
+<li><p><strong>手动指定具体数值</strong>：<br>如果你对服务器负载情况非常了解，并且想要手动控制工作进程的数量，可以直接指定一个具体的数字。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">worker_processes</span> <span class="number">4</span>; <span class="comment"># 假设你的服务器有4个CPU核心</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>基于其他因素调整</strong>：<br>在某些情况下，可能需要考虑除了CPU核心数之外的因素，比如I&#x2F;O等待时间、网络延迟等。虽然直接与这些因素相关的配置并不多，但你可以通过试验不同的<code>worker_processes</code>设置找到最适合你应用环境的配置。</p>
+</li>
+</ol>
+<h3 id="相关优化建议"><a href="#相关优化建议" class="headerlink" title="相关优化建议"></a>相关优化建议</h3><ul>
+<li><p><strong>结合<code>worker_connections</code>使用</strong>：确定了<code>worker_processes</code>后，还需要注意<code>events</code>块中的<code>worker_connections</code>指令，它定义了一个工作进程同时处理的最大连接数。最大并发连接数等于<code>worker_processes</code>乘以<code>worker_connections</code>。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>监控与调优</strong>：部署完成后，应该持续监控服务器性能指标（如CPU利用率、内存使用率、请求响应时间等），并根据实际情况进一步微调<code>worker_processes</code>和其他相关参数。</p>
+</li>
+<li><p><strong>测试配置</strong>：每次修改Nginx配置文件后，请记得先进行配置测试，确保没有语法错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nginx -t</span><br></pre></td></tr></table></figure>
+
+<p>然后重新加载Nginx使新的配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nginx -s reload</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><p>反向代理是一种常见的网络服务部署模式，特别是在处理Web请求时非常有用。它允许客户端发送请求到一个代理服务器，然后由这个代理服务器将请求转发给后端的实际服务器（可以是一个或多个），并将响应返回给客户端。</p>
+<h3 id="配置反向代理的基本步骤"><a href="#配置反向代理的基本步骤" class="headerlink" title="配置反向代理的基本步骤"></a>配置反向代理的基本步骤</h3><ol>
+<li><p><strong>安装Nginx</strong>：确保你的系统上已经安装了Nginx。如果没有，请根据你的操作系统选择合适的安装方法。</p>
+</li>
+<li><p><strong>编辑Nginx配置文件</strong>：你需要编辑Nginx的主要配置文件（通常是<code>nginx.conf</code>或者位于<code>sites-available</code>目录下的某个配置文件）以添加反向代理设置。</p>
+</li>
+<li><p><strong>配置反向代理</strong>：使用<code>location</code>块结合<code>proxy_pass</code>指令指定后端服务器的地址。</p>
+</li>
+</ol>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>假设你有一个运行在本地8080端口的应用服务器，并希望使用Nginx作为前端反向代理服务器。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>; <span class="comment"># 监听HTTP请求的80端口</span></span><br><span class="line">    <span class="attribute">server_name</span> example.com; <span class="comment"># 你的域名</span></span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8080; <span class="comment"># 指定后端服务器的地址和端口</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>; <span class="comment"># 将原始请求的Host头部传递给后端服务器</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>; <span class="comment"># 获得原始请求的真实IP地址</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>; <span class="comment"># 为代理链路中的每个代理添加客户端IP地址</span></span><br><span class="line">        <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>; <span class="comment"># 标识客户端请求使用的协议（http或https）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>在Nginx中配置负载均衡可以帮助你将客户端请求分发到多个后端服务器，从而提高应用的可用性和扩展性。通过负载均衡，不仅可以实现更高的处理能力，还能在后端服务器故障时提供冗余支持，确保服务的连续性。</p>
+<h3 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h3><ol>
+<li><strong>定义上游服务器组</strong>：首先需要使用<code>upstream</code>指令定义一个包含所有后端服务器的组。</li>
+<li><strong>配置反向代理</strong>：然后，在<code>server</code>块中的适当<code>location</code>里使用<code>proxy_pass</code>指令指向这个上游服务器组。</li>
+</ol>
+<h3 id="示例配置"><a href="#示例配置" class="headerlink" title="示例配置"></a>示例配置</h3><p>假设你有三台后端服务器（<code>backend1.example.com</code>, <code>backend2.example.com</code>, <code>backend3.example.com</code>），你可以按照以下方式配置Nginx：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="section">upstream</span> backend_servers &#123;</span><br><span class="line">        <span class="comment"># 定义一组后端服务器</span></span><br><span class="line">        <span class="attribute">server</span> backend1.example.com;</span><br><span class="line">        <span class="attribute">server</span> backend2.example.com;</span><br><span class="line">        <span class="attribute">server</span> backend3.example.com;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 可选: 使用最少连接策略</span></span><br><span class="line">        <span class="comment"># least_conn;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 可选: 为每个服务器设置权重，数值越高，分配到的概率越大</span></span><br><span class="line">        <span class="comment"># server backend1.example.com weight=3;</span></span><br><span class="line">        <span class="comment"># server backend2.example.com weight=2;</span></span><br><span class="line">        <span class="comment"># server backend3.example.com weight=1;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span>; <span class="comment"># 监听HTTP请求的80端口</span></span><br><span class="line">        <span class="attribute">server_name</span> example.com; <span class="comment"># 你的域名</span></span><br><span class="line"></span><br><span class="line">        <span class="section">location</span> / &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://backend_servers; <span class="comment"># 将请求转发给上游服务器组</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 设置头部信息以保持会话一致性等</span></span><br><span class="line">            <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h3><p>Nginx支持多种负载均衡算法，默认是轮询（Round Robin）。此外，还可以选择其他几种策略：</p>
+<ul>
+<li><p><strong>Least Connections (最小连接)</strong>：将请求发送到当前连接数最少的服务器上。适用于请求处理时间差异较大的场景。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">least_conn;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>IP Hash (基于客户端IP的哈希)</strong>：根据客户端IP地址的哈希值来选择服务器，这样来自同一IP的请求总是被路由到同一个后端服务器，有助于保持会话一致性。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip_hash;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Weight (权重)</strong>：允许为每个服务器指定一个权重值，Nginx会根据权重比例分发请求。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">server</span> backend1.example.com weight=<span class="number">3</span>;</span><br><span class="line"><span class="attribute">server</span> backend2.example.com weight=<span class="number">2</span>;</span><br><span class="line"><span class="attribute">server</span> backend3.example.com weight=<span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="健康检查"><a href="#健康检查" class="headerlink" title="健康检查"></a>健康检查</h3><p>虽然Nginx本身不直接支持健康检查，但可以通过第三方模块或结合其他工具（如Consul、Zookeeper等）实现。Nginx Plus版本提供了内置的健康检查功能。</p>
+<h3 id="配置测试与重新加载"><a href="#配置测试与重新加载" class="headerlink" title="配置测试与重新加载"></a>配置测试与重新加载</h3><p>完成配置后，请务必进行配置文件正确性的检查：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nginx -t</span><br></pre></td></tr></table></figure>
+
+<p>如果一切正常，重新加载Nginx使新的配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<h1 id="配置HTTPS"><a href="#配置HTTPS" class="headerlink" title="配置HTTPS"></a>配置HTTPS</h1><p>配置HTTPS对于确保网站的安全性至关重要，它通过SSL&#x2F;TLS协议加密客户端和服务器之间的通信，保护数据的隐私和完整性。在Nginx中配置HTTPS主要涉及获取SSL证书并编辑Nginx配置文件以启用SSL&#x2F;TLS。</p>
+<h3 id="1-获取SSL证书"><a href="#1-获取SSL证书" class="headerlink" title="1. 获取SSL证书"></a>1. 获取SSL证书</h3><p>你可以从可信的证书颁发机构（CA）购买SSL证书，或者使用Let’s Encrypt等提供免费证书的服务。以下是以Let’s Encrypt为例，如何获取证书：</p>
+<ul>
+<li><p>使用Certbot工具自动获取并安装证书。首先需要根据你的操作系统和Web服务器类型选择合适的Certbot版本。例如，在Ubuntu系统上运行Nginx，可以使用如下命令安装Certbot：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt update</span><br><span class="line"><span class="built_in">sudo</span> apt install certbot python3-certbot-nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后，运行以下命令来获取并安装证书：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> certbot --nginx</span><br></pre></td></tr></table></figure>
+
+<p>按照提示输入你的邮箱地址、同意服务条款，并输入你的域名信息。</p>
+</li>
+</ul>
+<h3 id="2-配置Nginx支持HTTPS"><a href="#2-配置Nginx支持HTTPS" class="headerlink" title="2. 配置Nginx支持HTTPS"></a>2. 配置Nginx支持HTTPS</h3><p>获取证书后，你需要编辑Nginx的配置文件来启用HTTPS。通常位于<code>/etc/nginx/nginx.conf</code>或<code>/etc/nginx/sites-available/default</code>（具体取决于你的系统和配置）。一个基本的HTTPS配置示例如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>; <span class="comment"># 监听HTTP请求</span></span><br><span class="line">    <span class="attribute">server_name</span> yourdomain.com www.yourdomain.com;</span><br><span class="line">    <span class="attribute">return</span> <span class="number">301</span> https://<span class="variable">$host</span><span class="variable">$request_uri</span>; <span class="comment"># 将所有HTTP请求重定向到HTTPS</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl; <span class="comment"># 监听HTTPS请求</span></span><br><span class="line">    <span class="attribute">server_name</span> yourdomain.com www.yourdomain.com;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /etc/letsencrypt/live/yourdomain.com/fullchain.pem; <span class="comment"># SSL证书路径</span></span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /etc/letsencrypt/live/yourdomain.com/privkey.pem; <span class="comment"># 私钥路径</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1.<span class="number">2</span> TLSv1.<span class="number">3</span>; <span class="comment"># 只启用安全的TLS协议版本</span></span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> HIGH:!aNULL:!MD5;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="comment"># 你的其他配置...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-测试并重新加载Nginx配置-1"><a href="#3-测试并重新加载Nginx配置-1" class="headerlink" title="3. 测试并重新加载Nginx配置"></a>3. 测试并重新加载Nginx配置</h3><p>完成上述配置后，先测试配置文件是否有语法错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> nginx -t</span><br></pre></td></tr></table></figure>
+
+<p>如果测试成功，重新加载Nginx使新的配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> systemctl reload nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-自动更新证书（针对Let’s-Encrypt）"><a href="#4-自动更新证书（针对Let’s-Encrypt）" class="headerlink" title="4. 自动更新证书（针对Let’s Encrypt）"></a>4. 自动更新证书（针对Let’s Encrypt）</h3><p>Let’s Encrypt提供的证书有效期为90天，建议设置定期任务（cron job）自动更新证书。Certbot会自动添加一个定时任务来处理这个问题，但你也可以手动检查更新：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> certbot renew --dry-run</span><br></pre></td></tr></table></figure>
+
+<h1 id="设置虚拟主机"><a href="#设置虚拟主机" class="headerlink" title="设置虚拟主机"></a>设置虚拟主机</h1><p>假设你想在同一台服务器上托管两个不同的网站<code>site1.example.com</code>和<code>site2.example.com</code>。</p>
+<ol>
+<li><p><strong>基于域名的虚拟主机配置</strong>：</p>
+<p>打开<code>nginx.conf</code>或创建一个新配置文件（如<code>vhosts.conf</code>）并在其中添加如下内容：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  site1.example.com;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   C:/nginx/html/site1; <span class="comment"># 注意路径格式使用正斜杠(/)且盘符后也要有斜杠</span></span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  site2.example.com;</span><br><span class="line"></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   C:/nginx/html/site2;</span><br><span class="line">        <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>确保配置正确</strong>：保存对配置文件的修改后，你需要测试配置是否正确。打开命令提示符并输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重新加载Nginx</strong>：如果配置测试成功，可以通过以下命令重新加载Nginx使新的配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>路径格式</strong>：在Windows上配置Nginx时，请注意使用正斜杠(<code>/</code>)而不是反斜杠(<code>\</code>)来指定路径，并且盘符后也需要加上斜杠，例如<code>C:/nginx/html/</code>。</li>
+<li><strong>防火墙设置</strong>：如果你的Windows防火墙启用，默认情况下可能会阻止外部访问80端口（HTTP）。你需要手动配置防火墙规则允许流量通过。</li>
+<li><strong>DNS解析</strong>：为了让你的虚拟主机正常工作，你需要确保你的本地DNS或<code>hosts</code>文件已正确配置。对于开发环境，可以在<code>C:\Windows\System32\drivers\etc\hosts</code>文件中添加相应的域名指向本地IP地址（通常是<code>127.0.0.1</code>）。</li>
+</ul>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/16/%E5%88%A9%E7%94%A8github%E6%8C%82%E8%BD%BD%E9%9D%99%E6%80%81%E7%BD%91%E9%A1%B5/" >
+                    利用github挂载静态网页
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>
