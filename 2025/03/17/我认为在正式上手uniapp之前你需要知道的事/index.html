@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>我认为在正式上手uniapp之前你需要知道的事 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                我认为在正式上手uniapp之前你需要知道的事
+            
+        </h1>
+        <div>
+            <time>2025-03-17</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/uniapp/">uniapp</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="在此之前"><a href="#在此之前" class="headerlink" title="在此之前"></a>在此之前</h1><ul>
+<li>详细内容还请查看官方文档<a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/tutorial/">https://uniapp.dcloud.net.cn/tutorial/</a>，下面内容是整合各方资料得到的</li>
+<li>下面是我觉得合适的学习顺序，在正式上手uniapp之前需要了解的东西</li>
+<li>后面这段时间我会学习小程序开发的知识，会持续更新</li>
+<li>可以查看我的<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">github</a>，后续我会上传我的uniapp相关练习代码</li>
+</ul>
+<h1 id="什么是uniapp？"><a href="#什么是uniapp？" class="headerlink" title="什么是uniapp？"></a>什么是uniapp？</h1><p>UniApp 是一个基于 Vue.js 的跨平台开发框架，它允许开发者使用一套代码库即可构建能够运行在多个平台上的应用程序，包括：</p>
+<ul>
+<li>iOS 和 Android 的原生应用</li>
+<li>微信小程序、支付宝小程序、百度智能小程序、字节跳动小程序、QQ小程序等各类小程序</li>
+<li>H5 网页应用</li>
+</ul>
+<p>主要特点和优势如下：</p>
+<ol>
+<li><strong>跨平台开发</strong>：通过编写一次代码，可以编译并发布到多个平台，减少了针对不同平台重复编码的工作量。</li>
+<li><strong>统一的开发语言和工具</strong>：使用 Vue.js 作为开发语言，并提供了一套完整的开发工具链，如 HBuilderX 集成开发环境。</li>
+<li><strong>条件编译</strong>：支持基于条件编译的代码生成技术，可以根据目标平台的不同特性编写特定代码，同时不影响其他平台的应用程序。</li>
+<li><strong>组件化开发</strong>：提供了丰富的UI组件库，开发者可以根据需求选择合适的组件快速构建应用程序。</li>
+<li><strong>性能优化</strong>：UniApp 在性能方面做了很多工作，比如自动压缩代码、减少网络请求等，确保了应用的流畅性和稳定性。</li>
+<li><strong>开放生态系统</strong>：拥有庞大的插件市场和活跃的社区支持，为开发者提供了大量的资源和支持。</li>
+</ol>
+<h1 id="代码编写及开发规范"><a href="#代码编写及开发规范" class="headerlink" title="代码编写及开发规范"></a>代码编写及开发规范</h1><h4 id="基本语言和技术栈"><a href="#基本语言和技术栈" class="headerlink" title="基本语言和技术栈"></a>基本语言和技术栈</h4><p>Uni-app支持使用多种编程语言和技术栈来构建应用：</p>
+<ul>
+<li><strong>核心语言</strong>：JavaScript (JS)、Vue.js、CSS。</li>
+<li><strong>扩展技术</strong>：TypeScript (TS)，SCSS等CSS预处理器。此外，在app端还支持原生渲染的nvue文件格式，以及可以编译为Kotlin和Swift的uts脚本。</li>
+</ul>
+<h4 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h4><p>为了确保多端兼容性并优化编译速度和运行性能，Uni-app设定了以下开发规范：</p>
+<ul>
+<li>页面遵循Vue单文件组件(SFC)规范，每个页面是一个.vue文件。</li>
+<li>组件标签设计接近微信小程序的标准，以降低学习成本。</li>
+<li>接口能力（JS API）采用统一前缀<code>uni</code>，如<code>uni.request</code>代替<code>wx.request</code>或<code>my.request</code>，确保跨平台一致性。</li>
+<li>数据绑定和事件处理遵循Vue.js规范，同时增加了应用生命周期和页面生命周期的概念。</li>
+<li>对于需要兼容nvue平台的情况，建议采用flex布局。</li>
+</ul>
+<h4 id="编译器与运行时"><a href="#编译器与运行时" class="headerlink" title="编译器与运行时"></a>编译器与运行时</h4><p>Uni-app通过编译器和运行时两大部分实现一套代码多端运行的能力。</p>
+<h5 id="编译器"><a href="#编译器" class="headerlink" title="编译器"></a>编译器</h5><p>编译器负责将开发者的代码转换为各目标平台所需的特定代码。它既可以作为HBuilderX的一部分，也可以独立安装CLI版本使用。在不同平台上，编译器的工作方式有所不同：</p>
+<ul>
+<li>在Web平台上，编译.vue文件为JS代码，类似于普通Vue CLI项目。</li>
+<li>在微信小程序中，编译器将.vue文件拆分为wxml、wxss和js文件。</li>
+<li>在App平台上，除了常规的JS代码生成外，对于.uts文件，还会分别编译为Kotlin（Android）或Swift（iOS）代码。</li>
+</ul>
+<h5 id="运行时-runtime"><a href="#运行时-runtime" class="headerlink" title="运行时(runtime)"></a>运行时(runtime)</h5><p>运行时是在实际设备上执行的部分，针对不同的平台有不同的实现。例如，在小程序端，它是基于Vue的一个变体；而在Web端，则包含了额外的UI库和页面路由框架。对于App端，DCloud的小程序引擎被用来打包应用程序，使其能够在Android和iOS设备上运行。</p>
+<h4 id="特殊功能"><a href="#特殊功能" class="headerlink" title="特殊功能"></a>特殊功能</h4><ul>
+<li><strong>条件编译</strong>：允许开发者指定某些代码只编译到特定平台，从而在同一工程中融合公共和个性化需求。</li>
+<li><strong>API支持</strong>：内置大量跨平台API，同时也允许调用平台特有的API，保证灵活性的同时简化了跨端开发的复杂度。</li>
+</ul>
+<h1 id="uniapp工程结构"><a href="#uniapp工程结构" class="headerlink" title="uniapp工程结构"></a>uniapp工程结构</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">uni-app项目</span><br><span class="line">│</span><br><span class="line">├── main.js                    // Vue初始化入口文件 </span><br><span class="line">│</span><br><span class="line">├── App.vue                    // 应用配置，全局样式及生命周期监听 </span><br><span class="line">│</span><br><span class="line">├── pages.json                 // 页面路由、导航条样式、选项卡等信息配置 </span><br><span class="line">│</span><br><span class="line">├── manifest.json              // 应用基本配置信息，如名称、图标、版本号等 </span><br><span class="line">│</span><br><span class="line">├── static/                    // 存放静态资源（图片、字体等）</span><br><span class="line">│   └── logo.png               // 示例静态资源</span><br><span class="line">│</span><br><span class="line">├── components/                // 放置可复用Vue组件 </span><br><span class="line">│   └── comp-a.vue             // 示例可复用组件</span><br><span class="line">│</span><br><span class="line">├── pages/                     // 存放业务逻辑页面文件 </span><br><span class="line">│   ├── index/</span><br><span class="line">│   │   └── index.vue          // 示例业务页面</span><br><span class="line">│   └── list/</span><br><span class="line">│       └── list.vue           // 另一示例业务页面</span><br><span class="line">│</span><br><span class="line">├── uni.scss                   // 全局样式变量定义 </span><br><span class="line">│</span><br><span class="line">└── unpackage/                 // 编译后的输出结果存放处 </span><br><span class="line">    └── dist/                  // 示例编译输出目录</span><br><span class="line">        └── build/             // 示例构建输出目录</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><strong><code>main.js</code></strong> - 这是Vue初始化入口文件。它负责启动Vue实例，并且通常在这里引入需要的插件和其他配置。</p>
+</li>
+<li><p><strong><code>App.vue</code></strong> - 应用配置文件，用于配置全局样式以及监听应用生命周期事件（如onLaunch、onShow等）。它是整个应用程序的根组件。</p>
+</li>
+<li><p><strong><code>pages.json</code></strong> - 配置页面路由、导航条样式、选项卡等信息的关键文件。它定义了应用内所有页面的路径及其相关属性，例如标题栏样式、是否允许下拉刷新等。</p>
+</li>
+<li><p><strong><code>manifest.json</code></strong> - 该文件包含了应用的基本配置信息，包括应用名称、图标、版本号等打包信息，对不同平台（如Android、iOS）有不同的配置需求。</p>
+</li>
+<li><p><strong><code>static/</code> 目录</strong> - 存放静态资源的地方，比如图片、字体等。需要注意的是，这里的资源不会经过编译，会直接复制到输出目录中。</p>
+</li>
+<li><p><strong><code>components/</code> 目录</strong> - 放置可复用的Vue组件。遵循Vue组件规范，便于代码重用和维护。</p>
+</li>
+<li><p><strong><code>pages/</code> 目录</strong> - 存放业务逻辑相关的页面文件。每个页面都是一个独立的Vue组件，通过<code>pages.json</code>进行管理。</p>
+</li>
+<li><p><strong><code>uni.scss</code></strong> - 定义了全局样式变量，可以帮助开发者统一控制应用的整体风格，如按钮颜色、边框样式等。</p>
+</li>
+<li><p><strong><code>unpackage/</code> 目录</strong> - 此目录用于存放编译后的输出结果，即打包后生成的应用程序或网页。</p>
+</li>
+</ol>
+<h1 id="uni-app项目中的页面"><a href="#uni-app项目中的页面" class="headerlink" title="uni-app项目中的页面"></a>uni-app项目中的页面</h1><p>uni-app项目中，一个页面就是一个符合<code>Vue SFC规范</code>的 vue 文件。</p>
+<ul>
+<li><p>在 uni-app js 引擎版中，后缀名是<code>.vue</code>文件或<code>.nvue</code>文件。 这些页面均全平台支持，差异在于当 uni-app 发行到App平台时，<code>.vue</code>文件会使用webview进行渲染，<code>.nvue</code>会使用原生进行渲染.</p>
+<p>一个页面可以同时存在vue和nvue，在pages.json的路由注册中不包含页面文件名后缀，同一个页面可以对应2个文件名。重名时优先级如下：</p>
+<ul>
+<li>在非app平台，先使用vue，忽略nvue</li>
+<li>在app平台，使用nvue，忽略vue</li>
+</ul>
+</li>
+<li><p>在 uni-app x 中，后缀名是<code>.uvue</code>文件</p>
+<p>uni-app x 中没有js引擎和webview，不支持和vue页面并存。</p>
+<p>uni-app x 在app-android上，每个页面都是一个全屏activity，不支持透明。</p>
+</li>
+</ul>
+<h1 id="页面管理"><a href="#页面管理" class="headerlink" title="页面管理"></a>页面管理</h1><h3 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h3><p><code>uni-app</code>中的页面，默认保存在工程根目录下的<code>pages</code>目录下。</p>
+<p>每次新建页面，均需在<code>pages.json</code>中配置<code>pages</code>列表；未在<code>pages.json -&gt; pages</code> 中注册的页面，<code>uni-app</code>会在编译阶段进行忽略。</p>
+<h5 id="pages"><a href="#pages" class="headerlink" title="pages"></a>pages</h5><p><code>uni-app</code> 通过 pages 节点配置应用由哪些页面组成，pages 节点接收一个数组，数组每个项都是一个对象，其属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">path</td>
+<td align="left">String</td>
+<td align="left"></td>
+<td align="left">配置页面路径</td>
+</tr>
+<tr>
+<td align="left">style</td>
+<td align="left">Object</td>
+<td align="left"></td>
+<td align="left">配置页面窗口表现，配置项参考下方 <a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#style">pageStyle</a></td>
+</tr>
+<tr>
+<td align="left">needLogin</td>
+<td align="left">Boolean</td>
+<td align="left">false</td>
+<td align="left">是否需要登录才可访问</td>
+</tr>
+</tbody></table>
+<p><strong>Tips：</strong></p>
+<ul>
+<li>pages节点的第一项为应用入口页（即首页）</li>
+<li><strong>应用中新增&#x2F;减少页面</strong>，都需要对 pages 数组进行修改</li>
+<li>文件名<strong>不需要写后缀</strong>，框架会自动寻找路径下的页面资源</li>
+</ul>
+<h3 id="删除页面"><a href="#删除页面" class="headerlink" title="删除页面"></a>删除页面</h3><p>删除页面时，需做两件工作：</p>
+<ul>
+<li>删除<code>.vue</code>文件、<code>.nvue</code>、<code>.uvue</code>文件</li>
+<li>删除<code>pages.json -&gt; pages</code>列表项中的配置 （如使用HBuilderX删除页面，会在状态栏提醒删除pages.json对应内容，点击后会打开pages.json并定位到相关配置项）</li>
+</ul>
+<h3 id="pages-json"><a href="#pages-json" class="headerlink" title="pages.json"></a>pages.json</h3><p>pages.json是工程的页面管理配置文件，包括：页面路由注册、页面参数配置（原生标题栏、下拉刷新…）、首页tabbar等众多功能。</p>
+<h5 id="配置项列表"><a href="#配置项列表" class="headerlink" title="配置项列表"></a>配置项列表</h5><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">必填</th>
+<th align="left">描述</th>
+<th align="left">平台兼容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#globalstyle">globalStyle</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">设置默认页面的窗口表现</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#pages">pages</a></td>
+<td align="left">Object Array</td>
+<td align="left">是</td>
+<td align="left">设置页面路径及窗口表现</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#easycom">easycom</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">组件自动引入规则</td>
+<td align="left">2.5.5+</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#tabbar">tabBar</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">设置底部 tab 的表现</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#condition">condition</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">启动模式配置</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#subPackages">subPackages</a></td>
+<td align="left">Object Array</td>
+<td align="left">否</td>
+<td align="left">分包加载配置</td>
+<td align="left">H5 不支持</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#preloadrule">preloadRule</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">分包预下载规则</td>
+<td align="left">微信小程序</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/workers.html">workers</a></td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left"><code>Worker</code> 代码放置的目录</td>
+<td align="left">微信小程序</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#leftwindow">leftWindow</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">大屏左侧窗口</td>
+<td align="left">H5</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#topwindow">topWindow</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">大屏顶部窗口</td>
+<td align="left">H5</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/collocation/pages#rightwindow">rightWindow</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">大屏右侧窗口</td>
+<td align="left">H5</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://doc.dcloud.net.cn/uniCloud/uni-id/summary.html#uni-id-router">uniIdRouter</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">自动跳转相关配置，新增于HBuilderX 3.5.0</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">entryPagePath</td>
+<td align="left">String</td>
+<td align="left">否</td>
+<td align="left">默认启动首页，新增于HBuilderX 3.7.0</td>
+<td align="left">微信小程序、支付宝小程序</td>
+</tr>
+</tbody></table>
+<h5 id="设置应用首页"><a href="#设置应用首页" class="headerlink" title="设置应用首页"></a>设置应用首页</h5><p><code>pages.json -&gt; pages</code>配置项中的第一个页面，作为当前工程的首页（启动页）。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">	<span class="attr">&quot;pages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">		<span class="punctuation">&#123;</span></span><br><span class="line">			<span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/index/index&quot;</span><span class="punctuation">,</span> <span class="comment">//名字叫不叫index无所谓，位置在第一个，就是首页</span></span><br><span class="line">			<span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">				<span class="attr">&quot;navigationBarTitleText&quot;</span><span class="punctuation">:</span> <span class="string">&quot;首页&quot;</span> <span class="comment">//页面标题</span></span><br><span class="line">			<span class="punctuation">&#125;</span></span><br><span class="line">		<span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="punctuation">&#123;</span></span><br><span class="line">			<span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/my&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">				<span class="attr">&quot;navigationBarTitleText&quot;</span><span class="punctuation">:</span> <span class="string">&quot;我的&quot;</span></span><br><span class="line">			<span class="punctuation">&#125;</span></span><br><span class="line">		<span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">	<span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="页面内容构成"><a href="#页面内容构成" class="headerlink" title="页面内容构成"></a>页面内容构成</h3><p>uni-app 页面基于 vue 规范。一个页面内，有3个根节点标签：</p>
+<ul>
+<li>模板组件区 <code>&lt;template&gt;</code></li>
+<li>脚本区 <code>&lt;script&gt;</code></li>
+<li>样式区 <code>&lt;style&gt;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;buttonClick&quot;</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="attr">title</span>: <span class="string">&quot;Hello world&quot;</span>, <span class="comment">// 定义绑定在页面上的data数据</span></span></span><br><span class="line"><span class="language-javascript">			&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">onLoad</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="comment">// 页面启动的生命周期，这里编写页面加载时的逻辑</span></span></span><br><span class="line"><span class="language-javascript">		&#125;,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">buttonClick</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">				<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;按钮被点了&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">			&#125;,</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="selector-class">.content</span> &#123;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">width</span>: <span class="number">750</span>rpx;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">background-color</span>: white;</span></span><br><span class="line"><span class="language-css">	&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Vue3页面生命周期"><a href="#Vue3页面生命周期" class="headerlink" title="Vue3页面生命周期"></a>Vue3页面生命周期</h1><img src="/2025/03/17/%E6%88%91%E8%AE%A4%E4%B8%BA%E5%9C%A8%E6%AD%A3%E5%BC%8F%E4%B8%8A%E6%89%8Buniapp%E4%B9%8B%E5%89%8D%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%BA%8B/uni-app-lifecycle-vue3.jpg" class="" title="img">
+
+<h1 id="组件生命周期"><a href="#组件生命周期" class="headerlink" title="组件生命周期"></a>组件生命周期</h1><p><code>uni-app</code> 组件支持的生命周期，与vue标准组件的生命周期相同。这里没有页面级的onLoad等生命周期：</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数名</th>
+<th align="left">说明</th>
+<th align="left">平台差异说明</th>
+<th align="left">最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beforeCreate</td>
+<td align="left">在实例初始化之前被调用。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#beforeCreate">详见</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">created</td>
+<td align="left">在实例创建完成后被立即调用。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#created">详见</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">beforeMount</td>
+<td align="left">在挂载开始之前被调用。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#beforeMount">详见</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">mounted</td>
+<td align="left">挂载到实例上去之后调用。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#mounted">详见</a> 注意：此处并不能确定子组件被全部挂载，如果需要子组件完全挂载之后在执行操作可以使用<code>$nextTick</code><a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#vm-nextTick">Vue官方文档</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">beforeUpdate</td>
+<td align="left">数据更新时调用，发生在虚拟 DOM 打补丁之前。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#beforeUpdate">详见</a></td>
+<td align="left">仅H5平台支持</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">updated</td>
+<td align="left">由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#updated">详见</a></td>
+<td align="left">仅H5平台支持</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">beforeDestroy</td>
+<td align="left">实例销毁之前调用。在这一步，实例仍然完全可用。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#beforeDestroy">详见</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">destroyed</td>
+<td align="left">Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。<a target="_blank" rel="noopener" href="https://v2.cn.vuejs.org/v2/api/#destroyed">详见</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h1 id="easycom"><a href="#easycom" class="headerlink" title="easycom"></a>easycom</h1><p>Vue 3.x增加了<code>script setup</code>特性，将三步优化为两步，无需注册步骤，更为简洁：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;view&gt;</span><br><span class="line">		&lt;!-- 2.使用组件 --&gt;</span><br><span class="line">		&lt;uni-rate text=&quot;1&quot;&gt;&lt;/uni-rate&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">	// 1. 导入组件</span><br><span class="line">	import uniRate from &#x27;@/components/uni-rate/uni-rate.vue&#x27;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>easycom</code>将其精简为一步。</p>
+<p>只要组件路径符合规范（具体见下），就可以不用引用、注册，直接在页面中使用。如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">comp-a</span>&gt;</span><span class="tag">&lt;/<span class="name">comp-a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">uni-list</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">uni-list</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="comment">// 这里不用import引入，也不需要在components内注册uni-list组件。template里就可以直接用</span></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="keyword">return</span> &#123;&#125;</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>路径规范</code>指：</p>
+<ol>
+<li>安装在项目根目录的components目录下，并符合<code>components/组件名称/组件名称.vue</code></li>
+<li>安装在uni_modules下，路径为<code>uni_modules/插件ID/components/组件名称/组件名称.vue</code></li>
+</ol>
+<p>工程目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">┌─components</span><br><span class="line">│  └─comp-a</span><br><span class="line">│    └─comp-a.vue      符合easycom规范的组件</span><br><span class="line">└─uni_modules          [uni_module](/plugin/uni_modules.md)中符合easycom规范的组件</span><br><span class="line">   └─uni_modules</span><br><span class="line">     └─uni-list</span><br><span class="line">       └─components</span><br><span class="line">         └─uni-list</span><br><span class="line">           └─ uni-list.vue</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<p><strong>说明</strong></p>
+<ul>
+<li><code>easycom</code>方式引入的组件无需在页面内<code>import</code>，也不需要在<code>components</code>内声明，即可在任意页面使用。</li>
+<li><code>easycom</code>方式引入组件不是全局引入，而是局部引入。例如在H5端只有加载相应页面才会加载使用的组件。</li>
+<li>在组件名完全一致的情况下，<code>easycom</code>引入的优先级低于手动引入（区分连字符形式与驼峰形式）。</li>
+<li>考虑到编译速度，直接在<code>pages.json</code>内修改<code>easycom</code>不会触发重新编译，需要改动页面内容触发。</li>
+<li><code>easycom</code>只处理vue组件，不处理小程序专用组件（如微信的wxml格式组件）。不处理后缀为.nvue的组件。因为nvue页面引入的组件也是.vue组件。可以参考uni ui，使用vue后缀，同时兼容nvue页面。</li>
+</ul>
+<h1 id="js-文件引入"><a href="#js-文件引入" class="headerlink" title="js 文件引入"></a>js 文件引入</h1><p><code>js</code>文件或<code>script</code>标签内（包括 renderjs 等）引入<code>js</code>文件时，可以使用相对路径和绝对路径，形式如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 绝对路径，@指向项目根目录，在cli项目中@指向src目录</span></span><br><span class="line"><span class="keyword">import</span> add <span class="keyword">from</span> <span class="string">&#x27;@/common/add.js&#x27;</span>;</span><br><span class="line"><span class="comment">// 相对路径</span></span><br><span class="line"><span class="keyword">import</span> add <span class="keyword">from</span> <span class="string">&#x27;../../common/add.js&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong></p>
+<ul>
+<li>js 文件不支持使用<code>/</code>开头的方式引入</li>
+</ul>
+<h1 id="NPM支持"><a href="#NPM支持" class="headerlink" title="NPM支持"></a>NPM支持</h1><p>uni-app支持使用<strong>npm</strong>安装第三方包。</p>
+<p><strong>安装依赖</strong></p>
+<p>在项目根目录执行命令安装npm包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install packageName --save</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用</strong></p>
+<p>安装完即可使用npm包，js中引入npm包：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> package <span class="keyword">from</span> <span class="string">&#x27;packageName&#x27;</span></span><br><span class="line"><span class="keyword">const</span> package = <span class="built_in">require</span>(<span class="string">&#x27;packageName&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong></p>
+<ul>
+<li>为多端兼容考虑，建议优先从 uni-app插件市场 获取插件。</li>
+<li>非 H5 端不支持使用含有 dom、window 等操作的 vue 组件和 js 模块，安装的模块及其依赖的模块使用的 API 必须是 uni-app 已有的 API（兼容小程序 API）.</li>
+<li>node_modules 目录必须在项目根目录下。不管是cli项目还是HBuilderX创建的项目。</li>
+</ul>
+<h1 id="rpx单位"><a href="#rpx单位" class="headerlink" title="rpx单位"></a><code>rpx</code>单位</h1><p><code>rpx</code>（Responsive Pixel）是uni-app中用于实现屏幕宽度自适应的动态单位。它根据设备的屏幕宽度自动调整大小，使得应用在不同尺寸和分辨率的设备上都能保持一致的视觉效果。以下是关于<code>rpx</code>尺寸单位的详细说明：</p>
+<h3 id="rpx-的定义与特性"><a href="#rpx-的定义与特性" class="headerlink" title="rpx 的定义与特性"></a>rpx 的定义与特性</h3><ul>
+<li><strong>基准宽度</strong>：uni-app规定屏幕的基准宽度为750rpx。这意味着无论实际屏幕宽度是多少，设计时假设屏幕宽度为750rpx。</li>
+<li><strong>自适应性</strong>：<code>rpx</code>会根据设备的实际屏幕宽度进行缩放。例如，在一个375px宽的屏幕上，1rpx等于0.5px；而在一个750px宽的屏幕上，1rpx等于1px。</li>
+</ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li><strong>响应式布局</strong>：使用<code>rpx</code>可以帮助开发者创建响应式的布局，确保界面元素在不同设备上都能适当地展示。</li>
+<li><strong>简化适配工作</strong>：通过<code>rpx</code>，开发者不需要为每种屏幕尺寸单独编写样式规则，只需要按照设计稿的比例使用<code>rpx</code>即可。</li>
+</ul>
+<h3 id="转换公式"><a href="#转换公式" class="headerlink" title="转换公式"></a>转换公式</h3><ul>
+<li><p><strong>计算方法</strong>：为了将设计稿中的像素值转换为<code>rpx</code>，可以使用以下公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设计稿 1px / 设计稿基准宽度 = 框架样式 1rpx / 750rpx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>示例</strong>：</p>
+<ul>
+<li>如果设计稿宽度为750px，那么100px的设计元素应设置为100rpx。</li>
+<li>如果设计稿宽度为640px，那么100px的设计元素应设置为约117rpx（750 * 100 &#x2F; 640）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>固定尺寸</strong>：如果希望某些元素不随屏幕宽度变化而变化，则应使用<code>px</code>单位。</li>
+<li><strong>字体大小</strong>：对于字体或高度使用<code>rpx</code>时，需要注意这些元素会随着屏幕宽度增加而变大。若要固定大小，建议使用<code>px</code>。</li>
+<li><strong>横竖屏切换</strong>：<code>rpx</code>不支持动态横竖屏切换计算，因此在设计时最好锁定屏幕方向。</li>
+<li><strong>App端特例</strong>：在App端的<code>pages.json</code>文件中的<code>titleNView</code>或使用<code>plus</code> API时，只支持<code>px</code>单位，不支持<code>rpx</code>。</li>
+</ul>
+<h1 id="uni错误规范"><a href="#uni错误规范" class="headerlink" title="uni错误规范"></a>uni错误规范</h1><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>小程序平台的错误信息，大多返回的格式是errCode和errMsg。但不同的小程序平台，返回的errCode有可能不一样。</p>
+<p>在实际开发中，uni-app引擎、三方插件、开发者自己的业务代码，都会返回错误，但errCode也可能彼此冲突。</p>
+<p>在统一的错误拦截和uni统计中，混乱的errCode会造成很多问题。</p>
+<p>很多错误是由更底层的错误引发的，但只暴露最外层错误难以入手排查，需要暴露更底层的错误。</p>
+<p>为了进一步规范错误信息格式，uni-app定义了更完善的错误规范：</p>
+<h3 id="错误信息的标准格式"><a href="#错误信息的标准格式" class="headerlink" title="错误信息的标准格式"></a>错误信息的标准格式</h3><p>uni-app引入了<code>UniError</code>对象来标准化错误信息，这有助于在不同平台（终端）之间统一错误信息的处理方式。<code>UniError</code>对象包含以下属性：</p>
+<ul>
+<li><code>errSubject</code>: 错误发生的模块名称。</li>
+<li><code>errCode</code>: 错误代码，用于标识具体的错误类型。</li>
+<li><code>errMsg</code>: 错误消息，提供关于错误的详细描述。</li>
+<li><code>data</code>: 可选字段，可以用来传递额外的数据或上下文信息。</li>
+<li><code>cause</code>: 可能引起当前错误的源错误信息或聚合错误信息。</li>
+</ul>
+<h3 id="异步API的错误返回"><a href="#异步API的错误返回" class="headerlink" title="异步API的错误返回"></a>异步API的错误返回</h3><p>所有异步API都应该通过回调函数返回错误信息，并且回调函数参数应该是<code>UniError</code>类型的对象。这使得开发者能够更容易地识别和处理来自不同来源的错误信息。</p>
+<h3 id="源错误与聚合错误"><a href="#源错误与聚合错误" class="headerlink" title="源错误与聚合错误"></a>源错误与聚合错误</h3><ul>
+<li><strong>SourceError</strong>: 代表单个源的错误信息，包括<code>message</code>, <code>subject</code>, <code>code</code>, 和<code>cause</code>等属性。</li>
+<li><strong>UniAggregateError</strong>: 当一个错误是由多个源错误引起的时使用，它包含了多个<code>SourceError</code>或<code>UniAggregateError</code>实例的数组。</li>
+</ul>
+<h3 id="错误捕获与处理"><a href="#错误捕获与处理" class="headerlink" title="错误捕获与处理"></a>错误捕获与处理</h3><p>为了更好地管理和处理错误，uni-app建议采取如下措施：</p>
+<ol>
+<li><p><strong>全面的错误捕获机制</strong>：主动捕获可能出现的所有异常，无论是同步还是异步代码。利用try-catch结构来包裹可能抛出异常的代码段，并为Promise添加catch方法。</p>
+</li>
+<li><p><strong>全局异常处理</strong>：除了局部的错误处理逻辑外，还应设置全局的异常处理器，如监听<code>onError</code>事件，以捕捉那些未被显式捕获的异常。</p>
+</li>
+<li><p><strong>集成错误追踪与监控工具</strong>：例如Sentry、Bugsnag等第三方服务可以帮助实时监控并报告运行时错误，这对于快速定位问题非常有帮助。</p>
+</li>
+<li><p><strong>自定义错误上报</strong>：根据项目需求定制错误信息收集流程，将重要的错误日志发送到服务器进行分析。</p>
+</li>
+<li><p><strong>优化用户体验</strong>：提供友好的错误提示信息，避免直接暴露底层错误详情给用户，同时尽可能提供替代操作或重试选项。</p>
+</li>
+</ol>
+<h1 id="NVue（Native-Vue-是什么"><a href="#NVue（Native-Vue-是什么" class="headerlink" title="NVue（Native Vue)是什么?"></a><code>NVue（Native Vue)</code>是什么?</h1><p>NVue（Native Vue）是uni-app框架下的一种特殊的页面类型，它允许开发者使用Vue.js的语法和组件模型来构建原生应用。NVue结合了Vue的强大特性和Weex的能力，旨在提供高性能的原生渲染体验。然而，尽管NVue基于Vue.js，它们之间还是存在一些显著的区别。</p>
+<h3 id="NVue与Vue的主要区别"><a href="#NVue与Vue的主要区别" class="headerlink" title="NVue与Vue的主要区别"></a>NVue与Vue的主要区别</h3><h4 id="1-渲染引擎"><a href="#1-渲染引擎" class="headerlink" title="1. 渲染引擎"></a>1. 渲染引擎</h4><ul>
+<li><strong>Vue</strong>: 使用的是Webview进行渲染，适用于Web应用开发。</li>
+<li><strong>NVue</strong>: 则采用Weex作为渲染引擎，支持跨平台开发，并且专注于原生性能优化。</li>
+</ul>
+<h4 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2. 应用场景"></a>2. 应用场景</h4><ul>
+<li><strong>Vue</strong>: 主要应用于Web应用开发，也可以通过与其他工具结合实现移动端开发。</li>
+<li><strong>NVue</strong>: 特别适合需要高性能和原生体验的移动端应用开发。</li>
+</ul>
+<h4 id="3-性能差异"><a href="#3-性能差异" class="headerlink" title="3. 性能差异"></a>3. 性能差异</h4><ul>
+<li><strong>Vue</strong>: 运行于WebView中，相对于原生应用而言，在性能上稍逊一筹。</li>
+<li><strong>NVue</strong>: 通过Weex引擎直接调用原生组件，其性能接近原生应用。</li>
+</ul>
+<h4 id="4-CSS样式"><a href="#4-CSS样式" class="headerlink" title="4. CSS样式"></a>4. CSS样式</h4><ul>
+<li><strong>Vue</strong>: 支持多种布局方式及CSS选择器。</li>
+<li><strong>NVue</strong>: 只支持Flex布局，css选择器的支持也较为有限，只支持简单的class选择器。</li>
+</ul>
+<h4 id="5-开发体验"><a href="#5-开发体验" class="headerlink" title="5. 开发体验"></a>5. 开发体验</h4><ul>
+<li><strong>Vue</strong>: 上手简单，文档完善，社区活跃，适合前端开发者。</li>
+<li><strong>NVue</strong>: 需要掌握Weex相关知识，更适合有一定原生开发经验的开发者。</li>
+</ul>
+<h4 id="6-生态系统"><a href="#6-生态系统" class="headerlink" title="6. 生态系统"></a>6. 生态系统</h4><ul>
+<li><strong>Vue</strong>: 拥有庞大的生态系统，包括Vue Router、Vuex、Nuxt.js等，支持各种应用场景。</li>
+<li><strong>NVue</strong>: 依赖于Weex生态，相对较小但专注于移动端高性能应用。</li>
+</ul>
+<h4 id="7-语法限制"><a href="#7-语法限制" class="headerlink" title="7. 语法限制"></a>7. 语法限制</h4><p>虽然NVue基本上遵循Vue的语法规范，但在实际操作中有许多限制，比如：</p>
+<ul>
+<li>文字内容必须放置在<code>&lt;text&gt;</code>标签内。</li>
+<li>不支持背景图(background-image)，但可以通过<code>&lt;image&gt;</code>组件和层级来实现类似效果。</li>
+<li>在nvue中不能使用百分比布局。</li>
+</ul>
+<p>综上所述，虽然NVue继承了很多Vue的特点，但由于其面向的是原生应用开发，所以在很多方面都有所不同。对于那些希望快速上手并享受丰富社区资源的开发者来说，Vue是一个理想的选择；而对于需要极致性能和原生体验的移动应用项目，NVue则是更好的选择。因此，在决定使用哪种技术时，应根据具体的项目需求和技术栈来做出最佳选择。 </p>
+<h1 id="开发建议"><a href="#开发建议" class="headerlink" title="开发建议"></a>开发建议</h1><h3 id="图片和资源优化"><a href="#图片和资源优化" class="headerlink" title="图片和资源优化"></a>图片和资源优化</h3><ul>
+<li><strong>避免使用大图</strong>：减少页面中大图资源的使用，尤其是不要将多张大图缩小后显示在一个屏幕内，这会导致内存升高和潜在的崩溃风险。</li>
+<li><strong>Base64编码</strong>：对大体积二进制文件进行Base64编码会消耗大量资源，应尽量避免。</li>
+</ul>
+<h3 id="数据更新优化"><a href="#数据更新优化" class="headerlink" title="数据更新优化"></a>数据更新优化</h3><ul>
+<li><strong>数据定义</strong>：在<code>data</code>中定义的数据每次变化都会触发视图层重新渲染。因此，非视图所需的变量不应放在<code>data</code>中，而是外部定义或直接挂载到Vue实例上以节省资源。</li>
+</ul>
+<h3 id="长列表处理"><a href="#长列表处理" class="headerlink" title="长列表处理"></a>长列表处理</h3><ul>
+<li><strong>组件化设计</strong>：对于需要差量更新的长列表项目，应该将其作为单独组件来实现，以支持局部更新。</li>
+<li><strong>分页加载</strong>：在处理包含大量数据的长列表时，考虑采用分页策略来限制数据更新范围，并利用如<code>uList</code>这样的组件来优化性能。</li>
+</ul>
+<h3 id="减少节点数量与嵌套层级"><a href="#减少节点数量与嵌套层级" class="headerlink" title="减少节点数量与嵌套层级"></a>减少节点数量与嵌套层级</h3><ul>
+<li><strong>简化结构</strong>：减少一次性渲染的节点数量以及组件的数量和嵌套层级，有助于降低内存占用并加快遍历速度。</li>
+</ul>
+<h3 id="视图与逻辑层通讯"><a href="#视图与逻辑层通讯" class="headerlink" title="视图与逻辑层通讯"></a>视图与逻辑层通讯</h3><ul>
+<li><strong>减少通信频率</strong>：避免频繁地在视图层和逻辑层之间传递数据，比如通过减少监听事件（如<code>scroll-view</code>的滚动）来减轻通信负担。</li>
+</ul>
+<h3 id="页面切换与动画优化"><a href="#页面切换与动画优化" class="headerlink" title="页面切换与动画优化"></a>页面切换与动画优化</h3><ul>
+<li><strong>延时渲染</strong>：当新页面初始化涉及大量图片或其他复杂元素时，可以适当延时渲染以分散资源需求，防止卡顿。</li>
+<li><strong>选择合适的动画效果</strong>：根据性能需求选择更高效的页面切换动画。</li>
+</ul>
+<h3 id="启动速度与包体积优化"><a href="#启动速度与包体积优化" class="headerlink" title="启动速度与包体积优化"></a>启动速度与包体积优化</h3><ul>
+<li><strong>控制代码量</strong>：管理好项目的大小，包括背景图像和字体文件等静态资源，以加速小程序启动速度。</li>
+<li><strong>摇树优化</strong>：开启摇树优化机制移除未使用的代码，进一步减小最终发布版本的体积。</li>
+</ul>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/16/Nginx%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B/" >
+                    Nginx快速上手
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>
