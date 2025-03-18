@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>uniapp常用组件 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                uniapp常用组件
+            
+        </h1>
+        <div>
+            <time>2025-03-19</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/uniapp/">uniapp</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>今天将uniapp中的组件都过了一遍，上手难度不大，但是还是遇到了一些问题：</p>
+<ol>
+<li>HBuilder实在是太难用，不管是插件生态还是设计之类的，总之就是用的哪哪不顺手</li>
+<li>虽然打开内置浏览器是挺方便的，但是不知道是不是其热重载什么的，当你配置路由或者跨页修改时它会出现乱码之类的情况，建议关掉重开</li>
+<li>不支持自定义属性……</li>
+<li>git插件不是很好用……</li>
+<li>虽然设置了失去焦点自动保存但是就是很鸡肋感受很不好，建议ctrl+s焊手上</li>
+<li>报错功能不完善，像是个别单词拼写错误什么的不报错很难受</li>
+<li>我发现各类ai对小程序开发貌似都不太感冒，有点冒傻</li>
+</ol>
+<h1 id="关于我写的练习demo"><a href="#关于我写的练习demo" class="headerlink" title="关于我写的练习demo"></a>关于我写的练习demo</h1><p><strong>涵盖所有常用组件与常用方法</strong>，已上传至github：<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe/uniapp_component_test.git">https://github.com/ZhengxuanYe/uniapp_component_test.git</a></p>
+<img src="/2025/03/19/uniapp常用组件/Snipaste_2025-03-18_23-32-04.png"  style="zoom:50%;" />
+
+
+
+<h1 id="还有还有"><a href="#还有还有" class="headerlink" title="还有还有"></a>还有还有</h1><ul>
+<li>如有纰漏请谅解，以官方文档为准</li>
+<li>后面这段时间我会学习小程序开发的知识，会持续更新</li>
+<li>可以查看我的<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">github</a>，后续我会上传我的uniapp相关练习代码</li>
+<li>有兴趣的话可以浏览我的<a target="_blank" rel="noopener" href="https://zhengxuanye.github.io/">个人网站</a>，我会在上面持续更新内容，我新配置了评论功能，可以留下一个友善的评论，这对我有很大帮助</li>
+</ul>
+<h1 id="text"><a href="#text" class="headerlink" title="text"></a><code>text</code></h1><p>文本组件。用于包裹文本内容。</p>
+<p>在app-uvue和app-nvue中，文本只能写在text中，而不能写在view的text区域。</p>
+<p>虽然app-uvue中写在view的text区域的文字，也会被编译器自动包裹一层text组件，看起来也可以使用。但这样会造成无法修改该text文字的样式</p>
+<h3 id="属性说明"><a href="#属性说明" class="headerlink" title="属性说明"></a>属性说明</h3><table>
+<thead>
+<tr>
+<th align="left">属性名</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">说明</th>
+<th align="left">平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">selectable</td>
+<td align="left">Boolean</td>
+<td align="left">false</td>
+<td align="left">文本是否可选</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">user-select</td>
+<td align="left">Boolean</td>
+<td align="left">false</td>
+<td align="left">文本是否可选</td>
+<td align="left">微信小程序</td>
+</tr>
+<tr>
+<td align="left">space</td>
+<td align="left">String</td>
+<td align="left"></td>
+<td align="left">显示连续空格</td>
+<td align="left">钉钉小程序不支持</td>
+</tr>
+<tr>
+<td align="left">decode</td>
+<td align="left">Boolean</td>
+<td align="left">false</td>
+<td align="left">是否解码</td>
+<td align="left">百度、钉钉小程序不支持</td>
+</tr>
+</tbody></table>
+<p><strong>space 值说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">值</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ensp</td>
+<td align="left">中文字符空格一半大小</td>
+</tr>
+<tr>
+<td align="left">emsp</td>
+<td align="left">中文字符空格大小</td>
+</tr>
+<tr>
+<td align="left">nbsp</td>
+<td align="left">根据字体设置的空格大小</td>
+</tr>
+</tbody></table>
+<h3 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h3><p>text组件在web浏览器渲染（含浏览器、小程序webview渲染模式、app-vue）和uvue中，可以并只能嵌套text组件。</p>
+<p>在nvue中，text组件不能嵌套。</p>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><ul>
+<li>支持 <code>\n</code> 方式换行。</li>
+<li>在app-nvue下，只有<code>&lt;text&gt;</code>才能包裹文本内容。无法在<code>&lt;view&gt;</code>组件包裹文本。</li>
+<li>decode 可以解析的有 <code> </code> <code>&lt;</code> <code>&gt;</code> <code>&amp;</code> <code>&#39;</code> <code> </code> <code> </code>。</li>
+<li>各个操作系统的空格标准并不一致。</li>
+<li>除了文本节点以外的其他节点都无法长按选中。</li>
+<li>如果使用 <code>&lt;span&gt;</code> 组件编译时会被转换为 <code>&lt;text&gt;</code>。</li>
+<li>nvue 样式 <code>word-wrap</code> 在 Android 平台暂不支持</li>
+</ul>
+<h1 id="scroll-view"><a href="#scroll-view" class="headerlink" title="scroll-view"></a><code>scroll-view</code></h1><p>可滚动视图区域。用于区域滚动。</p>
+<p>需注意在webview渲染的页面中，区域滚动的性能不及页面滚动。</p>
+<h3 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h3><ul>
+<li><strong>竖向滚动</strong>：通过设置 <code>scroll-y=&quot;true&quot;</code> 来启用垂直方向上的滚动。</li>
+<li><strong>横向滚动</strong>：通过设置 <code>scroll-x=&quot;true&quot;</code> 来启用水平方向上的滚动。</li>
+<li><strong>固定高度&#x2F;宽度</strong>：对于竖向滚动，需要给 <code>&lt;scroll-view&gt;</code> 设置一个固定的高度；对于横向滚动，则通常需要设置一个固定的宽度。</li>
+<li><strong>样式控制</strong>：可以通过 CSS 控制滚动视图的样式，比如隐藏滚动条等。</li>
+</ul>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>在使用竖向滚动时，必须为 <code>&lt;scroll-view&gt;</code> 设置一个明确的高度。</li>
+<li>对于横向滚动，需要确保子元素不会换行（即 <code>white-space: nowrap</code>），并且每个子元素都设置了 <code>display: inline-block</code>。</li>
+<li>当内容较少不足以触发滚动时，滚动条不会出现。</li>
+<li>不要在 <code>&lt;scroll-view&gt;</code> 中放置原生组件如 <code>map</code> 或 <code>video</code>，特别是在小程序端。</li>
+<li>避免将过长的数据列表放入 <code>&lt;scroll-view&gt;</code> 中，这可能会导致性能问题。对于长列表，请考虑使用分页加载或虚拟列表技术。</li>
+</ul>
+<h3 id="一键回到顶部"><a href="#一键回到顶部" class="headerlink" title="一键回到顶部"></a>一键回到顶部</h3><p>总结你提供的方法，可以将实现点击按钮返回顶部功能的关键步骤和代码解释如下：</p>
+<h5 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h5><ul>
+<li>在 Vue 组件的 <code>data()</code> 函数中定义了一个名为 <code>scrollTop</code> 的变量。这个变量与 <code>&lt;scroll-view&gt;</code> 组件的 <code>:scroll-top</code> 属性绑定，意味着当 <code>scrollTop</code> 变量值变化时，滚动视图会自动更新其垂直滚动位置。</li>
+</ul>
+<h5 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h5><ul>
+<li>使用 <code>@scroll</code> 事件监听器来捕获滚动事件，并在事件处理函数中更新组件实例中的一个属性（例如 <code>old.scrollTop</code>），用于保存当前滚动位置。这使得可以在需要的时候访问或修改滚动位置。</li>
+</ul>
+<h5 id="返回顶部方法"><a href="#返回顶部方法" class="headerlink" title="返回顶部方法"></a>返回顶部方法</h5><ul>
+<li><code>goTop</code> 方法是实现返回顶部的核心逻辑：<ul>
+<li>首先，它设置 <code>scrollTop</code> 为当前滚动位置。</li>
+<li>然后使用 <code>$nextTick</code> 方法确保 DOM 更新完成后，再次将 <code>scrollTop</code> 设置为 <code>0</code>，以触发滚动到顶部的动作。</li>
+<li>此外，还使用了 <code>uni.showToast</code> 来显示一条消息提示用户滚动位置已经被重置为顶部。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">goTop</span>: <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="comment">// 解决视图层不同步的问题</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">scrollTop</span> = <span class="variable language_">this</span>.<span class="property">old</span>.<span class="property">scrollTop</span>;</span><br><span class="line">    <span class="variable language_">this</span>.$nextTick(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">scrollTop</span> = <span class="number">0</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    uni.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&quot;纵向滚动 scrollTop 值已被修改为 0&quot;</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在模板中，有一个带有 <code>@tap=&quot;goTop&quot;</code> 属性的 <code>&lt;view&gt;</code> 标签，这意味着当用户点击该区域时，将会调用 <code>goTop</code> 方法来执行返回顶部的操作。</li>
+</ul>
+<h1 id="swiper"><a href="#swiper" class="headerlink" title="swiper"></a><code>swiper</code></h1><p>滑块视图容器。</p>
+<p>一般用于左右滑动或上下滑动，比如banner轮播图。</p>
+<p>注意滑动切换和滚动的区别，滑动切换是一屏一屏的切换。swiper下的每个swiper-item是一个滑动切换区域，不能停留在2个滑动区域之间。</p>
+<h3 id="属性说明-1"><a href="#属性说明-1" class="headerlink" title="属性说明"></a>属性说明</h3><ul>
+<li><code>indicator-dots</code>: 是否显示面板指示点，默认为 <code>false</code>。</li>
+<li><code>autoplay</code>: 是否自动切换，默认为 <code>false</code>。</li>
+<li><code>interval</code>: 自动切换时间间隔，默认为 <code>5000ms</code>。</li>
+<li><code>duration</code>: 滑动动画时长，默认为 <code>500ms</code>。</li>
+<li><code>circular</code>: 是否采用衔接滑动，默认为 <code>false</code>。如果设置为 <code>true</code>，则可以实现无缝滚动效果。</li>
+<li><code>vertical</code>: 是否纵向模式，默认为 <code>false</code>。如果设置为 <code>true</code>，则变为上下滑动。</li>
+<li><code>current</code>: 当前所在滑块的索引值，默认为 <code>0</code>。</li>
+</ul>
+<h3 id="事件监听-1"><a href="#事件监听-1" class="headerlink" title="事件监听"></a>事件监听</h3><ul>
+<li><p><code>@change</code>: 轮播图切换时触发，可以通过此事件获取当前索引。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">swiper</span> @<span class="attr">change</span>=<span class="string">&quot;swiperChange&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">swiper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="title function_">swiperChange</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;当前索引：&#x27;</span>, e.<span class="property">detail</span>.<span class="property">current</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li><strong>性能优化</strong>：当轮播图中的图片较多或者较大时，建议进行图片懒加载处理，以提高页面加载速度。</li>
+<li><strong>样式调整</strong>：根据实际需求调整 <code>&lt;swiper&gt;</code> 和 <code>&lt;swiper-item&gt;</code> 的样式，比如高度、宽度等。</li>
+<li><strong>兼容性</strong>：确保在不同平台（如微信小程序、H5等）上测试轮播图的表现，因为各平台可能存在细微差异。</li>
+</ol>
+<p>通过上述配置和属性设置，你可以轻松创建一个功能齐全且美观的轮播图组件。此外，结合其他自定义样式或交互逻辑，可以让轮播图更加符合你的项目需求。</p>
+<h1 id="movable-view"><a href="#movable-view" class="headerlink" title="movable-view"></a><code>movable-view</code></h1><p>可移动的视图容器，在页面中可以拖拽滑动或双指缩放。</p>
+<p><code>movable-view</code>必须在<code>movable-area</code>组件中，并且必须是直接子节点，否则不能移动。</p>
+<p>以下是 <code>movable-view</code> 组件的属性说明，根据你提供的信息整理而成：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+<th>平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>direction</td>
+<td>String</td>
+<td>none</td>
+<td>定义 <code>movable-view</code> 的移动方向。可选值有 all（任意方向）、vertical（垂直方向）、horizontal（水平方向）、none（不可移动）</td>
+<td>-</td>
+</tr>
+<tr>
+<td>inertia</td>
+<td>Boolean</td>
+<td>false</td>
+<td>是否带有惯性，即在拖动结束后是否还会继续滑动一小段距离。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>out-of-bounds</td>
+<td>Boolean</td>
+<td>false</td>
+<td>当超过可移动区域后，<code>movable-view</code> 是否还可以继续移动。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Number &#x2F; String</td>
+<td>-</td>
+<td>定义 x 轴方向的偏移量。如果设置的值不在可移动范围内，则会自动调整到可移动范围，并且改变此值会触发动画效果。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Number &#x2F; String</td>
+<td>-</td>
+<td>定义 y 轴方向的偏移量。如果设置的值不在可移动范围内，则会自动调整到可移动范围，并且改变此值会触发动画效果。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>damping</td>
+<td>Number</td>
+<td>20</td>
+<td>阻尼系数，用于控制 x 或 y 方向改变时动画的速度和过界回弹的效果。数值越大，移动速度越快。</td>
+<td>360小程序不支持</td>
+</tr>
+<tr>
+<td>friction</td>
+<td>Number</td>
+<td>2</td>
+<td>摩擦系数，影响惯性滑动的停止速度。数值越大，摩擦力越大，滑动越快停止。必须大于 0，否则会被设置成默认值。</td>
+<td>360小程序不支持</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>Boolean</td>
+<td>false</td>
+<td>是否禁用 <code>movable-view</code>。当为 true 时，组件将无法被用户操作。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>scale</td>
+<td>Boolean</td>
+<td>false</td>
+<td>是否支持双指缩放。默认情况下，缩放手势生效区域是在 <code>movable-view</code> 内部。</td>
+<td>360小程序不支持</td>
+</tr>
+<tr>
+<td>scale-min</td>
+<td>Number</td>
+<td>0.1&#x2F;0.5</td>
+<td>定义缩放倍数的最小值。对于 0.1 倍的缩放，需要 App(4.51+)、H5(4.51+)、微信小程序(4.51+) 版本的支持。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>scale-max</td>
+<td>Number</td>
+<td>10</td>
+<td>定义缩放倍数的最大值。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>scale-value</td>
+<td>Number</td>
+<td>1</td>
+<td>定义当前的缩放倍数，取值范围通常为 0.1&#x2F;0.5 至 10。对于 0.1 倍的缩放，同样需要特定版本的支持。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>animation</td>
+<td>Boolean</td>
+<td>true</td>
+<td>是否使用动画效果。当改变 <code>x</code> 或 <code>y</code> 的值时，是否以动画形式过渡。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>@change</td>
+<td>EventHandle</td>
+<td>-</td>
+<td>拖动过程中触发的事件，event.detail 包含 {x: x, y: y, source: source}，其中 source 可能的值包括 touch（拖动）、touch-out-of-bounds（超出移动范围）、out-of-bounds（超出移动范围后的回弹）、friction（惯性）以及空字符串（setData）。</td>
+<td>-</td>
+</tr>
+<tr>
+<td>@scale</td>
+<td>EventHandle</td>
+<td>-</td>
+<td>缩放过程中触发的事件，event.detail 包含 {x: x, y: y, scale: scale}。主要用于监听缩放动作的发生。</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h1 id="icon"><a href="#icon" class="headerlink" title="icon"></a><code>icon</code></h1><p><strong>属性说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>String</td>
+<td></td>
+<td>icon的类型</td>
+</tr>
+<tr>
+<td>size</td>
+<td>Number</td>
+<td>23</td>
+<td>icon的大小，单位px</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Color</td>
+<td></td>
+<td>icon的颜色，同css的color</td>
+</tr>
+</tbody></table>
+<p>各平台 type 有效值说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">平台</th>
+<th align="center">type 有效值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">App、H5、微信小程序、QQ小程序</td>
+<td align="center">success, success_no_circle, info, warn, waiting, cancel, download, search, clear</td>
+</tr>
+<tr>
+<td align="center">支付宝小程序</td>
+<td align="center">info, warn, waiting, cancel, download, search, clear, success, success_no_circle,loading</td>
+</tr>
+<tr>
+<td align="center">百度小程序</td>
+<td align="center">success, info, warn, waiting, success_no_circle, clear, search, personal, setting, top, close, cancel, download, checkboxSelected, radioSelected, radioUnselect</td>
+</tr>
+</tbody></table>
+<h1 id="rich-text"><a href="#rich-text" class="headerlink" title="rich-text"></a><code>rich-text</code></h1><p>富文本。</p>
+<p>支持默认事件，包括：click、touchstart、touchmove、touchcancel、touchend、longpress.</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性名</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">说明</th>
+<th align="left">平台兼容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">nodes</td>
+<td align="left">Array &#x2F; String</td>
+<td align="left">[]</td>
+<td align="left">节点列表 &#x2F; HTML String</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">space</td>
+<td align="left">string</td>
+<td align="left"></td>
+<td align="left">显示连续空格</td>
+<td align="left">App、H5、微信基础库2.4.1+<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html">详见</a>、QQ小程序、抖音小程序、快手小程序<a target="_blank" rel="noopener" href="https://mp.kuaishou.com/docs/develop/components/basicComponents/richText.html">详见</a></td>
+</tr>
+<tr>
+<td align="left">selectable</td>
+<td align="left">Boolean</td>
+<td align="left">true</td>
+<td align="left">富文本是否可以长按选中，可用于复制，粘贴等场景</td>
+<td align="left">百度小程序（仅真机支持，基础库 3.150.1 以下版本默认为 false）</td>
+</tr>
+<tr>
+<td align="left">image-menu-prevent</td>
+<td align="left">Boolean</td>
+<td align="left">false</td>
+<td align="left">阻止长按图片时弹起默认菜单（将该属性设置为image-menu-prevent或image-menu-prevent&#x3D;”true”），只在初始化时有效，不能动态变更；若不想阻止弹起默认菜单，则不需要设置此属性</td>
+<td align="left">百度小程序</td>
+</tr>
+<tr>
+<td align="left">preview</td>
+<td align="left">Boolean</td>
+<td align="left"></td>
+<td align="left">富文本中的图片是否可点击预览。在不设置的情况下，若 rich-text 未监听点击事件，则默认开启。未显示设置 preview 时会进行点击默认预览判断，建议显示设置 preview</td>
+<td align="left">百度小程序</td>
+</tr>
+<tr>
+<td align="left">@itemclick</td>
+<td align="left">EventHandle</td>
+<td align="left"></td>
+<td align="left">拦截点击事件（只支持 <code>a</code>、<code>img</code>标签），返回当前node信息 <code>event.detail=&#123;node&#125;</code></td>
+<td align="left">H5 (3.2.13+)、App-Vue (3.2.13+)</td>
+</tr>
+</tbody></table>
+<h1 id="progress"><a href="#progress" class="headerlink" title="progress"></a><code>progress</code></h1><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+<th>平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>percent</td>
+<td>Number</td>
+<td>无</td>
+<td>百分比0~100</td>
+<td></td>
+</tr>
+<tr>
+<td>show-info</td>
+<td>Boolean</td>
+<td>false</td>
+<td>在进度条右侧显示百分比</td>
+<td></td>
+</tr>
+<tr>
+<td>border-radius</td>
+<td>Number&#x2F;String</td>
+<td>0</td>
+<td>圆角大小</td>
+<td>app-nvue、微信基础库2.3.1+、QQ小程序、快手小程序、京东小程序</td>
+</tr>
+<tr>
+<td>font-size</td>
+<td>Number&#x2F;String</td>
+<td>16</td>
+<td>右侧百分比字体大小</td>
+<td>app-nvue、微信基础库2.3.1+、QQ小程序、京东小程序</td>
+</tr>
+<tr>
+<td>stroke-width</td>
+<td>Number</td>
+<td>6</td>
+<td>进度条线的宽度，单位px</td>
+<td></td>
+</tr>
+<tr>
+<td>activeColor</td>
+<td>Color</td>
+<td>#09BB07（百度为#E6E6E6）</td>
+<td>已选择的进度条的颜色</td>
+<td></td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td>Color</td>
+<td>#EBEBEB</td>
+<td>未选择的进度条的颜色</td>
+<td></td>
+</tr>
+<tr>
+<td>active</td>
+<td>Boolean</td>
+<td>false</td>
+<td>进度条从左往右的动画</td>
+<td></td>
+</tr>
+<tr>
+<td>active-mode</td>
+<td>String</td>
+<td>backwards</td>
+<td>动画从头播；forwards：动画从上次结束点接着播</td>
+<td>App、H5、微信小程序、QQ小程序、快手小程序、京东小程序</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>Number</td>
+<td>30</td>
+<td>进度增加1%所需毫秒数</td>
+<td>App-nvue2.6.1+、微信基础库2.8.2+、H5 3.1.11+、App-Vue 3.1.11+、快手小程序、京东小程序</td>
+</tr>
+<tr>
+<td>@activeend</td>
+<td>EventHandle</td>
+<td></td>
+<td>动画完成事件</td>
+<td>微信小程序、京东小程序</td>
+</tr>
+</tbody></table>
+<h1 id="checkbox-group"><a href="#checkbox-group" class="headerlink" title="checkbox-group"></a>checkbox-group</h1><p><strong>属性说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性名</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">@change</td>
+<td align="left">EventHandle</td>
+<td align="left"></td>
+<td align="left"><code>&lt;checkbox-group&gt;</code>中选中项发生改变是触发 change 事件，detail &#x3D; {value:[选中的checkbox的value的数组]}</td>
+</tr>
+</tbody></table>
+<h3 id="checkbox"><a href="#checkbox" class="headerlink" title="checkbox"></a>checkbox</h3><p>多选项。在1组check-group中可选择多个</p>
+<p><strong>属性说明</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性名</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">说明</th>
+<th align="left">平台差异说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">value</td>
+<td align="left">String</td>
+<td align="left"></td>
+<td align="left"><code>&lt;checkbox&gt;</code> 标识，选中时触发 <code>&lt;checkbox-group&gt;</code> 的 change 事件，并携带 <code>&lt;checkbox&gt;</code> 的 value。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">disabled</td>
+<td align="left">Boolean</td>
+<td align="left">false</td>
+<td align="left">是否禁用</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">checked</td>
+<td align="left">Boolean</td>
+<td align="left">false</td>
+<td align="left">当前是否选中，可用来设置默认选中</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">color</td>
+<td align="left">Color</td>
+<td align="left"></td>
+<td align="left">checkbox的颜色，同css的color</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">backgroundColor</td>
+<td align="left">Color</td>
+<td align="left">#ffffff</td>
+<td align="left">checkbox默认的背景颜色</td>
+<td align="left">H5(3.99+)、App-Vue(3.99+)</td>
+</tr>
+<tr>
+<td align="left">borderColor</td>
+<td align="left">Color</td>
+<td align="left">#d1d1d1</td>
+<td align="left">checkbox默认的边框颜色</td>
+<td align="left">H5(3.99+)、App-Vue(3.99+)</td>
+</tr>
+<tr>
+<td align="left">activeBackgroundColor</td>
+<td align="left">Color</td>
+<td align="left">#ffffff</td>
+<td align="left">checkbox选中时的背景颜色，优先级大于color属性</td>
+<td align="left">H5(3.99+)、App-Vue(3.99+)</td>
+</tr>
+<tr>
+<td align="left">activeBorderColor</td>
+<td align="left">Color</td>
+<td align="left">#d1d1d1</td>
+<td align="left">checkbox选中时的边框颜色</td>
+<td align="left">H5(3.99+)、App-Vue(3.99+)</td>
+</tr>
+<tr>
+<td align="left">iconColor</td>
+<td align="left">Color</td>
+<td align="left">#007aff</td>
+<td align="left">checkbox的图标颜色</td>
+<td align="left">H5(3.99+)、App-Vue(3.99+)</td>
+</tr>
+</tbody></table>
+<h1 id="Button"><a href="#Button" class="headerlink" title="Button"></a><code>Button</code></h1><p>在UniApp中，<code>&lt;button&gt;</code> 组件是一个非常基础且重要的组件，用于创建按钮。它不仅支持文本内容，还可以嵌套其他组件，如图片、图标等，并提供了丰富的属性和事件来增强交互性。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;handleClick&quot;</span>&gt;</span>点击我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;按钮被点击了&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="属性说明-2"><a href="#属性说明-2" class="headerlink" title="属性说明"></a>属性说明</h3><ul>
+<li><p><code>type</code>: 按钮的样式类型，可选值包括 <code>primary</code>（主色调）、<code>default</code>（默认样式）、<code>warn</code>（警告色）。默认为 <code>default</code>。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span>&gt;</span>主要按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;default&quot;</span>&gt;</span>默认按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;warn&quot;</span>&gt;</span>警告按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>size</code>: 按钮大小，可选值有 <code>default</code>（默认大小）、<code>mini</code>（小尺寸）。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">size</span>=<span class="string">&quot;default&quot;</span>&gt;</span>默认大小<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">size</span>=<span class="string">&quot;mini&quot;</span>&gt;</span>小型按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>plain</code>: 是否镂空，即背景透明，默认为 <code>false</code>。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">plain</span>&gt;</span>镂空按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>disabled</code>: 是否禁用，默认为 <code>false</code>。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">disabled</span>&gt;</span>禁用按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>loading</code>: 是否显示加载图标，默认为 <code>false</code>。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">loading</span>&gt;</span>加载中<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="事件监听-2"><a href="#事件监听-2" class="headerlink" title="事件监听"></a>事件监听</h3><ul>
+<li><p><code>@click</code>: 点击事件。</p>
+<p>示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;handleClick&quot;</span>&gt;</span>点击事件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">methods</span>: &#123;</span><br><span class="line">  <span class="title function_">handleClick</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;按钮被点击&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="样式自定义"><a href="#样式自定义" class="headerlink" title="样式自定义"></a>样式自定义</h3><p>尽管 <code>&lt;button&gt;</code> 组件提供了多种预设样式，但你也可以通过自定义类名或内联样式来进一步定制按钮的外观。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;custom-button&quot;</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span>&gt;</span>自定义样式按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.custom-button</span> &#123;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">background-color</span>: <span class="number">#1AAD19</span>;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">color</span>: white;</span></span><br><span class="line"><span class="language-css">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li><strong>平台差异</strong>：不同平台（如微信小程序、H5等）对 <code>&lt;button&gt;</code> 的渲染可能存在细微差别，请务必进行跨平台测试。</li>
+<li><strong>嵌套限制</strong>：虽然 <code>&lt;button&gt;</code> 支持嵌套其他组件，但在某些平台上可能会有限制或不一致的行为。建议尽量保持简单的内容结构。</li>
+<li><strong>用户体验</strong>：考虑使用不同的 <code>type</code> 和状态（如 <code>disabled</code> 或 <code>loading</code>）来提供更好的用户反馈。</li>
+</ol>
+<p>通过合理利用 <code>&lt;button&gt;</code> 组件的属性和事件，你可以创建出功能强大且美观的按钮，从而提升应用的交互体验。</p>
+<p>#在UniApp中，<code>&lt;switch&gt;</code>、<code>&lt;input&gt;</code> 和 <code>&lt;textarea&gt;</code> 组件用于处理用户输入。它们各自有特定的用途和属性，下面将分别介绍这些组件的基本使用方法及其重要属性。</p>
+<h1 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a><code>Switch</code></h1><p><code>&lt;switch&gt;</code> 组件用于切换选择器（开关），允许用户在两种状态之间进行选择。</p>
+<h4 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">switch</span> <span class="attr">:checked</span>=<span class="string">&quot;isSwitched&quot;</span> @<span class="attr">change</span>=<span class="string">&quot;onSwitchChange&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">isSwitched</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">onSwitchChange</span>(<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">isSwitched</span> = e.<span class="property">detail</span>.<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Switch状态:&#x27;</span>, <span class="variable language_">this</span>.<span class="property">isSwitched</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="属性说明-3"><a href="#属性说明-3" class="headerlink" title="属性说明"></a>属性说明</h4><ul>
+<li><code>checked</code>: 开关是否被选中，默认为 <code>false</code>。</li>
+<li><code>type</code>: 样式类型，可选值 <code>switch</code> 或 <code>checkbox</code>，默认是 <code>switch</code>。</li>
+<li><code>color</code>: switch 打开时的背景色。</li>
+<li><code>disabled</code>: 是否禁用，默认为 <code>false</code>。</li>
+</ul>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a><code>Input</code></h1><p><code>&lt;input&gt;</code> 组件用于接收文本输入或其它类型的输入（如数字、密码等）。</p>
+<h4 id="基本用法-2"><a href="#基本用法-2" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入内容&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;inputValue&quot;</span> @<span class="attr">input</span>=<span class="string">&quot;onInput&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">inputValue</span>: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">onInput</span>(<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;输入的内容:&#x27;</span>, e.<span class="property">detail</span>.<span class="property">value</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="属性说明-4"><a href="#属性说明-4" class="headerlink" title="属性说明"></a>属性说明</h4><ul>
+<li><code>type</code>: 输入框类型，支持 <code>text</code>, <code>number</code>, <code>idcard</code>, <code>digit</code>, <code>password</code> 等。</li>
+<li><code>placeholder</code>: 输入框为空时占位符文本。</li>
+<li><code>value</code>: 输入框的初始值，可通过 <code>v-model</code> 实现双向绑定。</li>
+<li><code>disabled</code>: 是否禁用输入框，默认为 <code>false</code>。</li>
+<li><code>maxlength</code>: 最大输入长度，设置为 <code>-1</code> 表示不限制长度。</li>
+</ul>
+<h1 id="Textarea"><a href="#Textarea" class="headerlink" title="Textarea"></a><code>Textarea</code></h1><p><code>&lt;textarea&gt;</code> 组件用于多行文本输入。</p>
+<h4 id="基本用法-3"><a href="#基本用法-3" class="headerlink" title="基本用法"></a>基本用法</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入多行文本&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;textareaValue&quot;</span> @<span class="attr">input</span>=<span class="string">&quot;onTextareaInput&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">textareaValue</span>: <span class="string">&#x27;&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    &#125;;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">onTextareaInput</span>(<span class="params">e</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;输入的多行文本:&#x27;</span>, e.<span class="property">detail</span>.<span class="property">value</span>);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="属性说明-5"><a href="#属性说明-5" class="headerlink" title="属性说明"></a>属性说明</h4><ul>
+<li><code>placeholder</code>: 文本区域为空时显示的提示信息。</li>
+<li><code>value</code>: 文本区域的初始值，同样可以通过 <code>v-model</code> 实现双向数据绑定。</li>
+<li><code>auto-height</code>: 是否自动增高，默认为 <code>false</code>。如果设置为 <code>true</code>，则可以根据输入内容自动调整高度。</li>
+<li><code>disabled</code>: 是否禁用文本区域，默认为 <code>false</code>。</li>
+<li><code>maxlength</code>: 最大输入长度，设置为 <code>-1</code> 表示无限制。</li>
+</ul>
+<h1 id="uniapp组件的显示类型"><a href="#uniapp组件的显示类型" class="headerlink" title="uniapp组件的显示类型"></a>uniapp组件的显示类型</h1><p>在UniApp中，组件的显示类型（行内、块级等）和HTML标准元素类似，但也有其特定的组件库。</p>
+<h3 id="块级组件"><a href="#块级组件" class="headerlink" title="块级组件"></a>块级组件</h3><p>这些组件默认情况下占据父容器的整个宽度，并且独占一行。</p>
+<table>
+<thead>
+<tr>
+<th>组件名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;view&gt;</code></td>
+<td>类似于HTML中的<code>&lt;div&gt;</code>，是最常用的布局容器组件。</td>
+</tr>
+<tr>
+<td><code>&lt;scroll-view&gt;</code></td>
+<td>提供滚动功能的容器组件，可以设置竖向或横向滚动。需要设定固定的高度或宽度来实现滚动效果。</td>
+</tr>
+<tr>
+<td><code>&lt;swiper&gt;</code></td>
+<td>轮播图组件，用于实现图片或内容的轮播切换。</td>
+</tr>
+</tbody></table>
+<h3 id="行内组件"><a href="#行内组件" class="headerlink" title="行内组件"></a>行内组件</h3><p>这些组件不会独占一行，而是与其他行内组件并排显示。</p>
+<table>
+<thead>
+<tr>
+<th>组件名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;text&gt;</code></td>
+<td>类似于HTML中的<code>&lt;span&gt;</code>，用于包裹文本内容。支持文本换行等特性。</td>
+</tr>
+<tr>
+<td><code>&lt;rich-text&gt;</code></td>
+<td>用于展示富文本内容。</td>
+</tr>
+</tbody></table>
+<h3 id="行内块级组件"><a href="#行内块级组件" class="headerlink" title="行内块级组件"></a>行内块级组件</h3><p>这些组件既具有行内元素的特点又具备块级元素的一些特性，比如可以设置宽高。</p>
+<table>
+<thead>
+<tr>
+<th>组件名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;button&gt;</code></td>
+<td>按钮组件，可直接使用或嵌套其他组件。</td>
+</tr>
+<tr>
+<td><code>&lt;input&gt;</code></td>
+<td>输入框组件，包括文本输入框、密码输入框等。</td>
+</tr>
+<tr>
+<td><code>&lt;image&gt;</code></td>
+<td>图片组件，用于展示图像。</td>
+</tr>
+</tbody></table>
+<h3 id="特殊组件"><a href="#特殊组件" class="headerlink" title="特殊组件"></a>特殊组件</h3><p>还有一些组件因其特殊用途而不能简单归类为上述任意一种显示类型。</p>
+<table>
+<thead>
+<tr>
+<th>组件名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;navigator&gt;</code></td>
+<td>页面导航组件，用于页面之间的跳转。</td>
+</tr>
+<tr>
+<td><code>&lt;video&gt;</code></td>
+<td>视频播放组件。</td>
+</tr>
+</tbody></table>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/19/%E8%AE%A9%E4%BA%BA%E6%84%9F%E5%88%B0%E7%96%91%E6%83%91%E7%9A%84const/">
+                    让人感到疑惑的const
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/17/%E6%88%91%E8%AE%A4%E4%B8%BA%E5%9C%A8%E6%AD%A3%E5%BC%8F%E4%B8%8A%E6%89%8Buniapp%E4%B9%8B%E5%89%8D%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%BA%8B/" >
+                    我认为在正式上手uniapp之前你需要知道的事
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

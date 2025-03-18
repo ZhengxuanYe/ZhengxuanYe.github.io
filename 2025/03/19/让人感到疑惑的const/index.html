@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>让人感到疑惑的const - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                让人感到疑惑的const
+            
+        </h1>
+        <div>
+            <time>2025-03-19</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/Javascript/">Javascript</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <p><code>const</code> 关键字在不同的编程语言中有着不同的含义和限制，但通常它被用来声明一个常量或只读变量。然而，在 JavaScript 中，<code>const</code> 的行为有时可能会让人感到困惑，因为它并不总是意味着“不可变”（immutable）。让我们详细探讨一下这个问题。</p>
+<h3 id="JavaScript-中的-const"><a href="#JavaScript-中的-const" class="headerlink" title="JavaScript 中的 const"></a>JavaScript 中的 <code>const</code></h3><p>在 JavaScript 中，当你使用 <code>const</code> 声明一个变量时，你实际上是创建了一个不能重新赋值的绑定。这意味着一旦给这个变量赋予了初始值，你就不能再将这个变量指向另一个地址或值。但是，这并不意味着该变量指向的数据结构是不可变的。</p>
+<h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><p>对于基本数据类型（如数字、字符串、布尔值等），它们是按值存储的，因此当用 <code>const</code> 定义时，其值确实不可改变：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">10</span>;</span><br><span class="line">a = <span class="number">20</span>; <span class="comment">// TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h4><p>对于引用数据类型（如对象、数组等），情况就有所不同了。<code>const</code> 只保证变量名指向的内存地址不变，即变量名所指向的对象或数组的引用是固定的，但它所指向的对象或数组的内容是可以修改的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.<span class="title function_">push</span>(<span class="number">4</span>); <span class="comment">// 合法：修改数组内容</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr); <span class="comment">// 输出 [1, 2, 3, 4]</span></span><br><span class="line"></span><br><span class="line">arr = [<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]; <span class="comment">// TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<p>同样的规则也适用于对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123; <span class="attr">name</span>: <span class="string">&#x27;Alice&#x27;</span> &#125;;</span><br><span class="line">obj.<span class="property">name</span> = <span class="string">&#x27;Bob&#x27;</span>; <span class="comment">// 合法：修改对象属性</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj); <span class="comment">// 输出 &#123; name: &#x27;Bob&#x27; &#125;</span></span><br><span class="line"></span><br><span class="line">obj = &#123; <span class="attr">name</span>: <span class="string">&#x27;Charlie&#x27;</span> &#125;; <span class="comment">// TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="C-C-中的-const"><a href="#C-C-中的-const" class="headerlink" title="C&#x2F;C++ 中的 const"></a>C&#x2F;C++ 中的 <code>const</code></h3><p>相比之下，在C或C++中，<code>const</code> 更加严格地表示“只读”，试图通过任何方式修改 <code>const</code> 修饰的变量都会导致编译错误或者运行时错误。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line">x = <span class="number">20</span>; <span class="comment">// 编译错误</span></span><br></pre></td></tr></table></figure>
+
+<p>然而，即使在C&#x2F;C++中，如果尝试通过指针绕过 <code>const</code> 限制，理论上也可以修改 <code>const</code> 变量的值，但这是一种未定义行为，应该避免这样做 。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>在 JavaScript 中，<code>const</code> 确保的是变量绑定的不可变性，而不是其所指向的数据结构的不可变性。</li>
+<li>若要使对象或数组本身成为不可变的，可以使用 <code>Object.freeze()</code> 方法来冻结对象，防止其属性被修改 。</li>
+<li>在C&#x2F;C++中，<code>const</code> 提供了更强的保护，防止变量被修改，但在某些情况下，仍然可以通过非标准手段修改这些值，这应当被视为不安全的做法。</li>
+</ul>
+<p>了解这一点对于正确使用 <code>const</code> 和维护代码的安全性和可预测性至关重要。</p>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/19/uniapp%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/" >
+                    uniapp常用组件
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>
