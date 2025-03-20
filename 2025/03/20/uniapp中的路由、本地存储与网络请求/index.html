@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>uniapp中的路由、本地存储与网络请求 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                uniapp中的路由、本地存储与网络请求
+            
+        </h1>
+        <div>
+            <time>2025-03-20</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/uniapp/">uniapp</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="navigator"><a href="#navigator" class="headerlink" title="navigator"></a>navigator</h1><p>在UniApp中，<code>navigator</code> 组件用于页面跳转和应用内导航。</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li><strong>属性</strong>：<ul>
+<li><code>url</code>: 需要跳转的目标页面路径，路径可以是相对路径或绝对路径。</li>
+<li><code>open-type</code>: 跳转的方式，默认为 <code>navigateTo</code>。其他可选值包括：<code>redirectTo</code>, <code>switchTab</code>, <code>reLaunch</code>, <code>navigateBack</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="open-type"><a href="#open-type" class="headerlink" title="open-type"></a><code>open-type</code></h3><ol>
+<li><p><strong>navigateTo</strong>: 推入目标页面到栈顶，即打开新页面（默认）。</p>
+<ul>
+<li>示例: <code>&lt;navigator url=&quot;/pages/index/index&quot; open-type=&quot;navigate-to&quot;&gt;跳转到首页&lt;/navigator&gt;</code></li>
+</ul>
+</li>
+<li><p><strong>redirectTo</strong>: 关闭当前页面，跳转到应用内的某个页面。</p>
+<ul>
+<li>示例: <code>&lt;navigator url=&quot;/pages/index/index&quot; open-type=&quot;redirect-to&quot;&gt;重定向到首页&lt;/navigator&gt;</code></li>
+</ul>
+</li>
+<li><p><strong>switchTab</strong>: 跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。</p>
+<ul>
+<li>示例: <code>&lt;navigator url=&quot;/pages/tabBarPagePath&quot; open-type=&quot;switch-tab&quot;&gt;切换到tabBar页面&lt;/navigator&gt;</code></li>
+</ul>
+</li>
+<li><p><strong>reLaunch</strong>: 关闭所有页面，打开到应用内的某个页面。</p>
+<ul>
+<li>示例: <code>&lt;navigator url=&quot;/pages/reLaunchPagePath&quot; open-type=&quot;reLaunch&quot;&gt;重启并跳转到指定页面&lt;/navigator&gt;</code></li>
+</ul>
+</li>
+<li><p><strong>navigateBack</strong>: 返回上一页面或多级页面。</p>
+<ul>
+<li>可以通过 <code>delta</code> 属性指定返回的层级，默认为1。</li>
+<li>示例: <code>&lt;navigator open-type=&quot;navigate-back&quot; delta=&quot;2&quot;&gt;返回上两级&lt;/navigator&gt;</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>使用 <code>navigator</code> 时，确保目标页面已经在 <code>pages.json</code> 中注册。</li>
+<li>当使用 <code>switchTab</code> 作为 <code>open-type</code> 时，<code>url</code> 参数需要是一个已经定义在 <code>tabBar</code> 列表中的路径。</li>
+<li>在小程序环境中，页面栈的最大深度是有限制的（通常是10层），超过限制后无法继续使用 <code>navigateTo</code> 进行跳转。</li>
+</ul>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><ul>
+<li><code>tap</code>: 点击事件，可以用来处理点击跳转前的逻辑。</li>
+<li><code>success</code>: 成功后的回调函数。</li>
+<li><code>fail</code>: 失败后的回调函数。</li>
+<li><code>complete</code>: 不管成功或失败都会执行的回调函数。</li>
+</ul>
+<h4 id="1-uni-setStorage-OBJECT"><a href="#1-uni-setStorage-OBJECT" class="headerlink" title="1. uni.setStorage(OBJECT)"></a>1. <code>uni.setStorage(OBJECT)</code></h4><p>将数据存储到本地缓存中指定的key中，会覆盖掉原来该key对应的内容，这是一个异步接口。</p>
+<ul>
+<li><strong>参数</strong>:<ul>
+<li><code>key</code>: String 类型，必填，指定存储的键。</li>
+<li><code>data</code>: Any 类型，必填，需要存储的数据，只支持原生类型及能够通过JSON.stringify序列化的对象。</li>
+<li><code>success</code>: Function 类型，选填，接口调用成功的回调函数。</li>
+<li><code>fail</code>: Function 类型，选填，接口调用失败的回调函数。</li>
+<li><code>complete</code>: Function 类型，选填，接口调用结束的回调函数（无论成功或失败都会执行）。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">setStorage</span>(&#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&#x27;storage_key&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>: <span class="string">&#x27;hello&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;success&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意：避免使用以<code>uni-</code>、<code>uni_</code>、<code>dcloud-</code>、<code>dcloud_</code>为前缀的key，这些是系统保留的关键字。</p>
+<p>同步版本为<code>uni.setStorageSync(KEY, DATA)</code>。</p>
+<h4 id="2-uni-getStorage-OBJECT"><a href="#2-uni-getStorage-OBJECT" class="headerlink" title="2. uni.getStorage(OBJECT)"></a>2. <code>uni.getStorage(OBJECT)</code></h4><p>从本地缓存中异步获取指定key对应的内容。</p>
+<ul>
+<li><strong>参数</strong>:<ul>
+<li><code>key</code>: String 类型，必填，指定要获取的键。</li>
+<li><code>success</code>: Function 类型，必填，接口调用成功的回调函数，返回值包含<code>data</code>字段。</li>
+<li><code>fail</code>: Function 类型，选填，接口调用失败的回调函数。</li>
+<li><code>complete</code>: Function 类型，选填，接口调用结束的回调函数。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">getStorage</span>(&#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&#x27;storage_key&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">data</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>同步版本为<code>uni.getStorageSync(KEY)</code>。</p>
+<h4 id="3-uni-getStorageInfo-OBJECT"><a href="#3-uni-getStorageInfo-OBJECT" class="headerlink" title="3. uni.getStorageInfo(OBJECT)"></a>3. <code>uni.getStorageInfo(OBJECT)</code></h4><p>异步获取当前storage的相关信息，包括所有key、当前占用空间大小以及限制的空间大小。</p>
+<ul>
+<li><strong>参数</strong>:<ul>
+<li><code>success</code>: Function 类型，必填，接口调用成功的回调函数，返回值包含<code>keys</code>、<code>currentSize</code>和<code>limitSize</code>字段。</li>
+<li><code>fail</code>: Function 类型，选填，接口调用失败的回调函数。</li>
+<li><code>complete</code>: Function 类型，选填，接口调用结束的回调函数。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">getStorageInfo</span>(&#123;</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">keys</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">currentSize</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(res.<span class="property">limitSize</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>同步版本为<code>uni.getStorageInfoSync()</code>。</p>
+<h4 id="4-uni-removeStorage-OBJECT"><a href="#4-uni-removeStorage-OBJECT" class="headerlink" title="4. uni.removeStorage(OBJECT)"></a>4. <code>uni.removeStorage(OBJECT)</code></h4><p>从本地缓存中异步移除指定key的数据。</p>
+<ul>
+<li><strong>参数</strong>:<ul>
+<li><code>key</code>: String 类型，必填，指定要移除的键。</li>
+<li><code>success</code>: Function 类型，必填，接口调用成功的回调函数。</li>
+<li><code>fail</code>: Function 类型，选填，接口调用失败的回调函数。</li>
+<li><code>complete</code>: Function 类型，选填，接口调用结束的回调函数。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">removeStorage</span>(&#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&#x27;storage_key&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span> (<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;success&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>同步版本为<code>uni.removeStorageSync(KEY)</code>。</p>
+<h4 id="5-清理本地数据缓存"><a href="#5-清理本地数据缓存" class="headerlink" title="5. 清理本地数据缓存"></a>5. 清理本地数据缓存</h4><ul>
+<li>异步清理：<code>uni.clearStorage()</code></li>
+<li>同步清理：<code>uni.clearStorageSync()</code></li>
+</ul>
+<h1 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h1><p>在UniApp中进行网络请求是一个核心的功能，它允许开发者与服务器进行数据交互。UniApp提供了多种方式进行网络请求，主要包括<code>uni.request</code>、<code>uni.uploadFile</code>和<code>uni.downloadFile</code>等方法。</p>
+<h3 id="1-使用-uni-request-发起网络请求"><a href="#1-使用-uni-request-发起网络请求" class="headerlink" title="1. 使用 uni.request 发起网络请求"></a>1. 使用 <code>uni.request</code> 发起网络请求</h3><p><code>uni.request</code> 是 UniApp 提供的一个用于发起 HTTP 请求的方法，支持 GET、POST 等常见的 HTTP 方法。该方法可以配置请求头、请求参数，并处理响应数据。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">request</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;请求URL&#x27;</span>, <span class="comment">// 必填，请求的URL地址</span></span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>, <span class="comment">// 可选，默认为GET</span></span><br><span class="line">    <span class="attr">header</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span> <span class="comment">// 默认值</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">data</span>: &#123;</span><br><span class="line">        <span class="comment">// 请求的数据</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求成功&#x27;</span>, res.<span class="property">data</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="keyword">function</span>(<span class="params">err</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;请求失败&#x27;</span>, err);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>url</strong>: 开发者服务器接口地址。</li>
+<li><strong>data</strong>: 请求的参数。对于GET方法，会转换成query string；对于POST方法且header[‘content-type’]为application&#x2F;json的数据，会进行JSON序列化。</li>
+<li><strong>header</strong>: 设置请求头信息，例如设置Content-Type来指定请求体格式。</li>
+<li><strong>method</strong>: 支持包括GET、POST在内的常见HTTP方法。不同平台对某些方法的支持可能有所不同，请参照官方文档。</li>
+<li><strong>timeout</strong>: 超时时间，单位ms。H5端需要HBuilderX 2.9.9+版本支持。</li>
+<li><strong>success</strong>: 请求成功的回调函数，包含返回的数据、状态码及响应头等信息。</li>
+<li><strong>fail</strong>: 请求失败的回调函数，提供错误代码、消息等信息。</li>
+</ul>
+<h3 id="2-文件上传：使用-uni-uploadFile"><a href="#2-文件上传：使用-uni-uploadFile" class="headerlink" title="2. 文件上传：使用 uni.uploadFile"></a>2. 文件上传：使用 <code>uni.uploadFile</code></h3><p>当需要上传文件时，可以使用 <code>uni.uploadFile</code> 方法。它可以用来上传图片、音频等多媒体文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">uploadFile</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;上传URL&#x27;</span>,</span><br><span class="line">    <span class="attr">filePath</span>: <span class="string">&#x27;要上传的文件路径&#x27;</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;上传文件对应的key&#x27;</span>,</span><br><span class="line">    <span class="attr">formData</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;user&#x27;</span>: <span class="string">&#x27;test&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;上传成功&#x27;</span>, res.<span class="property">data</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-文件下载：使用-uni-downloadFile"><a href="#3-文件下载：使用-uni-downloadFile" class="headerlink" title="3. 文件下载：使用 uni.downloadFile"></a>3. 文件下载：使用 <code>uni.downloadFile</code></h3><p>对于需要从服务器下载文件的情况，可以使用 <code>uni.downloadFile</code> 方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">downloadFile</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;下载URL&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (res.<span class="property">statusCode</span> === <span class="number">200</span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;下载成功&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-封装网络请求"><a href="#4-封装网络请求" class="headerlink" title="4. 封装网络请求"></a>4. 封装网络请求</h3><p>为了简化代码和提高复用性，通常会对网络请求进行封装。例如，可以创建一个 <code>request.js</code> 文件来统一管理所有的网络请求逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">request</span> = (<span class="params">options</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        uni.<span class="title function_">request</span>(&#123;</span><br><span class="line">            ...options,</span><br><span class="line">            <span class="attr">success</span>: resolve,</span><br><span class="line">            <span class="attr">fail</span>: reject</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后，在页面中可以通过这种方式调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; request &#125; <span class="keyword">from</span> <span class="string">&#x27;@/utils/request.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fetchData</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">request</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>: <span class="string">&#x27;/api/data&#x27;</span>,</span><br><span class="line">            <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span></span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/20/page-json%E5%92%8Cmanifest-json/">
+                    page.json和manifest.json
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/20/%E6%88%91%E7%9A%84uniapp%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF/" >
+                    我的uniapp自定义模板
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>uniapp特有生命周期钩子 - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                uniapp特有生命周期钩子
+            
+        </h1>
+        <div>
+            <time>2025-03-20</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/uniapp/">uniapp</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="生命周期钩子"><a href="#生命周期钩子" class="headerlink" title="生命周期钩子"></a>生命周期钩子</h1><p>在 UniApp 中，页面的生命周期与 Vue 的生命周期钩子紧密相关，并且针对小程序平台，UniApp 还扩展了一些额外的生命周期钩子。以下是重要的页面生命周期钩子及其简要说明：</p>
+<h3 id="基础的-Vue-生命周期钩子"><a href="#基础的-Vue-生命周期钩子" class="headerlink" title="基础的 Vue 生命周期钩子"></a>基础的 Vue 生命周期钩子</h3><ol>
+<li><p><strong>beforeCreate</strong></p>
+<ul>
+<li>在实例初始化之后，数据观测 (data observer) 和 event&#x2F;watcher 事件配置之前被调用。</li>
+</ul>
+</li>
+<li><p><strong>created</strong></p>
+<ul>
+<li>实例已经创建完成之后被调用。此时已完成数据观测，属性和方法的运算，watch&#x2F;event 事件回调。但是尚未开始 DOM 编译，即未挂载到 DOM 上。</li>
+</ul>
+</li>
+<li><p><strong>beforeMount</strong></p>
+<ul>
+<li>在挂载开始之前被调用：相关的 render 函数首次被调用。</li>
+</ul>
+</li>
+<li><p><strong>mounted</strong></p>
+<ul>
+<li>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果根实例挂载到了一个文档内的元素上，当 mounted 被调用时 vm.$el 也在文档内。</li>
+</ul>
+</li>
+<li><p><strong>beforeUpdate</strong></p>
+<ul>
+<li>数据更新时调用，发生在虚拟 DOM 打补丁之前。这里适合在更新之前访问现有的 DOM，比如手动移除已添加的事件监听器。</li>
+</ul>
+</li>
+<li><p><strong>updated</strong></p>
+<ul>
+<li>由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。</li>
+</ul>
+</li>
+<li><p><strong>beforeDestroy</strong></p>
+<ul>
+<li>实例销毁之前调用。在这一步，实例仍然完全可用。</li>
+</ul>
+</li>
+<li><p><strong>destroyed</strong></p>
+<ul>
+<li>Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</li>
+</ul>
+</li>
+</ol>
+<h3 id="uniapp特有的生命周期钩子"><a href="#uniapp特有的生命周期钩子" class="headerlink" title="uniapp特有的生命周期钩子"></a>uniapp特有的生命周期钩子</h3><ol>
+<li><p><strong>onLoad</strong></p>
+<ul>
+<li>监听页面加载，其参数为上个页面传递的数据，参数类型为 Object（用于页面传参），触发时机早于 <code>onShow</code>。</li>
+</ul>
+</li>
+<li><p><strong>onShow</strong></p>
+<ul>
+<li>监听页面显示。页面每次出现在屏幕上都触发，包括从下级页面点返回露出当前页面。</li>
+</ul>
+</li>
+<li><p><strong>onReady</strong></p>
+<ul>
+<li>监听页面初次渲染完成。注意如果渲染速度快，会在页面进入动画完成前触发。</li>
+</ul>
+</li>
+<li><p><strong>onHide</strong></p>
+<ul>
+<li>监听页面隐藏。</li>
+</ul>
+</li>
+<li><p><strong>onUnload</strong></p>
+<ul>
+<li>监听页面卸载。</li>
+</ul>
+</li>
+<li><p><strong>onPullDownRefresh</strong></p>
+<ul>
+<li>监听用户下拉动作: 一般用于下拉刷新动作，需要在 <code>pages.json</code> 里开启 enablePullDownRefresh。可以通过 <code>uni.stopPullDownRefresh</code> 停止当前页面的下拉刷新。</li>
+</ul>
+</li>
+<li><p><strong>onReachBottom</strong></p>
+<ul>
+<li>页面滚动到底部的事件（不是scroll-view滚到底），常用于分页加载数据。</li>
+</ul>
+</li>
+<li><p><strong>onShareAppMessage</strong></p>
+<ul>
+<li>用户点击右上角菜单的“转发”按钮时触发，可用于自定义转发内容。</li>
+</ul>
+</li>
+<li><p><strong>onPageScroll</strong></p>
+<ul>
+<li>监听页面滚动，参数为 Object。</li>
+</ul>
+</li>
+<li><p><strong>onTabItemTap</strong></p>
+<ul>
+<li>点击 tab 时触发，参数为 Object，仅在包含 tabBar 的页面中有效。</li>
+</ul>
+</li>
+</ol>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/20/uniapp%E4%B8%AD%E7%9A%84vue%E7%BB%84%E4%BB%B6%E4%B8%8E%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8%E5%B7%AE%E5%BC%82/">
+                    uniapp中的vue组件与组件使用差异
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/20/page-json%E5%92%8Cmanifest-json/" >
+                    page.json和manifest.json
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

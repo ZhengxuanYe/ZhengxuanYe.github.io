@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>page.json和manifest.json - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                page.json和manifest.json
+            
+        </h1>
+        <div>
+            <time>2025-03-20</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/uniapp/">uniapp</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="UniApp-pages-json"><a href="#UniApp-pages-json" class="headerlink" title="UniApp pages.json"></a>UniApp <code>pages.json</code></h1><p><code>pages.json</code> 是 UniApp 项目中用于全局配置的重要文件，它定义了页面路由、窗口样式、导航栏、底部的原生 tabbar 等。</p>
+<h4 id="1-globalStyle"><a href="#1-globalStyle" class="headerlink" title="1. globalStyle"></a>1. globalStyle</h4><ul>
+<li><strong>用途</strong>：设置应用默认的窗口表现。</li>
+<li><strong>注意点</strong>：<ul>
+<li>设置的属性会被所有页面继承，但可以在单个页面的 <code>style</code> 中覆盖。</li>
+<li>不同平台可能有不同的默认值或支持情况，请参考相应平台文档。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;globalStyle&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;navigationBarBackgroundColor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#F8F8F8&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;navigationBarTextStyle&quot;</span><span class="punctuation">:</span> <span class="string">&quot;black&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;navigationBarTitleText&quot;</span><span class="punctuation">:</span> <span class="string">&quot;演示&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;backgroundColor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#F8F8F8&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;enablePullDownRefresh&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;onReachBottomDistance&quot;</span><span class="punctuation">:</span> <span class="number">50</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-topWindow-leftWindow-rightWindow"><a href="#2-topWindow-leftWindow-rightWindow" class="headerlink" title="2. topWindow &#x2F; leftWindow &#x2F; rightWindow"></a>2. topWindow &#x2F; leftWindow &#x2F; rightWindow</h4><ul>
+<li><strong>用途</strong>：宽屏适配，允许在主窗口的顶部、左侧或右侧追加新的页面显示窗体。</li>
+<li><strong>注意点</strong>：<ul>
+<li>需要根据实际需求调整宽度和高度。</li>
+<li>可以使用 <code>matchMedia</code> 来控制在不同屏幕尺寸下是否显示这些窗口。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;topWindow&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;responsive/top-window.vue&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;height&quot;</span><span class="punctuation">:</span> <span class="string">&quot;44px&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;leftWindow&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;responsive/left-window.vue&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;width&quot;</span><span class="punctuation">:</span> <span class="string">&quot;300px&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;rightWindow&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;responsive/right-window.vue&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;width&quot;</span><span class="punctuation">:</span> <span class="string">&quot;300px&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;matchMedia&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;minWidth&quot;</span><span class="punctuation">:</span> <span class="number">768</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-pages"><a href="#3-pages" class="headerlink" title="3. pages"></a>3. pages</h4><ul>
+<li><strong>用途</strong>：定义应用中的所有页面及其样式。</li>
+<li><strong>注意点</strong>：<ul>
+<li>第一个页面作为首页。</li>
+<li>文件名不需要写后缀 <code>.vue</code>，框架会自动寻找路径下的页面资源。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;pages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/index/index&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;navigationBarTitleText&quot;</span><span class="punctuation">:</span> <span class="string">&quot;首页&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/login/login&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;navigationBarTitleText&quot;</span><span class="punctuation">:</span> <span class="string">&quot;登录&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-style-页面级别"><a href="#4-style-页面级别" class="headerlink" title="4. style (页面级别)"></a>4. style (页面级别)</h4><ul>
+<li><strong>用途</strong>：覆盖 <code>globalStyle</code> 的设置，针对单个页面进行更详细的样式配置。</li>
+<li><strong>注意点</strong>：<ul>
+<li>页面级别的 <code>style</code> 优先级高于 <code>globalStyle</code>。</li>
+<li>对于复杂的页面，建议单独定义 <code>style</code>。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;navigationBarBackgroundColor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#FF5722&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;navigationBarTitleText&quot;</span><span class="punctuation">:</span> <span class="string">&quot;自定义页面&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-自定义导航栏使用注意"><a href="#5-自定义导航栏使用注意" class="headerlink" title="5. 自定义导航栏使用注意"></a>5. 自定义导航栏使用注意</h4><ul>
+<li><strong>要点</strong>：<ul>
+<li>使用 <code>navigationStyle: custom</code> 取消默认的原生导航栏时，需自行实现导航栏的功能。</li>
+<li>注意不同平台的兼容性问题，如微信小程序需要版本 7.0+ 支持。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;style&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;navigationStyle&quot;</span><span class="punctuation">:</span> <span class="string">&quot;custom&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-app-plus"><a href="#6-app-plus" class="headerlink" title="6. app-plus"></a>6. app-plus</h4><ul>
+<li><strong>用途</strong>：配置编译到 App 平台的特定样式。</li>
+<li><strong>注意点</strong>：<ul>
+<li>特定于 App 平台的配置项较多，如启动图片、状态栏样式等。</li>
+<li>需要考虑不同设备分辨率和系统版本的支持情况。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;app-plus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;splashscreen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;autoclose&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;statusbar&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;immersed&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="7-tabBar"><a href="#7-tabBar" class="headerlink" title="7. tabBar"></a>7. tabBar</h4><ul>
+<li><strong>用途</strong>：配置底部 tab 栏的表现。</li>
+<li><strong>注意点</strong>：<ul>
+<li><code>list</code> 中的每个对象代表一个 tab 项，必须包含 <code>pagePath</code> 和 <code>text</code> 属性。</li>
+<li>图标路径应为相对路径或绝对路径，确保正确引用。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;tabBar&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;color&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#7A7E83&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;selectedColor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#3cc51f&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;pagePath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/component/index&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;组件&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;iconPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;static/image/icon_component.png&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;selectedIconPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;static/image/icon_component_HL.png&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8-easycom"><a href="#8-easycom" class="headerlink" title="8. easycom"></a>8. easycom</h4><ul>
+<li><strong>用途</strong>：简化组件引入，自动注册符合规则的组件。</li>
+<li><strong>注意点</strong>：<ul>
+<li>自动扫描组件可以极大简化开发流程，但需注意命名规则的一致性。</li>
+<li>定义清晰的自定义扫描规则，避免冲突。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;easycom&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;autoscan&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;custom&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;^uni-(.*)&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@/components/uni-$1.vue&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="9-condition-subPackages-preloadRule"><a href="#9-condition-subPackages-preloadRule" class="headerlink" title="9. condition &amp; subPackages &amp; preloadRule"></a>9. condition &amp; subPackages &amp; preloadRule</h4><ul>
+<li><p><strong>用途</strong>：</p>
+<ul>
+<li><code>condition</code>: 启动模式配置（仅开发期间生效）。</li>
+<li><code>subPackages</code>: 分包加载配置。</li>
+<li><code>preloadRule</code>: 分包预下载规则。</li>
+</ul>
+<p><strong>注意点</strong>：</p>
+<ul>
+<li>分包策略有助于优化小程序的加载速度，特别是对于大型应用。</li>
+<li>预下载规则可以帮助用户快速访问常用页面。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;condition&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;current&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="attr">&quot;list&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;test&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;pages/component/view/index&quot;</span> <span class="punctuation">&#125;</span><span class="punctuation">]</span> <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;subPackages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;preloadRule&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="注意事项总结"><a href="#注意事项总结" class="headerlink" title="注意事项总结"></a>注意事项总结</h3><ul>
+<li><strong>跨平台差异</strong>：不同的小程序平台对某些配置的支持程度不同，请务必查阅相应平台的文档。</li>
+<li><strong>样式覆盖</strong>：页面级别的 <code>style</code> 优先级高于 <code>globalStyle</code>，合理利用可以减少重复代码。</li>
+<li><strong>图标路径</strong>：确保图标的路径正确，特别是在使用相对路径时要注意目录结构。</li>
+<li><strong>性能优化</strong>：通过分包加载和预下载规则来提升应用的加载速度，尤其是在网络条件不佳的情况下尤为重要。</li>
+<li><strong>测试与调试</strong>：由于不同平台可能存在差异，建议在多个平台上进行全面测试，包括真机测试。</li>
+</ul>
+<h1 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a><code>manifest.json</code></h1><p><code>manifest.json</code> 文件在 UniApp 项目中用于配置应用的基本信息和运行时权限等。它类似于传统 Web 应用中的 <code>package.json</code> 或者原生移动应用的 <code>AndroidManifest.xml</code> 和 <code>Info.plist</code>，但专门针对跨平台开发进行了优化。以下是关于 <code>manifest.json</code> 的详细说明，包括其结构、重要配置项及其注意事项。</p>
+<h3 id="manifest-json-基本结构"><a href="#manifest-json-基本结构" class="headerlink" title="manifest.json 基本结构"></a>manifest.json 基本结构</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;appid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MyUniApp&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;versionName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;versionCode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;uniStatistics&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;enable&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;app-plus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// App端特有配置</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;mp-weixin&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 微信小程序特有配置</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;mp-alipay&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 支付宝小程序特有配置</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;mp-baidu&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 百度小程序特有配置</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;mp-toutiao&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// 抖音小程序特有配置</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="comment">// 其他小程序或快应用的配置...</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重要配置项及说明"><a href="#重要配置项及说明" class="headerlink" title="重要配置项及说明"></a>重要配置项及说明</h3><h4 id="1-基础信息配置"><a href="#1-基础信息配置" class="headerlink" title="1. 基础信息配置"></a>1. 基础信息配置</h4><ul>
+<li><strong>appid</strong>: 应用的唯一标识符，通常由平台分配。</li>
+<li><strong>name</strong>: 应用名称，显示在设备的应用列表中。</li>
+<li><strong>versionName</strong>: 版本名称，用户可见的版本号。</li>
+<li><strong>versionCode</strong>: 版本代码，用于内部版本控制，数字越大代表版本越新。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;appid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;your-app-id&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MyUniApp&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;versionName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;versionCode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;100&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-uniStatistics（统计）"><a href="#2-uniStatistics（统计）" class="headerlink" title="2. uniStatistics（统计）"></a>2. uniStatistics（统计）</h4><ul>
+<li><strong>enable</strong>: 是否启用 DCloud 提供的统计服务，默认为 <code>false</code>。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;uniStatistics&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;enable&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-app-plus-App端特有配置"><a href="#3-app-plus-App端特有配置" class="headerlink" title="3. app-plus (App端特有配置)"></a>3. app-plus (App端特有配置)</h4><ul>
+<li>包含了 Android 和 iOS 平台的相关配置。</li>
+<li>可以设置启动图、状态栏样式、权限声明等。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;app-plus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;distribute&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;android&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;permissions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;&lt;uses-permission android:name=&#x27;android.permission.INTERNET&#x27;/&gt;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;&lt;uses-permission android:name=&#x27;android.permission.ACCESS_NETWORK_STATE&#x27;/&gt;&quot;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;splashscreen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;autoclose&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;waiting&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;delay&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;statusbar&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;immersed&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;dark&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-mp-weixin-微信小程序特有配置"><a href="#4-mp-weixin-微信小程序特有配置" class="headerlink" title="4. mp-weixin (微信小程序特有配置)"></a>4. mp-weixin (微信小程序特有配置)</h4><ul>
+<li>配置微信小程序特有的参数，如 appId、网络超时时间等。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;mp-weixin&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;appid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;wx1234567890abcdef&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;setting&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;urlCheck&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;es6&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;postcss&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;minified&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;networkTimeout&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;connectSocket&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;uploadFile&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;downloadFile&quot;</span><span class="punctuation">:</span> <span class="number">10000</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-mp-alipay-支付宝小程序特有配置"><a href="#5-mp-alipay-支付宝小程序特有配置" class="headerlink" title="5. mp-alipay (支付宝小程序特有配置)"></a>5. mp-alipay (支付宝小程序特有配置)</h4><ul>
+<li>类似于微信小程序的配置，但针对支付宝小程序的特点进行调整。</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;mp-alipay&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;appid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;20181234567890&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;usingComponents&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;titleBarColor&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#ffffff&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
+<li><strong>权限声明</strong>：确保根据应用的需求正确声明所需的权限，避免因缺少权限导致的功能异常。</li>
+<li><strong>启动图和状态栏样式</strong>：合理配置启动图和状态栏样式可以提升用户体验。</li>
+<li><strong>不同平台的差异性</strong>：由于各平台有不同的规范和限制，需特别注意特定平台的配置项，以保证应用在各平台上都能正常运行。</li>
+<li><strong>版本管理</strong>：定期更新 <code>versionName</code> 和 <code>versionCode</code>，以便跟踪应用的发布历史。</li>
+<li><strong>真机测试</strong>：在完成配置后，务必在真实设备上进行全面测试，确保所有功能按预期工作。</li>
+</ol>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/20/uniapp%E7%89%B9%E6%9C%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/">
+                    uniapp特有生命周期钩子
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/20/uniapp%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E3%80%81%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E4%B8%8E%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/" >
+                    uniapp中的路由、本地存储与网络请求
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>

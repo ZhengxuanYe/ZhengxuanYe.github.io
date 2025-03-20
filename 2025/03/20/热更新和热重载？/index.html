@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+
+
+
+
+
+
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <link rel="shortcut icon" href="/img/headPortrait.png" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+/>
+<link
+    href="https://cdn.jsdelivr.net/npm/@fontsource/cascadia-code@4.2.1/index.min.css"
+    rel="stylesheet"
+/>
+
+<!-- 添加 Fork Awesome CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<!-- 添加 busuanzi 统计脚本 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="stylesheet" href="/styles/main.css">
+
+
+    
+<link rel="stylesheet" href="/styles/post.css">
+
+
+
+<title>热更新和热重载？ - Xuan&#39;s Blog</title>
+
+    <meta name="generator" content="Hexo 7.3.0"></head>
+    <body>
+        <header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+                
+                    <li>
+                        <a href="/posts"
+                            ><span>Posts</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/tags"
+                            ><span>Tags</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/categories"
+                            ><span>Categories</span></a
+                        >
+                    </li>
+                
+                    <li>
+                        <a href="/archives"
+                            ><span>Archives</span></a
+                        >
+                    </li>
+                
+            
+        </ul>
+    </nav>
+</header>
+
+        <main>
+    <header>
+        <h1>
+            
+                热更新和热重载？
+            
+        </h1>
+        <div>
+            <time>2025-03-20</time>
+            <div class="post-categories">
+                
+                    <span class="category-tree">
+                        
+                            <span class="category-separator">/</span>
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                        
+                    </span>
+                
+            </div>
+            <div class="post-tags">
+                
+                    <span class="tag">
+                        <span class="category-separator">#</span>
+                        <a href="/tags/Interview-content/">Interview content</a>
+                    </span>
+                
+            </div>
+        </div>
+    </header>
+    <h1 id="热重载（Hot-Reload）和热更新（Hot-Update）"><a href="#热重载（Hot-Reload）和热更新（Hot-Update）" class="headerlink" title="热重载（Hot Reload）和热更新（Hot Update）"></a>热重载<code>（Hot Reload）</code>和热更新<code>（Hot Update）</code></h1><p>热重载（Hot Reload）和热更新（Hot Update）虽然听起来相似，但它们实际上指的是不同的概念，并且在不同的场景下使用。</p>
+<h3 id="热重载（Hot-Reload）"><a href="#热重载（Hot-Reload）" class="headerlink" title="热重载（Hot Reload）"></a>热重载（Hot Reload）</h3><p><strong>定义：</strong><br>热重载是指在应用运行时，开发者可以即时修改代码并立即看到这些更改的效果，而无需重新启动应用程序。这通常用于开发阶段，以加快开发流程。</p>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>主要应用于前端开发框架如React、Vue.js以及Flutter等。</li>
+<li>在服务器端语言中也有所应用，例如C++的开发环境中通过特定插件或工具实现。</li>
+</ul>
+<p><strong>实现方式：</strong></p>
+<ul>
+<li>对于前端框架，通常是通过Webpack的Hot Module Replacement (HMR) 插件来实现。</li>
+<li>在Flutter中，热重载是通过Dart VM的即时编译模式实现的。</li>
+</ul>
+<h3 id="热更新（Hot-Update）"><a href="#热更新（Hot-Update）" class="headerlink" title="热更新（Hot Update）"></a>热更新（Hot Update）</h3><p><strong>定义：</strong><br>热更新则更倾向于指能够在不关闭服务器或重启应用的情况下进行的更新操作。它允许在生产环境中无缝地部署新版本的应用程序，对用户的影响最小化。</p>
+<p><strong>应用场景：</strong></p>
+<ul>
+<li>适用于移动应用和Web应用，在不打扰用户体验的前提下修复Bug或添加新功能。</li>
+<li>在某些情况下，也可以用于服务器端软件的在线升级。</li>
+</ul>
+<p><strong>实现方式：</strong></p>
+<ul>
+<li>在移动应用领域，热更新可以通过动态下发补丁来完成，比如阿里Sophix和腾讯Tinker等方案。</li>
+<li>对于Web应用，热更新可能涉及到服务端推送新的JavaScript文件或其他资源给客户端，而不需要用户刷新页面。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>尽管热重载和热更新都涉及到了“无需重启”的特性，但它们的目标不同：</p>
+<ul>
+<li><strong>热重载</strong>是为了提高开发效率，让开发者能更快地看到代码更改后的效果。</li>
+<li><strong>热更新</strong>则是为了减少停机时间，确保应用程序可以在不影响现有用户的情况下得到更新。</li>
+</ul>
+<p>因此，这两个术语并不是同一个概念，而是针对不同需求设计的不同技术解决方案。理解这两者之间的差异对于选择合适的技术栈和工具至关重要。如果你是在讨论开发环境中的快速迭代，那么你可能指的是热重载；如果是关于生产环境下的无缝更新，则更可能是热更新。</p>
+
+    <div class="gallery">
+        
+    </div>
+</main>
+
+        
+    <nav class="pagination">
+        <span class="prev">
+            
+                <a href="/2025/03/20/%E6%88%91%E7%9A%84uniapp%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A8%A1%E6%9D%BF/">
+                    我的uniapp自定义模板
+                </a>
+            
+        </span>
+        <span class="next">
+            
+                <a href="/2025/03/19/%E8%AE%A9%E4%BA%BA%E6%84%9F%E5%88%B0%E7%96%91%E6%83%91%E7%9A%84const/" >
+                    让人感到疑惑的const
+                </a>
+            
+        </span>
+    </nav>
+
+
+        <footer>
+    <p>&copy; Khalil Yip</p>
+    <p>
+        <i class="fa fa-github"></i>My Github location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://github.com/ZhengxuanYe">Click it</a> <br>
+        <i class="fa fa-file-text"></i>My CSDN location&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" rel="noopener" href="https://blog.csdn.net/ya3288426755?spm=1010.2135.3001.5343">Click it</a> <br>
+        <i class="fa fa-envelope"></i>You can contact me by email:&nbsp;&nbsp;<a href="mailto:2038286370@qq.com">&nbsp;&nbsp;2038286370@qq.com</a> <br>
+        Cheers up!
+    </p>
+    <!-- 添加访问统计 -->
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <i class="fa fa-eye"></i> Total Views: <span id="busuanzi_value_site_pv"></span>
+        </span>
+        &nbsp;|&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <i class="fa fa-user"></i> Visitors: <span id="busuanzi_value_site_uv"></span>
+        </span>
+    </p>
+</footer>
+
+    </body>
+</html>
